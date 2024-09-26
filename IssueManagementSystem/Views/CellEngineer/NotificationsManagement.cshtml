@@ -1,0 +1,711 @@
+﻿﻿@{
+
+    ViewBag.Title = "NotificationsManagement";
+    
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+
+
+}
+@using IssueManagementSystem.Models;
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link href="~/Content/adminstyles/select2-min.css" rel="stylesheet" />
+<link href="~/Content/adminstyles/Settings.css" rel="stylesheet" />
+<link href="~/Content/adminstyles/notificationManagement.css" rel="stylesheet" />
+<link href="~/Content/SupervisorStyles/jquery-ui.css" rel="stylesheet" />
+
+<style>
+
+    .lableSet {
+        float: left;
+    }
+
+    .modal-backdrop {
+        z-index: -1 !important;
+    }
+
+    .modal-content {
+        width: 100%;
+    }
+</style>
+
+
+    
+<div class="alert alert-info  modal fade show text-lg-center center-div" role="alert" style="width:20%;height:10%">
+    <button type="button" class="close" data-dismiss="alert"></button>
+    <strong>Done!</strong><br> Your Line Notification data successfully Saved.
+</div>
+   
+
+<div class="page-content--bgf7" style="margin-top:-2%">
+    <!-- BREADCRUMB-->
+    <section class="au-breadcrumb2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="au-breadcrumb-content">
+                        <div class="au-breadcrumb-left">
+                            <span class="au-breadcrumb-span">You are here:</span>
+                            <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                <li class="list-inline-item active">
+                                    <a href="#">CellEngineer</a>
+                                </li>
+                                <li class="list-inline-item seprate">
+                                    <span>/</span>
+                                </li>
+                                <li class="list-inline-item">Notification Management</li>
+                            </ul>
+                        </div>
+                        <form class="au-form-icon--sm hidden" action="" method="post">
+                            <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
+                            <button class="au-btn--submit2" type="submit">
+                                <i class="zmdi zmdi-search"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="welcome p-t-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="title-4">
+                        Notification Settings
+                    </h1>
+                    <hr class="line-seprate">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="page-wrapper" class="container" style="margin-top:40px;">
+    <div class="row justify-content-between">
+
+        <div class="col-4 row">
+            <strong><label class="col-sm-offset-1" for="selectIssue">Issue</label></strong>
+            <div class="col-sm-10">
+                <select class="js-example-placeholder-single js-states form-control" id="selectIssue" name="selectIssue" style="width:100%">
+                    <option selected="selected"></option>
+                    <option value="1">Machine Breakdown</option>
+                    <option value="2">Material Delay</option>
+                    <option value="3">Technical Issue</option>
+                    <option value="5">IT Issue</option>
+                    <option value="4">Quality Issue</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-4">
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <h4 class="page-header">Order of Notifying</h4>
+    <div class="row" style="margin-top:20px;padding:10px;background-color:aliceblue;border-radius:5px">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <h4 style="color:brown">Level 1</h4>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary glyphicons-chevron-left" style="margin-top:10px;" data-toggle="modal" data-target="#modal1"><i class="fas fa-user-plus"></i> Add a person</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            window.onload = $(function () {
+
+                $("#sortable").sortable({
+                    items: "li:not(#unsortable)"
+                });
+
+                $("#sortable").disableSelection();
+            });</script>
+
+        <div>
+            <ul id="sortable">
+                <li id="unsortable" style="overflow:hidden; display:flex; height:50px;">
+                    <div style="display:grid;grid-template-columns:3fr 1fr 1fr 1fr 2fr 1fr  1fr">
+                        <div><p>Name </p></div>
+                        <div><p>Email</p></div>
+                        <div><p>SMS</p></div>
+                        <div><p>Call</p></div>
+                        <div class="text-center"><p>Gap between calls<br />(mins)</p></div>
+                        <div class="text-center"><p>Number of Calls<br />(If not answered)</p></div>
+                        <div></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- start draw map in the draw new map model-->
+
+    <div class="row" style="margin-top:20px;padding:10px;background-color:aliceblue;border-radius:5px">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <h4 style="color:brown">Level 2</h4>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary glyphicons-chevron-left" style="margin-top:10px;" data-toggle="modal" data-target="#modalmanager"><i class="fas fa-user-plus"></i> Add a person</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            window.onload = $(function () {
+
+                $("#managersortable").sortable({
+                    items: "li:not(#managerunsortable)"
+                });
+
+                $("#managersortable").disableSelection();
+            });</script>
+
+        <div>
+            <ul id="managersortable">
+                <li id="managerunsortable" style="overflow:hidden;display:flex;height:50px;">
+                    <div style="display:grid;grid-template-columns:2.8fr 0.6fr 0.8fr 1fr 1fr ">
+                        <div style="margin-left:5%"><p>Name </p></div>
+                        <div style="margin-left:-20%"><p>Email</p></div>
+                        <div><p>SMS</p></div>
+                        <div><p>Call</p></div>
+                        <div class="text-center"><p>Send alert after<br />(hours)</p></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </li>
+
+
+
+            </ul>
+        </div>
+    </div>
+    <button class="btn btn-success glyphicons-chevron-left" style="margin-top:10px;" onclick="saveList();">Save List</button>
+</div>
+<div class="container" style="">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" id="modal1" data-keyboard="false" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header background">
+                    <h4 class="modal-title" style="margin:auto;">Add a person</h4>
+                    <button class="close" data-dismiss="modal" style="margin-top:-20px;">&times;</button>
+                </div>
+                <!-- draw new map modal body -->
+                <div class="modal-body" style="display:flex;">
+                    <div class="container">
+                        <div class="page-header row">
+                            <div class="col-lg-4">
+                                <label class="lableSet" style="float:left">Department</label>
+                                <select class="js-example-placeholder-single js-states form-control" id="Department" name="Department" style="width:100%" onchange="fillNameDropDown()">
+                                    <option></option>
+                                    @foreach (var department in Model.departments)
+                                    {
+                                        <option> @department.department_name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-lg-8" style="">
+                                <label class="lableSet" style="float:left">Name</label>
+                                <select class="js-example-placeholder-single js-states form-control" id="Name" name="Name" style="width:100%" onchange="fillUserDetails()">
+                                    <option></option>
+                                    @foreach (var user in Model.users)
+                                    {
+                                        <option> @user.EmployeeNumber - @user.Name   </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <img src="~/Content/images/profile.jpg" width="70%" height="70%" style="margin-top:10px;" />
+                            </div>
+                            <div class="col-lg-8" style="margin-top:20px;">
+                                <div class="row">
+                                    <p class="col-lg-4" style="float:left">
+                                        Name :
+                                    </p>
+                                    <p class="col-lg-4" style="float:left" id="name">
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-lg-4" style="float:left">
+                                        Department :
+                                    </p>
+                                    <p class="col-lg-4" style="float:left" id="dept">
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-lg-4" style="float:left">
+                                        Emp ID :
+                                    </p>
+                                    <p class="col-lg-4" style="float:left" id="empID">
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-lg-4" style="float:left">
+                                        Position :
+                                    </p>
+                                    <p class="col-lg-4" style="float:left" id="position">
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-lg-4" style="float:left">
+                                        Phone :
+                                    </p>
+                                    <p class="col-lg-4" style="float:left" id="phone">
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-lg-4" style="float:left">
+                                        E-mail :
+                                    </p>
+                                    <p class="col-lg-4" style="float:left" id="email">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <Button type="button" id="saveMap" class="btn btn-primary" onclick="addPerson()">Add</Button>
+                    <Button type="button" class="btn btn-success" data-dismiss="modal">Close</Button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" id="modalmanager" data-keyboard="false" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header background">
+                <h4 class="modal-title" style="margin:auto;">Add a person</h4>
+                <button class="close" data-dismiss="modal" style="margin-top:-20px;">&times;</button>
+            </div>
+            <!-- draw new map modal body -->
+            <div class="modal-body" style="display:flex;">
+                <div class="container">
+                    <div class="page-header row">
+                        <div class="col-lg-4">
+                            <label class="lableSet" style="float:left">Department</label>
+                            <select class="js-example-placeholder-single js-states form-control" id="managerDepartment" name="managerDepartment" style="width:100%" onchange="fillNamemanagerDropDown()">
+                                <option></option>
+                                @foreach (var department in Model.departments)
+                                {
+                                    <option> @department.department_name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-lg-8" style="">
+                            <label class="lableSet" style="float:left">Name</label>
+                            <select class="js-example-placeholder-single js-states form-control" id="managerName" name="managerName" style="width:100%" onchange="fillmanagerDetails()">
+                                <option></option>
+                                @foreach (var user in Model.users)
+                                {
+                                    <option> @user.EmployeeNumber - @user.Name   </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img src="~/Content/images/profile.jpg" width="70%" height="70%" style="margin-top:10px;" />
+                        </div>
+                        <div class="col-lg-8" style="margin-top:20px;">
+                            <div class="row">
+                                <p class="col-lg-4" style="float:left">
+                                    Name :
+                                </p>
+                                <p class="col-lg-4" style="float:left" id="managername">
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-4" style="float:left">
+                                    Department :
+                                </p>
+                                <p class="col-lg-4" style="float:left" id="managerdept">
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-4" style="float:left">
+                                    Emp ID :
+                                </p>
+                                <p class="col-lg-4" style="float:left" id="managerempID">
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-4" style="float:left">
+                                    Position :
+                                </p>
+                                <p class="col-lg-4" style="float:left" id="managerposition">
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-4" style="float:left">
+                                    Phone :
+                                </p>
+                                <p class="col-lg-4" style="float:left" id="managerphone">
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-4" style="float:left">
+                                    E-mail :
+                                </p>
+                                <p class="col-lg-4" style="float:left" id="manageremail">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <Button type="button" id="saveMap" class="btn btn-primary" onclick="addmanager()">Add</Button>
+                <Button type="button" class="btn btn-success" data-dismiss="modal">Close</Button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ends draw new map model-->
+<script src="~/Scripts/AdminScripts/jscolar.js"></script>
+<script src="~/Scripts/AdminScripts/select2-min.js"></script>
+<script src="~/Scripts/AdminScripts/notificationsManagement.js"></script>
+<script>
+
+    function clear_ul(ul_id) {
+
+        var main_ul = document.getElementById(ul_id);
+        var li_items = main_ul.getElementsByTagName("li");
+
+       // console.log("lenght 1--->  " + main_ul.childNodes.length);
+        var len = main_ul.childNodes.length;
+
+        for (i = 0; i < len; i++) {
+            main_ul.childNodes.forEach(function (i) {
+                if (i.nodeName == "LI") {
+                   // console.log(i.getAttribute("id"));
+                    if (i.getAttribute("class") == "ui-state-default") {
+                        i.remove();
+                    }
+                }
+            });
+        }
+    }
+
+    $(document.body).on("change", "#selectIssue", function () {
+
+        clear_ul("sortable");
+        clear_ul("managersortable");
+
+        var Issue = document.getElementById('selectIssue').value;
+        var LineID = '@ViewBag.lineid' ;
+        var url = '@Url.Action("getRespList", "CellEngineer")';
+        $.ajax({
+                type: "POST",
+                dataType: 'text',
+                url: url,
+                data: { line: LineID, issue:Issue }, //LineID
+                success: function (itemNameArray) {
+
+                        var obj = JSON.parse(itemNameArray);
+
+                        var EmployeeNumber;
+                        var Name;
+                        var call;
+                        var email;
+                        var message;
+                        var callRepetitionTime;
+                        var sendAlertAfter;
+                        var person_level;
+                        var levelOfResponsibility;
+
+                        for (var i = 0; i < obj[0].Value.length; i++) {
+
+                            EmployeeNumber = obj[0].Value[i].EmployeeNumber;
+                            Name = obj[1].Value[i].Name;
+                            call = obj[0].Value[i].call;
+                            email = obj[0].Value[i].email;
+                            message = obj[0].Value[i].message;
+                            callRepetitionTime = obj[0].Value[i].callRepetitionTime;
+                            sendAlertAfter = obj[0].Value[i].sendAlertAfter;
+
+                            person_level = obj[0].Value[i].person_level;
+                            levelOfResponsibility = obj[0].Value[i].levelOfResponsibility;
+
+                            if (person_level == 1) {
+
+                                loadPerson(Name,EmployeeNumber,email,message,call,sendAlertAfter,callRepetitionTime);
+                            }
+                            if (person_level == 2) {
+
+                                loadManager(Name,EmployeeNumber,email,message,call,sendAlertAfter,callRepetitionTime);
+                            }
+
+                        }
+                },
+                error: function ()
+                {
+                    alert("Error occurred");
+                }
+          });
+    });
+
+
+    function fillNameDropDown() {
+
+    var department = document.getElementById("Department").value;
+    var nameBox = document.getElementById("Name");
+    var url = '@Url.Action("fillNameDropDown", "CellEngineer")';
+    $.ajax({
+    type: "POST",
+    dataType: 'text',
+    url: url,
+    data: { department:department },
+    success: function (itemNameArray) {
+        var obj = JSON.parse(itemNameArray);
+        console.log(obj);
+
+        nameBox.options.length = 0;
+        var opt1 = document.createElement('option');
+        opt1.innerHTML = '';
+        opt1.value = '';
+        nameBox.appendChild(opt1);
+
+        for (var i = 0; i < obj.length; i++) {
+            var opt = document.createElement('option');
+            opt.innerHTML = obj[i];
+            opt.value = obj[i];
+            nameBox.appendChild(opt);
+        }
+    },
+    error: function (error) {
+        alert("Error occurred ..." + error);
+        }
+    });
+    }
+
+    function fillNamemanagerDropDown() {
+
+    var department = document.getElementById("managerDepartment").value;
+    var nameBox = document.getElementById("managerName");
+    var url = '@Url.Action("fillNameDropDown", "CellEngineer")';
+    $.ajax({
+        type: "POST",
+        dataType: 'text',
+        url: url,
+        data: { department:department },
+        success: function (itemNameArray) {
+            var obj = JSON.parse(itemNameArray);
+            console.log(obj);
+
+            nameBox.options.length = 0;
+            var opt1 = document.createElement('option');
+            opt1.innerHTML = '';
+            opt1.value = '';
+            nameBox.appendChild(opt1);
+
+            for (var i = 0; i < obj.length; i++) {
+                var opt = document.createElement('option');
+                opt.innerHTML = obj[i];
+                opt.value = obj[i];
+                nameBox.appendChild(opt);
+            }
+        },
+        error: function (error) {
+            alert("Error occurred ..." + error);
+        }
+    });
+    }
+
+    function fillUserDetails() {
+
+    var nameBox = document.getElementById("Name");
+
+    var name_text = document.getElementById("name");
+    var dept_text = document.getElementById("dept");
+    var empID_text = document.getElementById("empID");
+    var position_text = document.getElementById("position");
+    var phone_text = document.getElementById("phone");
+    var email_text = document.getElementById("email");
+
+    if (nameBox.value != "")
+        {
+            var userID = nameBox.value.split('-')[0];
+            userID = userID.trim();
+            var url = '@Url.Action("getUserDetails", "CellEngineer")';
+
+            $.ajax({
+                    type: "POST",
+                    dataType: 'text',
+                    url: url,
+                    data: { userID: userID },
+                    success: function (itemNameArray) {
+                        var obj = JSON.parse(itemNameArray);
+                        console.log(obj);
+
+                        name_text.innerHTML = obj[0].Name;
+                        dept_text.innerHTML = obj[0].Department;
+                        empID_text.innerHTML = obj[0].EmployeeNumber;
+                        position_text.innerHTML = obj[0].Role;
+                        phone_text.innerHTML = obj[0].Phone;
+                        email_text.innerHTML = obj[0].EMail;
+
+                    },
+                error: function (error) {
+                    alert("Error occurred ..." + error);
+                }
+                });
+        }
+    }
+
+    function fillmanagerDetails() {
+
+    var nameBox = document.getElementById("managerName");
+
+        var name_text = document.getElementById("managername");
+        var dept_text = document.getElementById("managerdept");
+        var empID_text = document.getElementById("managerempID");
+        var position_text = document.getElementById("managerposition");
+        var phone_text = document.getElementById("managerphone");
+        var email_text = document.getElementById("manageremail");
+
+    if (nameBox.value != "")
+        {
+            var userID = nameBox.value.split('-')[0];
+            userID = userID.trim();
+            var url = '@Url.Action("getUserDetails", "CellEngineer")';
+
+            $.ajax({
+                type: "POST",
+                dataType: 'text',
+                    url: url,
+                data: { userID: userID },
+                success: function (itemNameArray) {
+                        var obj = JSON.parse(itemNameArray);
+                        console.log(obj);
+
+                        name_text.innerHTML = obj[0].Name;
+                        dept_text.innerHTML = obj[0].Department;
+                        empID_text.innerHTML = obj[0].EmployeeNumber;
+                        position_text.innerHTML = obj[0].Role;
+                        phone_text.innerHTML = obj[0].Phone;
+                        email_text.innerHTML = obj[0].EMail;
+
+                },
+                error: function (error) {
+                    alert("Error occurred ..." + error);
+                }
+             });
+        }
+    }
+
+
+function saveList() {
+
+    var obj_array = new Array();
+
+    var ul = document.getElementById("sortable");
+    var items = ul.getElementsByTagName("li");
+    for (var i = 1; i < items.length; ++i)
+         {
+        obj = new Object();
+
+        obj.issue_id = document.getElementById("selectIssue").value;
+        obj.user_id = @Session["userID"] ;
+        obj.EmployeeNumber = Number(items[i].childNodes[0].childNodes[0].childNodes[0].innerHTML.split('-')[0].trim());
+        obj.assigned_date = new Date();
+
+        var state1 = items[i].childNodes[0].childNodes[1].childNodes[0].checked;
+        console.log(state1);
+        if (state1.toString() == "true") { obj.email = 1; } if (state1.toString() == "false") { obj.email = 0; }
+
+        var state2 = items[i].childNodes[0].childNodes[3].childNodes[0].checked;
+        if (state2.toString() == "true") { obj.call = 1; } if (state2.toString() == "false") { obj.call = 0;}
+
+        var state3 = items[i].childNodes[0].childNodes[2].childNodes[0].checked;
+        if (state3.toString() == "true") { obj.message = 1; } if (state3.toString() == "false") { obj.message = 0;}
+        obj.person_level = 1;
+        obj.callRepetitionTime = items[i].childNodes[0].childNodes[5].childNodes[0].value;
+        obj.sendAlertAfter = items[i].childNodes[0].childNodes[4].childNodes[0].value;
+        obj.levelOfResponsibility = i;
+        obj.issue_line_person_id = items[i].childNodes[0].childNodes[0].childNodes[0].innerHTML.split('-')[0].trim();
+        obj.lineid='@ViewBag.lineid';
+        obj_array.push(obj);
+    }
+
+
+
+    var ulmanager = document.getElementById("managersortable");
+    var itemsmanager = ulmanager.getElementsByTagName("li");
+    for (var i = 1; i < itemsmanager.length; ++i)
+         {
+        objmanager = new Object();
+
+        objmanager.issue_id = document.getElementById("selectIssue").value;
+        objmanager.user_id = @Session["userID"] ;
+        objmanager.EmployeeNumber = Number(itemsmanager[i].childNodes[0].childNodes[0].childNodes[0].innerHTML.split('-')[0].trim());
+        objmanager.assigned_date = new Date();
+
+        var state1 = itemsmanager[i].childNodes[0].childNodes[1].childNodes[0].checked;
+        console.log(state1);
+        if (state1.toString() == "true") { objmanager.email = 1; } if (state1.toString() == "false") { objmanager.email = 0; }
+
+        var state2 = itemsmanager[i].childNodes[0].childNodes[3].childNodes[0].checked;
+        if (state2.toString() == "true") { objmanager.call = 1; } if (state2.toString() == "false") { objmanager.call = 0;}
+
+        var state3 = itemsmanager[i].childNodes[0].childNodes[2].childNodes[0].checked;
+        if (state3.toString() == "true") { objmanager.message = 1; } if (state3.toString() == "false") { objmanager.message = 0;}
+        objmanager.callRepetitionTime = 0;
+        objmanager.person_level = 2;
+        objmanager.sendAlertAfter = itemsmanager[i].childNodes[0].childNodes[4].childNodes[0].value;
+        objmanager.levelOfResponsibility = i;
+        objmanager.issue_line_person_id = itemsmanager[i].childNodes[0].childNodes[0].childNodes[0].innerHTML.split('-')[0].trim();
+        objmanager.lineid='@ViewBag.lineid';
+        obj_array.push(objmanager );
+    }
+
+
+    console.log(obj_array);
+
+    var userList_json = JSON.stringify(obj_array);
+     var url = '@Url.Action("saveList", "CellEngineer")';
+    $.ajax({
+        type: "POST",
+        dataType: 'text',
+        url: url,
+        data: { userList_json: userList_json },
+        success: function (response) {
+         $(".alert").removeClass("in").show();
+	      $(".alert").delay(800).addClass("in").fadeOut(3000);
+    setTimeout(function(){  location.reload();; }, 3000);
+          
+        },
+        error: function (error) {
+            alert("Error occurred ..." + error);
+        }
+    });
+}
+   
+</script>
+<style>
+    .center-div {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        background-color: #ccc;
+        border-radius: 3px;
+    }
+</style>

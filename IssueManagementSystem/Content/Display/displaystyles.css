@@ -1,0 +1,13 @@
+﻿.margin {
+    margin-top:2%;
+}
+
+.displayheading {
+    width: 70%;
+    padding: 10px;
+    color: white;
+    background: black;
+    border-start-end-radius: 50px;
+}
+
+

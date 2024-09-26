@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/BranchSideNav.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<link href="~/Content/SupervisorStyles/supervisorStyle.css" rel="stylesheet" />
+<!-- PAGE CONTENT-->
+<div class="page-content--bgf7">
+    <!-- BREADCRUMB-->
+    <section class="au-breadcrumb2">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="au-breadcrumb-content">
+                        <div class="au-breadcrumb-left">
+                            <span class="au-breadcrumb-span">You are here:</span>
+                            <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                <li class="list-inline-item active">
+                                    <a href="#">Admin</a>
+                                </li>
+                                <li class="list-inline-item seprate">
+                                    <span>/</span>
+                                </li>
+                                <li class="list-inline-item">Dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="button-holder" style="display:block;float:right;">
+                        <div class="ajax-button">
+                            <div class="fa fa-check done"></div>
+                            <div class="fa fa-close failed"></div>
+                            <button id="submit" class="btn btn-danger">Refresh Screens</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- END BREADCRUMB-->
+    <!-- WELCOME-->
+    <section class="welcome p-t-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="title-4">
+                        Welcome back
+                        <span>@Session["name"]!</span>
+                    </h1>
+                    <hr class="line-seprate">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END WELCOME-->
+    <!-- STATISTIC-->
+   
+    <!-- END DATA TABLE-->
+</div>
+<script src="~/Scripts/jquery-3.3.1.slim.min.js"></script>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+<script src="~/signalr/Hubs"></script>
+<script>
+    $("#submit").click(function () {
+    $.connection.hub.start()//Refresh Screen
+    .done(function () {
+        console.log("Refreshing");
+        $.connection.ismHub.server.announce();
+    }).fail(function () { alert("Can't refresh screens at the moment!") });//return to dashbord
+    });
+</script>

@@ -1,0 +1,816 @@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<link href="~/Content/adminstyles/select2-min.css" rel="stylesheet" />
+<link href="~/Content/adminstyles/Settings.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/AdminScripts/select2-min.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="~/Content/test/jquery-confirm.min.js"></script>
+<script src="~/Scripts/Voice/main.js"></script>
+
+<link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+<link href="~/Content/SupervisorStyles/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/test/jquery-confirm.min.css" rel="stylesheet" />
+<link href="~/Content/SupervisorStyles/voiceanimations.css" rel="stylesheet" />
+
+<p hidden id="hidden_userID">@Session["userID"]</p>
+<style>
+    .dateGap {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="page-content--bgf7">
+    <section class="au-breadcrumb2">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-4">
+                    <div class="au-breadcrumb-content">
+                        <div class="au-breadcrumb-left">
+                            <span class="au-breadcrumb-span">You are here:</span>
+                            <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                <li class="list-inline-item active">
+                                    <a href="#">Manager</a>
+                                </li>
+                                <li class="list-inline-item seprate">
+                                    <span>/</span>
+                                </li>
+                                <li class="list-inline-item">Dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="container">
+                        <div style="float:right;" >
+                            <div class="searchbar">
+                                <img id="listening" src="~/Content/images/Ripple-1.8s-34px.svg"><input class="search_input" type="text" name="" placeholder="Listening....">
+                                <button onclick="startConverting()" class="search_icon"><i class="fa fa-microphone"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="welcome p-t-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h1 class="title-4">
+                                Hi
+                                <span>@Session["name"]!</span>
+                            </h1>
+                        </div>
+                    </div>
+                    <hr class="line-seprate">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="statistic statistic2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="title-5 m-b-35">Current Issues</h3>
+                </div>
+            </div>
+
+            <div class="row" style="display:flex;">
+                <div class="col-md-1"></div>
+                <div class="col-md-2" style="">
+                    <a class="statistic__item statistic__item--red " onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                        <h2 class="number"> @ViewBag.BrakedownCount</h2>
+                        <span class="desc">Machine Breakdown</span>
+                        <div class="icon">
+                            @{
+                                if (@ViewBag.BrakedownCount > 0)
+                                {
+                                    <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+                                }
+                                else
+                                {
+                                    <i class="zmdi zmdi-settings"></i>
+                                }
+                            }
+
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-2">
+                    <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                        <h2 class="number">@ViewBag.ITIsuue</h2>
+                        <span class="desc">IT/SoftWare Issue</span>
+                        <div class="icon">
+                            @{
+                                if (@ViewBag.ITIsuue > 0)
+                                {
+                                    <i class="zmdi  zmdi-windows animated infinite wobble"></i>
+                                }
+                                else
+                                {
+                                    <i class="zmdi  zmdi-windows"></i>
+                                }
+                            }
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-2">
+                    <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                        <h2 class="number">@ViewBag.TechnicalIssue</h2>
+                        <span class="desc">Technical Issue</span>
+                        <div class="icon">
+                            @{
+                                if (@ViewBag.TechnicalIssue > 0)
+                                {
+                                    <i class="fas fa-wrench animated infinite wobble"></i>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-wrench"></i>
+                                }
+                            }
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-2">
+                    <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                        <h2 class="number">@ViewBag.MaterialDelayCount</h2>
+                        <span class="desc">Material Delay</span>
+                        <div class="icon">
+                            @{
+                                if (@ViewBag.MaterialDelayCount > 0)
+                                {
+                                    <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
+                                }
+                                else
+                                {
+                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                }
+                            }
+
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-2">
+                    <a class="statistic__item statistic__item--blue" onclick="topCardClick('qi')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                        <h2 class="number">@ViewBag.QualityIsuue</h2>
+                        <span class="desc">Quality Isse</span>
+                        <div class="icon">
+                            @{
+                                if (@ViewBag.QualityIsuue > 0)
+                                {
+                                    <i class="zmdi animated infinite wobble zmdi-brightness-auto"></i>
+                                }
+                                else
+                                {
+                                    <i class="zmdi zmdi-brightness-auto"></i>
+                                }
+                            }
+
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </section>
+    <!--
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" id="modal1" data-keyboard="false" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                    <div class="modal-content"  >
+                        <div class="modal-header background">
+                            <h4 class="modal-title" style="margin-left:40%;color:white;">Machine Breakdowns</h4>
+                            <button class="close" data-dismiss="modal" style="margin-top:-20px;">&times;</button>
+                        </div>
+
+                        <div class="modal-body" style="display:flex;">
+                            <div class="container">
+                                <div class="page-header row">
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                    </div>
+                                    <div class="col-lg-8" style="margin-top:20px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <Button type="button" id="saveMap" class="btn btn-primary" onclick="addPerson()">Add</Button>
+                            <Button type="button" class="btn btn-success" data-dismiss="modal">Close</Button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    -->
+    <section class="statistic-chart">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="title-5 m-b-35">statistics</h3>
+                </div>
+            </div>
+            <div class="row" style="margin:10px;display:flex !important">
+
+                <div class="col-lg-4" style="display:inline-flex">
+                    <p style="margin-right:13px;">Plant</p>
+                    <select class="js-example-placeholder-single js-states form-control" multiple="multiple" id="plantSelectBox" style="width:75%;float:right !important;" onchange="filterByDate()">
+                        <option selected="selected" value="KOG">Koggala</option>
+                        <option selected="selected" value="KTY">Katunayaka</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <div class='input-group date' style="font-size:13px;height:30px;">
+                            <input type='text' class="form-control" id='datetimepicker1' onchange="filterByDate()" />
+                            <span class="input-group-addon">
+                                <span class="fas fa-calendar-alt fa-lg"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p>to</p>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <div class='input-group date' style="font-size:13px;height:30px;">
+                            <input type='text' class="form-control" id='datetimepicker2' onchange="filterByDate()" />
+                            <span class="input-group-addon">
+                                <span class="fas fa-calendar-alt fa-lg"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                    <button type="button" class="btn btn-primary" style="height:28px;width:80px; font-size:12px" onclick="filterByDate()">
+                        <span class="fas fa-calendar-alt"></span> Filter
+                    </button>
+                -->
+            </div>
+            </br>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="statistic-chart-1">
+
+                        <h3 class="title-3 m-b-30">Machine Breakdowns</h3>
+                        <p style="margin-top:-30px" class="title-7 m-xs-r-5 dateGap"> </p>
+
+                        <div id="columnchart_values" style="width: 100%; height: 100%; " data-toggle="tooltip" title="This chart shows Top 10 Machine breakdowns">
+
+                        </div>
+                        </br>
+                        </br>
+                        <h3 class="title-3 m-b-30">Material Delays</h3>
+                        <p style="margin-top:-30px" class="title-7 m-xs-r-5 dateGap"></p>
+
+                        <div id="columnchart_values1" style="width: 100%; height: 100%; " data-toggle="tooltip" title="This chart shows Top 10 Material delays">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="top-campaign" style="padding-bottom:90px !important">
+                        <h3 class="title-3 m-b-30">Top Dragged-out Issues</h3>
+                        <p style="margin-top:-30px" class="title-7 m-xs-r-5 dateGap"></p>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm" style="font-size:12px !important" id="myTable">
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="chart-percent-2">
+                        <h3 class="title-3 m-b-30">Issue Occurrences </h3>
+                        <p style="margin-top:-30px" class="title-7 m-xs-r-5 dateGap"> </p>
+                        <div id="piechart_3d" style="width: 100%; height: 100%;"></div>
+                    </div>
+
+                    <div class="statistic-chart-1">
+                        <h3 class="title-3 m-b-30">Total Issues</h3>
+                        <p style="margin-top:-30px" class="title-7 m-xs-r-5 dateGap"> </p>
+                        <h1 id="ttlIssues" style="font-size:85px;margin-bottom:-20px;margin-top:5px;text-align:center;color:#808080;letter-spacing:10px;">000</h1>
+                    </div>
+                </div>
+                <!--
+                    <div class="statistic-chart-1">
+                        <h3 class="title-3 m-b-30">All Issues with year</h3>
+                        <p style="margin-top:-30px" class="title-7 m-xs-r-5 dateGap"> </p>
+
+                    </div>
+                -->
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="statistic-chart-1">
+    <div class="container" id="mainTableContainer">
+        <div class="row">
+            <div class="col-lg-12" style="margin:auto !important">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <p style="">From</p>
+                                <div class='input-group date' style="font-size:13px;height:30px;">
+                                    <input type='text' class="form-control" id='datetimepicker3' onchange="filterTableData()" />
+                                    <span class="input-group-addon">
+                                        <span class="fas fa-calendar-alt fa-lg" style="margin-bottom:10px;"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <p style="">To</p>
+                                <div class='input-group date' style="font-size:13px;height:30px;">
+                                    <input type='text' class="form-control" id='datetimepicker4' onchange="filterTableData()" />
+                                    <span class="input-group-addon">
+                                        <span class="fas fa-calendar-alt fa-lg"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1">
+                        <p style="margin-right:13px;">Plant</p>
+                        <select class="js-example-placeholder-single js-states form-control" id="plantSelectBox2" style="width:100%;float:right !important;" onchange="filterTableData()">
+                            <option value="" selected="selected">All</option>
+                            <option value="KOG">KOG</option>
+                            <option value="KTY">KTY</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <p style="margin-right:13px;">Department</p>
+                        <select class="js-example-placeholder-single js-states form-control" id="dptSelectBox" style="width:100%;float:right !important;" onchange="filterTableData()">
+                            <option value="" selected="selected">All</option>
+                        </select>
+                    </div>
+                   @* filter_SelectBoxData*@
+                    <div class="col-lg-2">
+                        <p style="margin-right:13px;">Issue</p>
+                        <select class="js-example-placeholder-single js-states form-control" id="issueSelectBox" style="width:100%;float:right !important;" onchange="filterTableData()">
+                            <option value="" selected="selected">All</option>
+                            <option value="Machine Breakdown">Machine Breakdown</option>
+                            <option value="Material Delay">Material Delay</option>
+                            <option value="Technical Issue">Technical Issue</option>
+                            <option value="Quality Issue">Quality Issue</option>
+                            <option value="IT Issue">IT Issue</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <p style="margin-right:13px;">Line</p>
+                        <select class="js-example-placeholder-single js-states form-control" id="lineSelectBox" style="width:100%;float:right !important;" onchange="filterTableData()">
+                            <option value="" selected="selected">All</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-1">
+                        <p style="margin-right:13px;">Status</p>
+                        <select class="js-example-placeholder-single js-states form-control" id="statusSelectBox" style="width:100%;float:right !important;" onchange="filterTableData()">
+                            <option value="" selected="selected">All</option>
+                            <option value="0">Solved</option>
+                            <option value="1">Unsolved</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" id="issue_table">
+                <h3 class="title-5 m-b-35"></h3>
+                <div class="row" style="width:100%; !important">
+                    <div class="col-md-12" id="pagesContainer">
+                        <div class="container">
+                            <div class="row" style="font-weight:600">
+                                <div class="col-md-12">
+                                    <div class="container">
+                                        <div class="col-md-12">
+                                            <div class="row" style="">
+                                                <div class="col-md-2">Date</div>
+                                                <div class="col-md-1">IssueID</div>
+                                                <div class="col-md-5">Issue</div>
+                                                <div class="col-md-1">Plant</div>
+                                                <div class="col-md-2">Line</div>
+                                                <div class="col-md-1">Status</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="container">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="accordion"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div id="paginationDiv" style="margin-left:7px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="no_IssuesDIV"></div>
+</section>
+<script>
+     $("#listening").hide()
+
+    $(document).ready(function () {
+        // Proxy created on the fly
+        var hub = $.connection.issueHub;
+        var issueCount = 0;
+
+       window.getDataissue = function()
+        {
+            
+        }
+        // Declare a function on the  hub so the server can invoke it
+        hub.client.displayStatus = function () {
+            getDataissue();
+        };
+        // Start the connection
+        $.connection.hub.start();
+        getDataissue();
+
+        loadDepartmentSelectBox();
+        loadLineSelectBox();
+    })
+</script>
+
+
+<script type="text/javascript">
+
+function myfunction(param)
+{
+    $.confirm({
+        title: 'Solved Issue?',
+        content: 'Please confirm your action within 8 seconds',
+        autoClose: 'cancelAction|8000',
+        type: 'orange',
+        buttons: {
+            deleteUser: {
+                text: 'Confirm',
+                btnClass: 'btn-warning',
+                action: function () {
+                var group=$(param).data('group');
+                    var id = $(param).data('id');
+                    var issue_id = $(param).data('issue_id');
+                    var url = '@Url.Action("SolvedIssue", "Supervisor")?issueId=' + issue_id + '&issueOccourId=' + id+'&lineId='+'@ViewBag.lineId'+'&group='+group;
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        success: function (issuedata) {
+                            getDataissue();
+                            $.connection.hub.start().done(function () {$.connection.ismHub.server.announce();}).fail(function () { alert("Sorry, Can't Update your screen !")});
+                            $('#card'+id).fadeOut(2000);
+                        }
+                    });
+                }
+            },cancelAction: function () {
+                    $.alert('Action is canceled!');
+                }
+        }
+    });
+}
+
+    var r = $('.search_input');
+
+$(function(){
+  if ('speechSynthesis' in window) {
+    speechSynthesis.onvoiceschanged = function() {}
+        window.getVoice = function(voicemsg,start_var) 
+                {
+                        try {
+                            speechRecognizer.abort();///////////////////////////////////////////////////////
+                        }
+                        catch(err) {
+                            console.log(err)
+                        }
+
+                    var msg = new SpeechSynthesisUtterance();
+                    var voices = window.speechSynthesis.getVoices();
+                    msg.voice = voices[1];
+                    msg.rate = 1;
+                    msg.pitch = 1;
+                    msg.text = voicemsg;
+                    msg.onend = function(e) {console.log('Finished in ' + event.elapsedTime + ' seconds.');
+                    if(start_var){
+                        try {
+                                speechRecognizer.start();///////////////////////////////////////////////////////
+                            }
+                            catch(err) {
+                                console.log(err)
+                            }
+                        }
+                    };
+                    speechSynthesis.speak(msg);
+
+                 }
+        }
+  });
+
+var speechRecognizer = new webkitSpeechRecognition();
+
+function startConverting ()
+    {    $("#listening").show();
+
+        getVoice("Hello "+ '@Session["name"]' +" I'm listening to you!",true);
+
+		if('webkitSpeechRecognition' in window){
+			
+			speechRecognizer.continuous = true;
+			speechRecognizer.interimResults = true;
+			speechRecognizer.lang = 'en-IN';
+			var finalTranscripts = '';
+			speechRecognizer.onresult = function(event){
+				var interimTranscripts = '';
+				for(var i = event.resultIndex; i < event.results.length; i++){
+					var transcript = event.results[i][0].transcript;
+					if(event.results[i].isFinal){
+						finalTranscripts += transcript.trim();
+                        $("#listening").hide();
+                        r.val(transcript.trim());
+                         VoiceAction( transcript.trim() )
+					}else{
+                        interimTranscripts += transcript;
+					}
+				}
+			};
+			speechRecognizer.onerror = function (event) {
+			};
+
+		}else{
+			r.value = 'Your browser is not supported. If google chrome, please upgrade!';
+		}
+	}
+
+    function playVoice() {
+			var msg = new SpeechSynthesisUtterance('Hello World');
+			window.speechSynthesis.speak(msg);
+			speechSynthesis.speak(new SpeechSynthesisUtterance('Hello World'));
+		}
+
+   function VoiceAction(keyWord)
+   {
+       console.log(keyWord);
+       var voice_string_array = keyWord.split(" ");
+
+       var commands = [
+           { cmd: [""],action: "func0"},
+           { cmd: ["material", "materials", "delay", "delays"],action: "func1"},
+           { cmd: ["it", "software","id","ID","issues","issues","shoes","shoe","show","shows"],action: "func2"},
+           { cmd: ["quality","issues","issues","shoes","shoe","show","shows"],action: "func3"},
+           { cmd: ["machine", "breakdown", "machines", "breakdowns"],action: "func4"},
+           { cmd: ["technical","tech","issues","issues","shoes","shoe","show","shows"],action: "func5"},
+           { cmd: ["issue","issues","shoes","shoe","show","shows"],action: "func6"}
+       ];
+
+       var commands_lvl2 = [
+           { cmd: [""],action:"none"},
+           { cmd: ["Katunayaka","cartoon","nayak","nayaka","kathanayaka","sathanayaka"],action:"KTY"},
+           { cmd: ["Google","Koggala","cooker","kaggle","single","singer","Kolkata","Singh"],action:"KOG"}
+       ];
+
+       var matching_level_array = new Array(commands.length).fill(0.00);
+       var keywords_not_found = new Array();
+
+       for (var i = 0; i < commands.length; i++)
+       {
+           var obj = new Array();
+            voice_string_array.forEach(function (word_searching) {
+                var matching = 0;
+                var flag = 0;
+                   commands[i].cmd.forEach(function (word_current)
+                   {
+                       if (word_searching == word_current){matching++;flag = 1;}
+                   });
+
+                if (flag == 0) {
+                    obj.push(word_searching);
+                }
+                if (matching > 0){ matching_level_array[i] = matching_level_array[i] + 1 }
+           });
+           keywords_not_found.push(obj);
+       }
+          console.log("################");
+          console.log(keywords_not_found);
+
+           var number_of_words_in_voice_transcript = voice_string_array.length;
+           matching_level_array.forEach(function (amount, index, theArray)
+           {
+                var percentage = (amount / number_of_words_in_voice_transcript) * 100;
+                theArray[index] = percentage;
+           });
+
+        var maxval = Math.max(...matching_level_array);
+        var command_index = matching_level_array.indexOf(maxval);
+        var lvl2_command_ = "";
+        if (maxval < 100) {
+            //ckeck "keywords_not_found" array with "commands_lvl2" array
+
+            for (var i = 0; i < keywords_not_found.length; i++) {
+                keywords_not_found[i].forEach(function (ele) {
+                    var matching = 0;
+                    commands_lvl2.forEach(function (ele_com, index, theArray) {
+                        ele_com.cmd.forEach(function (x) {
+                            if (x == ele) {
+                              lvl2_command_ = ele_com.action;
+                            }
+                        });
+                    });
+                });
+             }
+          }
+
+            var count = 0;
+            for (var i = 0; i < matching_level_array.length; ++i)
+                {
+                    if (matching_level_array[i] == maxval)
+                           count++;
+                }
+
+            console.log("cmd lvl1 : " + commands[command_index].action+" lvl2 : "+lvl2_command_);
+            console.log(matching_level_array);
+
+               var thresholdVal = 10;
+
+           if (count == 1 && maxval >= thresholdVal) {
+               var func_name = commands[command_index].action;
+               set_functions[func_name](lvl2_command_);
+           }
+           else {
+               getVoice("command is not clear..........please try again",true);
+           }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+       setTimeout(function () { $('.search_input').val(''); $("#listening").show();  } , 3000);
+  }
+
+function loadDepartmentSelectBox(){
+
+            $.ajax({
+            type: "POST",
+            async: false,
+            dataType: 'text',
+            url:url_filterSelectBoxes,
+            success: function (feedback) {
+
+                    data = JSON.parse(feedback);
+                  
+                    var filtered = new Array();
+
+                    data.forEach(function(ele){
+
+                            if(filtered.length>0){
+                            var flag = 0;
+                            filtered.forEach(function(i){
+                                if(i.department_id == ele.department_id){
+                                  flag = 1 ;
+                                }
+                            });
+
+                            if(flag == 0){
+                                var v =new Object(); 
+                                v = {department_id:ele.department_id,department_name:ele.department_name};
+                                filtered.push(v);      
+                            }
+                            }
+                            else{
+                                var v =new Object(); 
+                                v = {department_id:ele.department_id,department_name:ele.department_name}
+                                filtered.push(v);
+                            }     
+                    });
+
+                    var selectBox =document.getElementById('dptSelectBox');
+
+                    for (var i = 0; i < filtered.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.innerHTML = filtered[i].department_name;
+                        opt.value =filtered[i].department_id;
+                        selectBox.appendChild(opt);
+                    } 
+                }
+            });
+        }
+
+
+function loadLineSelectBox(){
+
+
+     $.ajax({
+            type: "POST",
+            async: false,
+            dataType: 'text',
+            url:url_filterSelectBoxes,
+            success: function (feedback) {
+
+                    data = JSON.parse(feedback);
+                  
+                    var filtered = new Array();
+
+                    data.forEach(function(ele){
+
+                            if(filtered.length>0){
+                            var flag = 0;
+                            filtered.forEach(function(i){
+                                if(i.line_id == ele.line_id){
+                                  flag = 1 ;
+                                }
+                            });
+
+                            if(flag == 0){
+                                var v =new Object(); 
+                                v = {line_id:ele.line_id,line_name:ele.line_name};
+                                filtered.push(v);      
+                            }
+                            }
+                            else{
+                                var v =new Object(); 
+                                v = {line_id:ele.line_id,line_name:ele.line_name}
+                                filtered.push(v);
+                            }     
+                    });
+
+                    var selectBox =document.getElementById('lineSelectBox');
+
+                    for (var i = 0; i < filtered.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.innerHTML = filtered[i].line_name;
+                        opt.value =filtered[i].line_name;
+                        selectBox.appendChild(opt);
+                    } 
+                }
+            });
+    }
+
+function loadIssuesSelectBox(){
+
+    var selectBox =document.getElementById('dptSelectBox');
+
+    }
+
+$('.searchbar').click(function() {
+      $( '.search_input').css("padding", "0 10px");
+      $( '.search_input').css("width", "12em");
+      $( '.search_input').css("caret-color", "red");
+      $( '.search_input').css("transition", "width 0.4s linear");
+      $( '.search_icon').css("background", "white");
+      $( '.search_icon').css("color", "#e74c3c");
+});
+
+
+
+</script>
+
+<script>
+         url_loadIssueList = '@Url.Action("loadIssueList", "Manager")';
+         url_checkNotificationList_formanagers = '@Url.Action("checkNotificationList_formanagers", "Manager")';
+         url_fillChart1 = '@Url.Action("fillChart1", "Manager")';
+         url_fillChart2 = '@Url.Action("fillChart2", "Manager")';
+         url_fillChart3 = '@Url.Action("fillChart3","Manager")';
+         url_notificationOnOff = '@Url.Action("notificationOnOff","Manager")';
+         url_totalNumberOfIssues = '@Url.Action("totalNumberOfIssues","Manager")';
+         url_voiceDataFilter = '@Url.Action("voiceDataFilter", "Manager")';
+         url_filterSelectBoxes= '@Url.Action("filterSelectBoxes", "Manager")';
+</script>
+
+<script src="~/Scripts/AdminScripts/jscolar.js"></script>
+<script src="~/Scripts/Manager/managersScripts.js"></script>

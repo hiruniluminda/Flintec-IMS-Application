@@ -1,0 +1,447 @@
+﻿@{
+    ViewBag.Title = "MaterialDelay";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+
+    int userID = (int)Session["userID"];// get current supervisorID
+    dynamic mat_List = new System.Dynamic.ExpandoObject();
+
+    using (issue_management_systemEntities1 db = new issue_management_systemEntities1())//method for load the map acordinto the surevisor line
+    {
+
+        int lineid = ViewBag.lineid;
+        var mapInfo = db.line_map.Where(y => y.line_id == lineid).FirstOrDefault();
+        ViewData["map"] = mapInfo.map.ToString().Trim();//get the map arry to ViewData
+    }
+
+}
+
+@using IssueManagementSystem.Models
+
+<link href="~/Content/SupervisorStyles/supervisorStyle.css" rel="stylesheet" />
+<link href="~/Content/adminstyles/select2-min.css" rel="stylesheet" />
+<link href="~/Content/adminstyles/Settings.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-toggle.min.css" rel="stylesheet" />
+<link href="~/Content/test/jquery-confirm.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/SupervisorScripts/machineBrakedown.js"></script>
+
+<h2>Material Delay</h2>
+
+<hr />
+<label id="map" style="display: none;">@ViewData["map"]</label>
+<div class="container" style="margin-top:30px;">
+    <div class="row">
+
+        <div class="col-mg-4">
+            <div class="container-liquid" id="mapdiv">
+                <div style="display:inline-grid;grid-template-columns: 90%  50%">
+                    <div id="container">
+                        <canvas id="canvas1" style="border: 1px solid black;margin-left:8.2em;background-size: 100% 100%;" width="250" height="750">
+                            <br>This text is displayed if your browser does not support HTML5 Canvas.<br>
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="" style="width:50%;margin:auto">
+
+            <div class="form-group" style="width:100%;">
+                <div id="groupsdiv">
+                    <label for="exampleFormControlTextarea1">Select Area</label>
+                    <select class="js-example-placeholder-single js-states form-control" id="groups" style="width:100%;">
+                        <option></option>
+
+                    </select>
+                </div>
+                <div class="form-group machine" id="machinediv">
+                    <label for="exampleFormControlTextarea1">Machine</label>
+                    <input type="text" class="form-control" id="machine" disabled>
+                </div>
+                <div id="machineshopdiv">
+                    <label for="exampleFormControlTextarea1" style="margin-top:5%">Group</label>
+                    <input type="text" class="form-control" id="grouptext" disabled>
+                </div>
+
+                <label style="margin-top:5%">Select material</label>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <input id="chk_box" type="checkbox" onChange="checkBoxOnChange()" data-toggle="toggle" checked data-on="BOM material" data-off="non-BOM material" data-onstyle="success" data-offstyle="info" data-size="small" />
+                    </div>
+                    <div class="col-md-9" style="margin:auto">
+                        <select class="js-example-placeholder-single js-states form-control" id="materialSelectBox" style="width:100%" onchange="load_JobCardList()">
+                            <option></option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9" style="margin:auto;">
+                        <div class="progress" style="height:5px;">
+                            <div id="prog_bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <label style="margin-top:5%">Select job card</label>
+                <div onclick="popUpAlert()">
+                    <select class="js-example-placeholder-single js-states form-control" id="jobCardSelectBox" style="width:100%" onchange="" multiple="multiple">
+                        <option></option>
+                        @*@foreach (var j in Model.jobCards)
+                        {
+                            <option value="@j.Prod_Order_No_">@j.Prod_Order_No_    &nbsp;- &nbsp;&nbsp; @j.Description </option>
+                        }*@
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12" style="margin:auto;">
+                        <div class="progress" style="height:5px;">
+                            <div id="prog_bar2" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding-top:20px;">
+                    <label for="exampleFormControlTextarea1">Description</label>
+                    <textarea class="form-control" rows="5" id="description" style="resize: both;width:100%;"></textarea>
+                </div>
+                <div class="button-holder" style="display:block;margin-top:-50px;">
+                    <div class="ajax-button">
+                        <div class="fa fa-check done"></div>
+                        <div class="fa fa-close failed"></div>
+                        <input id="submit" class="submit" type="button" value="Submit" onclick="SubmitMaterialDelay()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/SupervisorScripts/showmap.js"></script>
+<script src="~/Scripts/AdminScripts/jscolar.js"></script>
+<script src="~/Scripts/AdminScripts/select2-min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+<script src="~/Scripts/AdminScripts/select2-min.js"></script>
+<script src="~/Scripts/bootstrap-toggle.min.js"></script>
+<script src="~/signalr/Hubs"></script>
+<script src="~/Content/test/jquery-confirm.min.js"></script>
+
+<style>
+    .jconfirm-box {
+        position: absolute !important;
+        margin-left: -50% !important;
+    }
+</style>
+
+<script>
+     $('#groupsdiv').hide()
+     $('#mapdiv').hide()
+     $('#machineshopdiv').hide()
+    $('#machinediv').hide()
+    if('@Session["department"]'=='MachineShop')
+    {
+      $('#mapdiv').show()
+      $('#machineshopdiv').show()
+      $('#machinediv').show()
+    }
+     if((@ViewBag.lineid==9)||(@ViewBag.lineid==10))
+    {
+        $('#groups').append('<option value="1">Heat treatment</option>')
+        $('#groups').append('<option value="2">Accessories</option>')
+        $('#groupsdiv').show()
+        $('#machineshopdiv').hide()
+        $('#mapdiv').hide()
+        $('#machinediv').hide()
+    }
+    $('select').select2({
+        placeholder: "Select.....",
+        allowClear: false
+    });
+    $(document).ready(function(){
+        $("#jobCardSelectBox").prop("disabled", true);
+        loadMaterialList();
+    });
+    function popUpAlert() {
+        var selectedMaterial = document.getElementById("materialSelectBox").value;
+        if (selectedMaterial == '' ) {
+            $.alert({
+                title: '',
+                content: 'Please select the material first !'
+            });
+        }
+    }
+
+    var prog_bar = document.getElementById('prog_bar');
+    function load_prog_bar(fill){
+        prog_bar.style.width = +fill+"%";
+    }
+
+    var prog_bar2 = document.getElementById('prog_bar2');
+    function load_prog_bar2(fill){
+        prog_bar2.style.width = +fill + "%";
+    }
+
+
+
+    function loadMaterialList()
+    {
+        $("#jobCardSelectBox").prop("disabled", true);
+        setTimeout(function(){
+            load_prog_bar(0);
+        }, 1);
+        $.ajax({
+            type: "POST",
+            async: true,
+            dataType: 'text',
+            url: "/CellEngineer/loadMaterialList",
+            data: { lineID:@Session["lineId"]},
+            success: function (feedback) {
+                feedback = JSON.parse(feedback);
+                var materialSelectBox = document.getElementById("materialSelectBox");
+                materialSelectBox.options.length = 0;
+                var opt1 = document.createElement('option');
+                opt1.innerHTML = '';
+                opt1.value = '';
+                materialSelectBox.appendChild(opt1);
+                for (var i = 0; i < feedback[0].Value.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.innerHTML = feedback[0].Value[i].Item_No_ + " -- " + feedback[0].Value[i].Description;;
+                    opt.value = feedback[0].Value[i].Item_No_;
+                    materialSelectBox.appendChild(opt);
+                   setTimeout(function(){
+                        load_prog_bar( ($('#materialSelectBox option').length/feedback[0].Value.length)*100 );
+                    },1);
+                }
+            },
+            error: function () {
+                alert("Error occurred");
+            }
+        });
+    }
+    function load_nonBOMMaterialList() {
+        var url = '@Url.Action("loadNonBOMMaterials", "CellEngineer")'
+        $("#jobCardSelectBox").prop("disabled", true);
+        $.ajax({
+            type: "POST",
+            dataType: 'text',
+            async: true,
+            url:url,
+            success: function (feedback) {
+                feedback = JSON.parse(feedback);
+                var materialSelectBox = document.getElementById("materialSelectBox");
+                materialSelectBox.options.length = 0;
+                var opt1 = document.createElement('option');
+                opt1.innerHTML = '';
+                opt1.value = '';
+                materialSelectBox.appendChild(opt1);
+                for (var i = 0; i < feedback[0].Value.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.innerHTML = feedback[0].Value[i].No_ + " - " + feedback[0].Value[i].Description;
+                    opt.value = feedback[0].Value[i].No_;
+                    materialSelectBox.appendChild(opt);
+                    setTimeout(function(){
+                        load_prog_bar( ($('#materialSelectBox option').length/feedback[0].Value.length)*100 );
+                    }, 1);
+                }
+            },
+            error: function () {
+                alert("Error occurred");
+            }
+        });
+    }
+        function load_JobCardList() {
+        $("#jobCardSelectBox").prop("disabled", false);
+        var url = '@Url.Action("loadJobCardList", "CellEngineer")'
+        var item_No = document.getElementById("materialSelectBox").value;
+
+                setTimeout(function () {
+                    load_prog_bar2(0);
+                }, 1);
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'text',
+                    async: true,
+                    url: url,
+                    data: { item_No: item_No, loadAll: loadAll, lineID:@Session["lineId"] },
+                    success: function (feedback) {
+                        feedback = JSON.parse(feedback);
+                        var jobCardSelectBox = document.getElementById("jobCardSelectBox");
+                        jobCardSelectBox.options.length = 0;
+                        var opt1 = document.createElement('option');
+                        opt1.innerHTML = '';
+                        opt1.value = '';
+                        jobCardSelectBox.appendChild(opt1);
+                        for (var i = 0; i < feedback[0].Value.length; i++) {
+                            var opt = document.createElement('option');
+                            opt.innerHTML = feedback[0].Value[i].Prod_Order_No_;
+                            opt.value = feedback[0].Value[i].Prod_Order_No_;
+                            jobCardSelectBox.appendChild(opt);
+
+                            setTimeout(function () {
+                                load_prog_bar2(($('#jobCardSelectBox option').length / feedback[0].Value.length) * 100);
+                            }, 1);
+
+                        }
+                    },
+                    error: function () {
+                        alert("Error occurred");
+                    }
+                });
+
+    }
+
+    var loadAll = false;
+
+    function checkBoxOnChange() {
+        if (document.getElementById('chk_box').checked) {
+            loadMaterialList();
+            loadAll = false;
+        }
+        else {
+            load_nonBOMMaterialList();
+            loadAll = true;
+        }
+    }
+    function SubmitMaterialDelay() {
+        obj = new Object();
+        obj.issue_date = new Date();
+        obj.material_id = document.getElementById("materialSelectBox").value;
+        obj.description = document.getElementById("description").value;
+        obj.line_line_id = @ViewBag.lineid;
+        obj.issue_issue_ID = "2";
+        obj.empId=@Session["userID"]
+        obj.responsible_person_emp_id = "";
+        obj.machine = document.getElementById("machine").value;
+        obj.issue_satus = "0";
+        obj.location = '@Session["location"]';
+        obj.responsible_person_confirm_status = "0";
+         var grouparry=document.getElementById("grouptext").value.split(" ")
+        if(grouparry=="")
+        {
+          obj.group=document.getElementById("groups").value
+        }else{
+        obj.group=grouparry[1];
+        }
+        obj.material = $('#materialSelectBox').find(":selected").text();
+
+        obj.jobcard = "";
+
+        var jc = $('#jobCardSelectBox').val();
+
+        if (jc.length > 0) {
+
+            jc.forEach(function (ele, i) {
+
+                obj.jobcard = ((i > 0) ? (obj.jobcard + ",") : ("")) + ele;
+
+            });
+        }
+
+        var obj_array = new Array();
+        obj_array.push(obj);
+        var issueJson = JSON.stringify(obj_array);
+         var url = '@Url.Action("AddMaterialDelay", "Supervisor")'
+        $.ajax({
+            type: "POST",
+            dataType: 'text',
+            url: url,
+            data: { issueJson: issueJson },
+            success: function (feedback) {
+                window.location.href = '@Url.Action("DashBord", "CellEngineer")?lineid=' +obj.line_line_id;
+            },
+            error: function () {
+                alert("Error occurred");
+            }
+        });
+    }
+     $('#groups').select2({
+        placeholder: "Select Area.....",
+        allowClear: false
+    });
+</script>
+
+
+
+<script>
+    $("#submit").click(function () {
+        $.connection.hub.start()
+            .done(function () {
+                console.log("Worked")
+                $.connection.ismHub.server.announce();
+            })
+            .fail(function () { alert("ERROR!") });
+    });
+
+      $(function() {
+      $('#groups').change(function(){
+       if( $(this).val()=='2')
+        {
+         $('#mapdiv').hide()
+         $('#machineText').hide()
+         $('#machinediv').show()
+         $('#selectMachine').hide()
+        }else{
+        $('#mapdiv').show()
+        $('#machineText').show()
+         $('#machinediv').hide()
+        $('#selectMachine').show()
+        }
+      });
+    });
+     var id=@ViewBag.lineid.ToString();
+    var inputPath="../Content/images/"+id+".jpg"
+    var url = '@Url.Action("loadBase64Image", "Admin")';
+    $.ajax({
+    type: "POST",
+    dataType: 'text',
+    url: url,
+    data: {inputPath},
+    success: function (mapData) {
+    if (mapData.length > 0) {
+    document.getElementById('canvas1').style.background = "url(data:image/jpeg;base64," + mapData + ")";
+    }
+    else {
+    document.getElementById('canvas1').style.background = "";
+    }
+    document.getElementById('canvas1').style.backgroundSize = "250px 750px";
+    },
+    error: function () {
+    alert("Error");
+    }
+    });
+
+    function  getMachineGroup(machine)
+    {
+      if('@Session["department"]'=='MachineShop')
+        {
+        var url = '@Url.Action("getMachine", "Supervisor")'
+
+        $.ajax({
+            type: "POST",
+            dataType: 'text',
+            url: url,
+            data: {machine},
+            success: function (feedback) {
+
+               document.getElementById("grouptext").value=feedback
+
+            },
+            error: function (feedback) {
+                alert(feedback);
+             }
+          });
+        }
+    }
+</script>

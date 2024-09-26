@@ -1,0 +1,250 @@
+﻿
+@{
+    ViewBag.Title = "MachinBreakdown";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+
+    int userID = (int)Session["userID"];// get current supervisorID
+    using (issue_management_systemEntities1 db = new issue_management_systemEntities1())//method for load the map acordinto the surevisor line
+    {
+
+        int lineid= ViewBag.lineid;
+        var mapInfo = db.line_map.Where(y => y.line_id == lineid).FirstOrDefault();
+        ViewData["map"] = mapInfo.map.ToString().Trim();//get the map arry to ViewData
+    }
+
+    BigRedEntities imsDbContext = new BigRedEntities();
+    List<tblWorkstation_Config> mList = imsDbContext.tblWorkstation_Config.ToList();
+
+}
+
+@using IssueManagementSystem.Models;
+@model IssueManagementSystem.Models.issue_occurrence
+
+<link href="~/Content/SupervisorStyles/supervisorStyle.css" rel="stylesheet" />
+
+<div class="container margin ">
+    <h2>Machine Breakdown</h2>
+    <hr />
+    <h3 id="selectMachine">Select the machine</h3>
+
+    <input type="hidden" value="@Session["userID"]" id="userId" />
+    <div class="row">
+        <div class="col-md-4" id="mapdiv">
+            <div class="container-liquid" >
+                <div style="display:inline-grid;grid-template-columns: 90%  50%">
+                    <div id="container">
+                        <canvas id="canvas1" style="border: 1px solid black;margin-left:8.2em;background-size: 100% 100%;" width="250" height="750">
+                            <br>This text is displayed if your browser does not support HTML5 Canvas.<br>
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 machine" id="inputs">
+            <div id="groupsdiv">
+                <label for="exampleFormControlTextarea1" >Select Area</label>
+                <select class="js-example-placeholder-single js-states form-control" id="groups" name="Material" style="width:100%;" onchange="">
+                    <option></option>
+                </select>
+            </div>
+            <div id="machinediv">
+                <label for="exampleFormControlTextarea1" style="margin-top:5%">Select Machine</label>
+                <select class="js-example-placeholder-single js-states form-control" id="machineSelect" name="Material" style="width:100%;" onchange="">
+                    <option></option>
+                    @foreach (var item in mList)
+                    {
+                    <option value="@item.Machine_ID">@item.Machine_ID</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group machine" id="machineText">
+                <label for="exampleFormControlTextarea1">Machine</label>
+                <input type="text" class="form-control" id="machine" disabled>
+            </div>
+            <label id="map" style="display: none;">@ViewData["map"]</label>
+
+            <div id="machineshopdiv">
+                <label for="exampleFormControlTextarea1" style="margin-top:5%">Group</label>
+                <input type="text" class="form-control" id="grouptext" disabled>
+            </div>
+            <div class="form-group machine" style="margin-top:8%">
+                <label for="exampleFormControlTextarea1">Extra Information</label>
+                <textarea class="form-control" rows="5" id="description"></textarea>
+            </div>
+
+
+
+
+            <div class="container-fluid row " style="margin-left:50%">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 button-holder">
+                            <div class="ajax-button">
+                                <div class="fa fa-check done"></div>
+                                <div class="fa fa-close failed"></div>
+                                <input id="submit" class="submit" type="submit" value="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/SupervisorScripts/showmap.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <link href="~/Content/SupervisorStyles/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+    <script src="~/signalr/Hubs"></script>
+    <script src="~/Scripts/SupervisorScripts/machineBrakedown.js"></script>
+    <script src="~/Scripts/AdminScripts/select2-min.js"></script>
+    <script>
+      $('#groupsdiv').hide()
+      $('#machineshopdiv').hide()
+      $('#machinediv').hide()
+    if('@Session["department"]'=='MachineShop')
+    {
+      $('#machineshopdiv').show()
+    }
+     if((@ViewBag.lineid==9)||(@ViewBag.lineid==10))
+    {
+        $('#groups').append('<option value="1">Heat treatment</option>')
+        $('#groups').append('<option value="2">Accessories</option>')
+        $('#groupsdiv').show()
+        $('#machineshopdiv').hide()
+    }
+   $("#submit").click(function () {
+
+        obj = new Object();
+        obj.description = document.getElementById("description").value;
+        obj.machine = document.getElementById("machine").value;
+        obj.line_line_id = '@ViewBag.lineid';
+        obj.empId=@Session["userID"]
+        obj.location =  '@Session["location"]';
+        var grouparry=document.getElementById("grouptext").value.split(" ")
+         if(grouparry=="")
+        {
+         obj.group=document.getElementById("groups").value
+        }else{
+        obj.group=grouparry[1];
+        }
+        var obj_array = new Array();
+        obj_array.push(obj);
+
+        var issueJson = JSON.stringify(obj_array);
+         var url = '@Url.Action("AddIssueBreakedown", "Supervisor")'
+        $.ajax({
+            type: "POST",
+            dataType: 'text',
+            url: url,
+            data: { issueJson: issueJson },
+            success: function (feedback) {
+               $.connection.hub.start()//Refresh Screen
+                .done(function () {
+                 console.log("Worked")
+                 $.connection.ismHub.server.announce();
+              }).fail(function () { alert("Can't Refresh Your Line Screen! Plese Inform IT Department!") });//return to dashbord
+
+              window.location.href = '@Url.Action("DashBord", "CellEngineer")?lineid=@ViewBag.lineId';
+            },
+            error: function (feedback) {
+                alert(feedback);
+            }
+        });
+    });
+
+     $(function() {
+      $('#groups').change(function(){
+       if( $(this).val()=='2')
+        {
+         $('#mapdiv').hide()
+         $('#machineText').hide()
+         $('#machinediv').show()
+         $('#selectMachine').hide()
+        $('#inputs').css('margin','auto');
+        }else{
+        $('#mapdiv').show()
+        $('#machineText').show()
+         $('#machinediv').hide()
+        $('#selectMachine').show()
+        $('#inputs').css('margin','');
+        }
+      });
+    });
+
+    var id=@ViewBag.lineid.ToString();
+    var inputPath="../Content/images/"+id+".jpg"
+    var url = '@Url.Action("loadBase64Image", "Admin")';
+    $.ajax({
+    type: "POST",
+    dataType: 'text',
+    url: url,
+    data: {inputPath},
+    success: function (mapData) {
+
+    if (mapData.length > 0) {
+    document.getElementById('canvas1').style.background = "url(data:image/jpeg;base64," + mapData + ")";
+    }
+    else {
+    document.getElementById('canvas1').style.background = "";
+    }
+
+    document.getElementById('canvas1').style.backgroundSize = "250px 750px";
+
+    },
+    error: function () {
+    alert("Error");
+    }
+    });
+    $('#groups').select2({
+    placeholder: "Select Area.....",
+   
+    });
+
+     $('#machineSelect').select2({
+    placeholder: "Select Machine.....",
+   
+    });
+
+    function  getMachineGroup(machine)
+    { 
+      if('@Session["department"]'=='MachineShop')
+        { 
+        var url = '@Url.Action("getMachine", "Supervisor")'
+          
+        $.ajax({
+            type: "POST",
+            dataType: 'text',
+            url: url,
+            data: {machine},
+            success: function (feedback) {
+            
+               document.getElementById("grouptext").value=feedback
+             
+            },
+            error: function (feedback) {
+              
+             }
+          });
+        }
+    }
+    
+    </script>
+
+</div>
+
+
+
+
+
+
+
+

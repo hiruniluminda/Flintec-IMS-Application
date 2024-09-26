@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Fontfaces CSS-->
+    <link href="~/Content/font-face.css" rel="stylesheet" />
+
+    <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+
+    <link href="~/Content/material-design-iconic-font.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap CSS-->
+    <link href="~/Content/Manager/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/animsition.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/hamburgers.min.css" rel="stylesheet" />
+    <link href="~/Content/slick.css" rel="stylesheet" />
+    <link href="~/Content/adminstyles/select2-min.css" rel="stylesheet" />
+    <link href="~/Content/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="~/Content/material-design-iconic-font.min.css" rel="stylesheet" />
+    <!-- Main CSS-->
+    <link href="~/Content/theme.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome.css" rel="stylesheet" />
+    <link href="~/Content/css/all.css" rel="stylesheet" />
+
+
+
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop3 d-none d-lg-block" style="background-color:#222">
+            <div class="section__content section__content--p35">
+                <div class="header3-wrap">
+                    <div class="header__logo">
+                        <a href="#">
+                            <img src="~/Content/images/logo.png" alt="CoolAdmin" />
+                        </a>
+                    </div>
+                    <div class="header__navbar">
+                        <ul class="list-unstyled">
+                            <li class="has-sub">
+                                <a href="@Url.Action("Index","Admin")">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard
+                                    <span class="bot-line"></span>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="@Url.Action("EditMap","Admin")">
+                                    <i class="fa fa-wrench"></i>
+                                    <span class="bot-line"></span>Edit Line
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="header__tool">
+                        <div class="header-button-item has-noti js-item-menu">
+
+
+                            <span class="badge" style="color:white;font-size:initial;font-family:'Bodoni MT'" id="ntCnt"></span>
+                            <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown" id="divNotificaion">
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="account-wrap">
+                            <div class="account-item account-item--style2 clearfix js-item-menu">
+                                <div class="image">
+                                    <img src="~/Content/images/profile.jpg" alt="John Doe" />
+                                </div>
+                                <div class="content">
+                                    <a class="js-acc-btn" href="#">@Session["name"]</a>
+                                </div>
+                                <div class="account-dropdown js-dropdown">
+                                    <div class="info clearfix">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="~/Content/images/profile.jpg" alt="John Doe" />
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="name">
+                                                <a href="#">@Session["name"]</a>
+                                            </h5>
+                                            <span class="email">@Session["email"]</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="account-dropdown__footer">
+                                        <a href="@Url.Action("LogOut","Login")">
+                                            <i class="zmdi zmdi-power"></i>Logout
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- END HEADER DESKTOP-->
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile header-mobile-2 d-block d-lg-none" style="background-color:#222">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="index.html">
+                            <img src="~/Content/images/logo.png" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="@Url.Action("Index","Admin")">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="@Url.Action("EditMap","Admin")">
+                                <i class="fas fa-chart-bar"></i>Edit Map
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="sub-header-mobile-2 d-block d-lg-none">
+            <div class="header__tool">
+                <div class="header-button-item has-noti js-item-menu">
+
+                    <span class="badge" style="color:orangered;font-size:initial;font-family:'Bodoni MT'" id="cntmobile"></span>
+                    <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown" id="divNotificaionmobile">
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="account-wrap">
+                    <div class="account-item account-item--style2 clearfix js-item-menu">
+                        <div class="image">
+                            <img src="~/Content/images/profile.jpg" alt="@Session["name"]" />
+                        </div>
+                        <div class="content">
+                            <a class="js-acc-btn" href="#">@Session["name"]</a>
+                        </div>
+                        <div class="account-dropdown js-dropdown">
+                            <div class="info clearfix">
+                                <div class="image">
+                                    <a href="#">
+                                        <img src="~/Content/images/profile.jpg" alt="@Session["name"]" />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h5 class="name">
+                                        <a href="#">@Session["name"]</a>
+                                    </h5>
+                                    <span class="email">@Session["email"]</span>
+                                </div>
+                            </div>
+
+                            <div class="account-dropdown__footer">
+                                <a href="@Url.Action("LogOut","Login")">
+                                    <i class="zmdi zmdi-power"></i>Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+        <!-- COPYRIGHT-->
+        <section class="p-t-60 p-b-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="copyright">
+                            <p>Copyright © @DateTime.Now.Year - Flintec-IMS Application All rights reserved.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END COPYRIGHT-->
+    </div>
+
+
+    <!-- Bootstrap Core JavaScript -->
+
+    <script src="~/Scripts/Manager/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/Manager/popper.min.js"></script>
+    <script src="~/Scripts/slick.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/wow.min.js"></script>
+    <script src="~/Scripts/animsition.min.js"></script>
+    <script src="~/Scripts/bootstrap-progressbar.min.js"></script>
+
+    <script src="~/Scripts/jquery.waypoints.min.js"></script>
+    <script src="~/Scripts/jquery.counterup.min.js"></script>
+
+    <script src="~/Scripts/circle-progress.min.js"></script>
+    <script src="~/Scripts/perfect-scrollbar.min.js"></script>
+    <script src="~/Scripts/Chart.bundle.min.js"></script>
+    <script src="~/Scripts/AdminScripts/select2-min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+
+    <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+    <script src="~/signalr/Hubs"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+
+
+
+
+
+
+</body> 
+
+</html>
