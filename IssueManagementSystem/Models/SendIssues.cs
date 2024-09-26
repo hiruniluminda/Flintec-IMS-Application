@@ -87,33 +87,31 @@ namespace IssueManagementSystem.Models
 
                                         messages.Add(item: new issue_occurrence
                                         {
-
-                                            issue_occurrence_id = (int)reader["issue_occurrence_id"],
-                                            issueDate = reader["issue_date"].ToString(),
+                                            issue_occurrence_id = reader["issue_occurrence_id"] != DBNull.Value ? (int)reader["issue_occurrence_id"] : 0,
+                                            issueDate = reader["issue_date"] != DBNull.Value ? reader["issue_date"].ToString() : "",
                                             description = reader["description"] != DBNull.Value ? (string)reader["description"] : "",
-                                            matirial = material_id + " - " + matirialName,
+                                            matirial = material_id + (matirialName != null ? " - " + matirialName : ""),
                                             machine_machine_id = reader["machine_machine_id"] != DBNull.Value ? (string)reader["machine_machine_id"] : "",
-                                            //  line_line_id = (int)reader["line_line_id"],        
                                             line_line_id = reader["line_line_id"] != DBNull.Value ? (int)reader["line_line_id"] : 100,
-                                            issue_issue_ID = (int)reader["issue_issue_ID"],
-                                            responsible_person_emp_id = (int)reader["responsible_person_emp_id"],
-                                            responsible_person_confirm_status = (int)reader["responsible_person_confirm_status"],
+                                            issue_issue_ID = reader["issue_issue_ID"] != DBNull.Value ? (int)reader["issue_issue_ID"] : 0,
+                                            responsible_person_emp_id = reader["responsible_person_emp_id"] != DBNull.Value ? (int)reader["responsible_person_emp_id"] : 0,
+                                            responsible_person_confirm_status = reader["responsible_person_confirm_status"] != DBNull.Value ? (int)reader["responsible_person_confirm_status"] : 0,
                                             responsible_person_confirm_feedback = reader["responsible_person_confirm_feedback"] != DBNull.Value ? (string)reader["responsible_person_confirm_feedback"] : "",
                                             location = reader["location"] != DBNull.Value ? (string)reader["location"] : "",
                                             issue_satus = reader["issue_satus"] != DBNull.Value ? (string)reader["issue_satus"] : "",
-                                            solvedDate = reader["solved_date"].ToString(),
-                                            commentedDate = reader["commented_date"].ToString(),
-                                            solved_emp_id = reader["solved_emp_id"] == System.DBNull.Value ? default(int) : (int)reader["solved_emp_id"],
+                                            solvedDate = reader["solved_date"] != DBNull.Value ? reader["solved_date"].ToString() : "",
+                                            commentedDate = reader["commented_date"] != DBNull.Value ? reader["commented_date"].ToString() : "",
+                                            solved_emp_id = reader["solved_emp_id"] != DBNull.Value ? (int?)reader["solved_emp_id"] : null,
                                             department = reader["department"] != DBNull.Value ? (string)reader["department"] : "",
-                                            responciblepersonName = userInfo.Name,
-                                            lineName = lineinfo.line_name,
-                                            buzzer_off_by = reader["buzzer_off_by"] == System.DBNull.Value ? default(int) : (int)reader["buzzer_off_by"],
-                                            issueName = issueInfo.issue1,
-                                            group = reader["group"] == System.DBNull.Value ? default(int) : (int)reader["group"],
+                                            responciblepersonName = userInfo?.Name ?? "",
+                                            lineName = lineinfo?.line_name ?? "",
+                                            buzzer_off_by = reader["buzzer_off_by"] != DBNull.Value ? (int?)reader["buzzer_off_by"] : null,
+                                            issueName = issueInfo?.issue1 ?? "",
+                                            group = reader["group"] != DBNull.Value ? (int?)reader["group"] : null,
                                             job_card = reader["job_card"] != DBNull.Value ? (string)reader["job_card"] : "",
-
-                                            loged_by = reader["loged_by"] == System.DBNull.Value ? default(int) : (int)reader["loged_by"]
+                                            loged_by = reader["loged_by"] != DBNull.Value ? (int?)reader["loged_by"] : null
                                         });
+
                                         xxx = (int)reader["issue_occurrence_id"];
                                     }
                                 }
