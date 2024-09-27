@@ -14,6 +14,8 @@ namespace IssueManagementSystem.Models
 
     public partial class issue_occurrence
     {
+        internal int issue_status;
+
         public int issue_occurrence_id { get; set; }
         public Nullable<System.DateTime> issue_date { get; set; }
         public string material_id { get; set; }
