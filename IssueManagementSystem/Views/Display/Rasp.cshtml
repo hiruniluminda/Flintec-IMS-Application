@@ -13,6 +13,28 @@
 <link href="~/Content/Display/style.css" rel="stylesheet" />
 <link href="~/Content/Display/css/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/Display/displaystyles.css" rel="stylesheet" />
+<link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+<!-- Fontfaces CSS-->
+<link href="~/Content/font-face.css" rel="stylesheet" />
+
+<link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+<link href="~/Content/material-design-iconic-font.min.css" rel="stylesheet" />
+
+<!-- Bootstrap CSS-->
+
+<link href="~/Content/Manager/bootstrap.min.css" rel="stylesheet" />
+
+<link href="~/Content/animsition.min.css" rel="stylesheet" />
+<link href="~/Content/animate.css" rel="stylesheet" />
+<link href="~/Content/hamburgers.min.css" rel="stylesheet" />
+<link href="~/Content/slick.css" rel="stylesheet" />
+
+<link href="~/Content/perfect-scrollbar.css" rel="stylesheet" />
+<link href="~/Content/material-design-iconic-font.min.css" rel="stylesheet" />
+<!-- Main CSS-->
+<link href="~/Content/theme.css" rel="stylesheet" />
+<link href="~/Content/fontawesome.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-toggle.min.css" rel="stylesheet" />
 
 @{
     using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
@@ -26,10 +48,106 @@
 }
 
 
+
+
+
+<!-- statistic cards -->
+<section class="statistic statistic2">
+    <div class="container">
+
+        <div class="row" style="display:flex;">
+            <div class="col-md-1"></div>
+            <div class="col-md-2" style="">
+                <a class="statistic__item statistic__item--red " onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                    <h2 class="number"> @ViewBag.BrakedownCount</h2>
+                    <span class="desc">Machine Breakdown</span>
+                    <div class="icon">
+                        @{
+                            if (@ViewBag.BrakedownCount > 0)
+                            {
+                                <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+                            }
+                            else
+                            {
+                                <i class="zmdi zmdi-settings"></i>
+                            }
+                        }
+
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-2">
+                <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                    <h2 class="number">@ViewBag.ITIsuue</h2>
+                    <span class="desc">IT/SoftWare Issue</span>
+                    <div class="icon">
+                        @{
+                            if (@ViewBag.ITIsuue > 0)
+                            {
+                                <i class="zmdi  zmdi-windows animated infinite wobble"></i>
+                            }
+                            else
+                            {
+                                <i class="zmdi  zmdi-windows"></i>
+                            }
+                        }
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-2">
+                <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                    <h2 class="number">@ViewBag.TechnicalIssue</h2>
+                    <span class="desc">Technical Issue</span>
+                    <div class="icon">
+                        @{
+                            if (@ViewBag.TechnicalIssue > 0)
+                            {
+                                <i class="fas fa-wrench animated infinite wobble"></i>
+                            }
+                            else
+                            {
+                                <i class="fas fa-wrench"></i>
+                            }
+                        }
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-2">
+                <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                    <h2 class="number">@ViewBag.MaterialDelayCount</h2>
+                    <span class="desc">Material Delay</span>
+                    <div class="icon">
+                        @{
+                            if (@ViewBag.MaterialDelayCount > 0)
+                            {
+                                <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
+                            }
+                            else
+                            {
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            }
+                        }
+
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</section>
+
+<!--  -->
+
+
 <div style="display:flex">
-    
+
     <div class="container-fluid margin">
-        
+
         <div class="text-center" style="margin-top:20%" id="loding_icon">
             <img src="~/Content/images/loding.svg">
         </div>
@@ -433,13 +551,3 @@ $.ajax({
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
