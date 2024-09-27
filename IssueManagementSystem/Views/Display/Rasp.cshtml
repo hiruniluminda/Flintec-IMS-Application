@@ -47,6 +47,11 @@
     }
 }
 
+
+
+
+
+<!-- statistic cards -->
 <section class="statistic statistic2">
     <div class="container">
 
@@ -135,16 +140,8 @@
         </div>
     </div>
 </section>
-@{
-    using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
-    {
-        int id = ViewBag.id;
-        var lineinfo = db.lines.Where(x => x.line_id == id).FirstOrDefault();
-        lineName = lineinfo.line_name;
-        var mapinfo = db.line_map.Where(x => x.line_id == id).FirstOrDefault();
-        map = mapinfo.map;
-    }
-}
+
+<!--  -->
 
 
 <div style="display:flex">
@@ -554,13 +551,3 @@ $.ajax({
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
