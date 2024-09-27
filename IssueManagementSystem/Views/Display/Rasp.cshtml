@@ -42,7 +42,8 @@
         int id = ViewBag.id;
         var lineinfo = db.lines.Where(x => x.line_id == id).FirstOrDefault();
         lineName = lineinfo.line_name;
-        
+        var mapinfo = db.line_map.Where(x => x.line_id == id).FirstOrDefault();
+        map = mapinfo.map;
     }
 }
 
