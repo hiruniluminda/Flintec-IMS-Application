@@ -1,9 +1,8 @@
 body {
     background: white;
 }
-
 .margin {
-    margin-top: 1%;
+    margin-top:1%;
 }
 
 .displayheading {
@@ -4970,6 +4969,7 @@ section {
 
 .statistic {
     padding-top: 57px;
+    
 }
 
 .statistic__item {
@@ -4980,6 +4980,7 @@ section {
     min-height: 80px;
     overflow: hidden;
     text-align: left;
+    
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -14662,3 +14663,4 @@ section {
 .vue-lists ul, .vue-lists ol {
     padding-left: 30px;
 }
+
