@@ -10,8 +10,8 @@
     position: fixed;
     width: 70%;
     padding: 10px;
-    color: black;
-    background: white;
+    color: white;
+    background: black;
     border-start-end-radius: 50px;
     bottom: 0;
     z-index: 1000;
