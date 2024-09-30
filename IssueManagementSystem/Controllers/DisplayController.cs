@@ -25,20 +25,20 @@ namespace IssueManagementSystem.Controllers
             if ((string)Session["department"] == "MD")
             {
                 ViewBag.BrakedownCount = db.issue_occurrence.Count(x => x.issue_issue_ID == 1 && x.issue_satus == "1");
-                ViewBag.ITIsuue = db.issue_occurrence.Count(x => x.issue_issue_ID == 2 && x.issue_satus == "1");
+                ViewBag.ITIsuue = db.issue_occurrence.Count(x => x.issue_issue_ID == 5 && x.issue_satus == "1");
                 ViewBag.TechnicalIssue = db.issue_occurrence.Count(x => x.issue_issue_ID == 3 && x.issue_satus == "1");
-                ViewBag.MaterialDelayCount = db.issue_occurrence.Count(x => x.issue_issue_ID == 4 && x.issue_satus == "1");
-                ViewBag.QualityIsuue = db.issue_occurrence.Count(x => x.issue_issue_ID == 5 && x.issue_satus == "1");
+                ViewBag.MaterialDelayCount = db.issue_occurrence.Count(x => x.issue_issue_ID == 2 && x.issue_satus == "1");
+                ViewBag.QualityIsuue = db.issue_occurrence.Count(x => x.issue_issue_ID == 4 && x.issue_satus == "1");
             }
             else
             {
                 string location = Session["location"].ToString();
                 // Similar logic, but can add filtering by location if required
                 ViewBag.BrakedownCount = db.issue_occurrence.Count(x => x.location == location && x.issue_issue_ID == 1 && x.issue_satus == "1");
-                ViewBag.ITIsuue = db.issue_occurrence.Count(x => x.location == location && x.issue_issue_ID == 2 && x.issue_satus == "1");
+                ViewBag.ITIsuue = db.issue_occurrence.Count(x => x.location == location && x.issue_issue_ID == 5 && x.issue_satus == "1");
                 ViewBag.TechnicalIssue = db.issue_occurrence.Count(x => x.location == location && x.issue_issue_ID == 3 && x.issue_satus == "1");
-                ViewBag.MaterialDelayCount = db.issue_occurrence.Count(x => x.location == location && x.issue_issue_ID == 4 && x.issue_satus == "1");
-                ViewBag.QualityIsuue = db.issue_occurrence.Count(x => x.location == location && x.issue_issue_ID == 5 && x.issue_satus == "1");
+                ViewBag.MaterialDelayCount = db.issue_occurrence.Count(x => x.location == location && x.issue_issue_ID == 2 && x.issue_satus == "1");
+                ViewBag.QualityIsuue = db.issue_occurrence.Count(x => x.location == location && x.issue_issue_ID == 4 && x.issue_satus == "1");
             }
         }
 
@@ -50,10 +50,10 @@ namespace IssueManagementSystem.Controllers
                 var lineCounts = new
                 {
                     BrakedownCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 1 && x.issue_satus == "1"),
-                    ITIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 2 && x.issue_satus == "1"),
+                    ITIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 5 && x.issue_satus == "1"),
                     TechnicalIssue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 3 && x.issue_satus == "1"),
-                    MaterialDelayCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 4 && x.issue_satus == "1"),
-                    QualityIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 5 && x.issue_satus == "1")
+                    MaterialDelayCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 2 && x.issue_satus == "1"),
+                    QualityIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 4 && x.issue_satus == "1")
                 };
 
                 ViewBag.BrakedownCount = lineCounts.BrakedownCount;
