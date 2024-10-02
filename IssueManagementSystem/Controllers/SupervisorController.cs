@@ -14,6 +14,12 @@ namespace IssueManagementSystem.Controllers
     public class SupervisorController : Controller
     {
 
+          
+        
+
+
+
+
         Communication com = new Communication();
         // GET: Supervisor
         public ActionResult selectIssue(int lineid)// select issue view
@@ -41,7 +47,9 @@ namespace IssueManagementSystem.Controllers
                 return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
-       [HttpGet]
+
+
+        [HttpGet]
         public JsonResult GetBreakedown()
         {
             try

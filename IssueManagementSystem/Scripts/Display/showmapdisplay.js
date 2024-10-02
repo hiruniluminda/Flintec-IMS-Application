@@ -1,5 +1,5 @@
 ﻿
-var jsonText = document.getElementById("map").textContent;
+    var jsonText = document.getElementById("map").textContent;
 
 
 function Shape(x, y, w, h, fill, machine) {

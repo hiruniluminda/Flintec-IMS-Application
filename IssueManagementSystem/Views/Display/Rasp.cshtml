@@ -22,8 +22,6 @@
 
 <!-- Bootstrap CSS-->
 
-<link href="~/Content/Manager/bootstrap.min.css" rel="stylesheet" />
-
 <link href="~/Content/animsition.min.css" rel="stylesheet" />
 <link href="~/Content/animate.css" rel="stylesheet" />
 <link href="~/Content/hamburgers.min.css" rel="stylesheet" />
@@ -51,231 +49,150 @@
 
 
 
-<!-- statistic cards -->
-<section class="statistic statistic2">
-    <div class="container">
 
-        <div class="row" style="display:flex;">
-            <div class="col-md-1"></div>
-            <div class="col-md-2" style="">
-                <a class="statistic__item statistic__item--red " onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none;width:100%">
-                    <h2 class="number"> @ViewBag.BrakedownCount</h2>
-                    <span class="desc">Machine Breakdown</span>
-                    <div class="icon">
-                        @{
-                            if (@ViewBag.BrakedownCount > 0)
-                            {
-                                <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-                            }
-                            else
-                            {
-                                <i class="zmdi zmdi-settings"></i>
-                            }
-                        }
-
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-2">
-                <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none;width:100%">
-                    <h2 class="number">@ViewBag.ITIsuue</h2>
-                    <span class="desc">IT/SoftWare Issue</span>
-                    <div class="icon">
-                        @{
-                            if (@ViewBag.ITIsuue > 0)
-                            {
-                                <i class="zmdi  zmdi-windows animated infinite wobble"></i>
-                            }
-                            else
-                            {
-                                <i class="zmdi  zmdi-windows"></i>
-                            }
-                        }
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-2">
-                <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none;width:100%">
-                    <h2 class="number">@ViewBag.TechnicalIssue</h2>
-                    <span class="desc">Technical Issue</span>
-                    <div class="icon">
-                        @{
-                            if (@ViewBag.TechnicalIssue > 0)
-                            {
-                                <i class="fas fa-wrench animated infinite wobble"></i>
-                            }
-                            else
-                            {
-                                <i class="fas fa-wrench"></i>
-                            }
-                        }
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-2">
-                <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none;width:100%">
-                    <h2 class="number">@ViewBag.MaterialDelayCount</h2>
-                    <span class="desc">Material Delay</span>
-                    <div class="icon">
-                        @{
-                            if (@ViewBag.MaterialDelayCount > 0)
-                            {
-                                <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
-                            }
-                            else
-                            {
-                                <i class="zmdi zmdi-shopping-cart"></i>
-                            }
-                        }
-
-                    </div>
-                </a>
-            </div>
-
-
-            <div class="col-md-1"></div>
-        </div>
-    </div>
-</section>
 
 <!--  -->
 
+<div class="container-fluid" style="display: flex; justify-content: space-between;">
 
-<div style="display:flex">
+    <!-- Left side content -->
+    <div class="left-side" style="flex: 1; margin-right: 20px;">
 
-    <div class="container-fluid margin">
+        <div style="display:flex">
 
-        <div class="text-center" style="margin-top:20%" id="loding_icon">
-            <img src="~/Content/images/loding.svg">
-        </div>
-        <div class="row">
+            <div class="container-fluid margin">
 
-            <div class="col-sm-11" style="margin:20pt">
-                <div id="wrapper">
-                    <ul id="vertical-ticker">
-                        <li id="brake_list">
-                            <div class="card text-white bg-danger mb-3" style="max-width:80rem;" id="brakediv">
-                                <div class="card-header">Machine Breakdown</div>
-                                <div class="card-body" id="breakediv">
-                                    <table class="table" style="max-width:80rem;color:white">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Time</th>
-                                                <th scope="col">Machine</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Responsible Person</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Since Occured</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="breake_body"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </li>
-                        <li id="maririal_list">
-                            <div class="card text-white bg-warning mb-3" style="max-width: 120rem;" id="maririaldiv">
-                                <div class="card-header">Material Delay</div>
-                                <div class="card-body">
-                                    <table class="table" style="max-width:120rem;color:black">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Time</th>
-                                                <th scope="col">Material</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Responsible Person</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Since Occured</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="matirial_body"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </li>
-                        <li id="tecnical_list">
-                            <div class="card text-white bg-success mb-3" style="max-width: 120rem;" id="tecnicaldiv">
-                                <div class="card-header">Technical Issue</div>
-                                <div class="card-body">
-                                    <table class="table" style="max-width:120rem;color:white">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Time</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Responsible Person</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Since Occured</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="technical_body"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </li>
-                        <li id="IT_list">
-                            <div class="card text-white bg-primary mb-3" style="max-width: 120rem;" id="Softwarediv">
-                                <div class="card-header">IT/Software Issue</div>
-                                <div class="card-body">
-                                    <table class="table" style="max-width:120rem;color:white;">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Time</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Responsible Person</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Since Occured</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="it_body"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
+                <div class="text-center" style="margin-top:20%" id="loding_icon">
+                    <img src="~/Content/images/loding.svg">
                 </div>
-            </div>
-            <div class="displayheading" style="margin-top:-20pt">
                 <div class="row">
-                    <div class="col-lg-5">
-                        <div class="header__logo">
-                            <a href="#">
-                                <img src="~/Content/images/logo.png" alt="CoolAdmin" />
-                            </a>
+
+                    <div class="col-sm-11" style="margin:20pt">
+                        <div id="wrapper">
+                            <ul id="vertical-ticker">
+
+
+                                <li id="brake_list">
+                                    <div class="card text-white bg-danger mb-3" style="max-width:80rem;" id="brakediv">
+                                        <div class="card-header">Machine Breakdown</div>
+                                        <div class="card-body" id="breakediv">
+                                            <table class="table" style="max-width:80rem;color:white">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col">Machine</th>
+                                                        <th scope="col">Description</th>
+                                                        <th scope="col">Responsible Person</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Since Occured</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="breake_body"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li id="maririal_list">
+                                    <div class="card text-white bg-warning mb-3" style="max-width: 120rem;" id="maririaldiv">
+                                        <div class="card-header">Material Delay</div>
+                                        <div class="card-body">
+                                            <table class="table" style="max-width:120rem;color:black">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col">Material</th>
+                                                        <th scope="col">Description</th>
+                                                        <th scope="col">Responsible Person</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Since Occured</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="matirial_body"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="tecnical_list">
+                                    <div class="card text-white bg-success mb-3" style="max-width: 120rem;" id="tecnicaldiv">
+                                        <div class="card-header">Technical Issue</div>
+                                        <div class="card-body">
+                                            <table class="table" style="max-width:120rem;color:white">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col">Description</th>
+                                                        <th scope="col">Responsible Person</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Since Occured</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="technical_body"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="IT_list">
+                                    <div class="card text-white bg-primary mb-3" style="max-width: 120rem;" id="Softwarediv">
+                                        <div class="card-header">IT/Software Issue</div>
+                                        <div class="card-body">
+                                            <table class="table" style="max-width:120rem;color:white;">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col">Description</th>
+                                                        <th scope="col">Responsible Person</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Since Occured</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="it_body"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-lg-7 text-left">
-                        <h3>@lineName Manufacturing Cell</h3>
+                    <div class="displayheading" style="margin-top:-20pt">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="header__logo">
+                                    <a href="#">
+                                        <img src="~/Content/images/logo.png" alt="CoolAdmin" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 text-left">
+                                <h3>@lineName Manufacturing Cell</h3>
+                            </div>
+
+                        </div>
                     </div>
 
-                </div>
-            </div>
+                    <script>
+                        $('#brakediv').hide();
+                        $('#maririaldiv').hide();
+                        $('#Softwarediv').hide();
+                        $('#qtydiv').hide();
+                        $('#tecnicaldiv').hide();
+                        $('#breake_body').empty();
+                        $('#matirial_body').empty();
+                        $('#technical_body').empty();
+                        $('#it_body').empty();
+                        $('#qty_body').empty();
+                    </script>
 
-            <script>
-                $('#brakediv').hide();
-                $('#maririaldiv').hide();
-                $('#Softwarediv').hide();
-                $('#qtydiv').hide();
-                $('#tecnicaldiv').hide();
-                $('#breake_body').empty();
-                $('#matirial_body').empty();
-                $('#technical_body').empty();
-                $('#it_body').empty();
-                $('#qty_body').empty();
-            </script>
-
-            <script src="~/Scripts/3.30bootstrap.min.js"></script>
-            <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
-            <script src="~/Scripts/moment.min.js"></script>
-            <script src="~/signalr/Hubs"></script>
-            <script>
+                    <script src="~/Scripts/3.30bootstrap.min.js"></script>
+                    <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+                    <script src="~/Scripts/moment.min.js"></script>
+                    <script src="~/signalr/Hubs"></script>
+                    <script>
 
     $.connection.hub.start()
                 .done(function(){console.log("Its Works")
@@ -447,8 +364,8 @@ $.ajax({
     }
 
   }
-            </script>
-            <script type="text/javascript">
+                    </script>
+                    <script type="text/javascript">
 function init() {
 var s = new CanvasState(document.getElementById('canvas1'));
 
@@ -507,9 +424,9 @@ $('#vertical-ticker').totemticker({
 });
 
 
-            </script>
-            <script src="~/Scripts/Display/showmapdisplay.js"></script>
-            <script>
+                    </script>
+                    <script src="~/Scripts/Display/showmapdisplay.js"></script>
+                    <script>
     var id=@ViewBag.id.ToString();
     var inputPath="../Content/images/"+id+".jpg"
     var url = '@Url.Action("loadBase64Image", "Admin")';
@@ -547,7 +464,96 @@ $.ajax({
 
     },3600000);
 
-            </script>
+                    </script>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="right-side" style="float: right; margin-right: 20px; width: auto;">
+        <!-- statistic cards -->
+        <section class="statistic statistic2">
+            <div class="container">
+
+                <div class="row" style="display:block;">
+                    <div class="col-md-12" style="margin-bottom: 5px;">
+                        <a class="statistic__item statistic__item--red " onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                            <h2 class="number"> @ViewBag.BrakedownCount</h2>
+                            <span class="desc">Machine Breakdown</span>
+                            <div class="icon">
+                                @{
+                                    if (@ViewBag.BrakedownCount > 0)
+                                    {
+                                        <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="zmdi zmdi-settings"></i>
+                                    }
+                                }
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                            <h2 class="number">@ViewBag.ITIsuue</h2>
+                            <span class="desc">IT/SoftWare Issue</span>
+                            <div class="icon">
+                                @{
+                                    if (@ViewBag.ITIsuue > 0)
+                                    {
+                                        <i class="zmdi  zmdi-windows animated infinite wobble"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="zmdi  zmdi-windows"></i>
+                                    }
+                                }
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                            <h2 class="number">@ViewBag.TechnicalIssue</h2>
+                            <span class="desc">Technical Issue</span>
+                            <div class="icon">
+                                @{
+                                    if (@ViewBag.TechnicalIssue > 0)
+                                    {
+                                        <i class="fas fa-wrench animated infinite wobble"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-wrench"></i>
+                                    }
+                                }
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none;width:100%">
+                            <h2 class="number">@ViewBag.MaterialDelayCount</h2>
+                            <span class="desc">Material Delays</span>
+                            <div class="icon">
+                                @{
+                                    if (@ViewBag.MaterialDelayCount > 0)
+                                    {
+                                        <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                    }
+                                }
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
