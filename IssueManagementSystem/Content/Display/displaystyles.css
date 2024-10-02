@@ -15,6 +15,32 @@ body {
     bottom: 0;
     z-index: 1000;
 }
+
+.card-stack {
+    position: relative;
+    margin-top: 20px; /* Adjusts the spacing between stacked cards */
+}
+
+    .card-stack .card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+        transition: all 0.5s ease;
+    }
+
+    .card-stack .card-behind {
+        transform: translateY(-20px); /* Slightly moves the cards upward */
+        z-index: 0;
+        opacity: 0.8; /* Make the background cards a bit transparent */
+    }
+
+    .card-stack .card-active {
+        z-index: 10; /* The card in front has the highest z-index */
+        transform: translateY(0); /* Bring it to the front */
+        opacity: 1;
+    }
 /*------------------------------------------------------------------
 [Master Stylesheet]
 
