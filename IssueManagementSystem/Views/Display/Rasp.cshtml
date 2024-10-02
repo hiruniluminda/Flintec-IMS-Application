@@ -55,7 +55,6 @@
 
 <div class="container-fluid" style="display: flex; justify-content: space-between;">
 
-    <!-- Left side content -->
     <div class="left-side" style="flex: 1; margin-right: 20px;">
 
         <div style="display:flex">
@@ -227,20 +226,19 @@ function getData() {
                         var confirmStatus = responsible_person_confirm_status == 1 ? "Pending" : "Commented on " + commentedDate + " " + commentedTime;
 
                         if (issueid == 1) { // Machine Breakdown
-                            $('#brakediv').show(); // Ensure the base template is visible
-                            var newCard = $('#brakediv').clone(); // Clone the existing card
+                            $('#brakediv').show(); 
+                            var newCard = $('#brakediv').clone(); 
                             newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
-                            newCard.find('.card-header').text('Machine Breakdown'); // Set the header
+                            newCard.find('.card-header').text('Machine Breakdown'); 
 
                             // Populate the cloned card with issue data
-                            newCard.find('#break_date').text(day); // Change ID based on the card body fields
+                            newCard.find('#break_date').text(day); 
                             newCard.find('#break_time').text(time);
                             newCard.find('#break_description').text(issuedata[i].description);
                             newCard.find('#break_responsible').text(issuedata[i].responciblepersonName);
                             newCard.find('#break_status').text(confirmStatus);
                             newCard.find('#break_since').html('<span id="countdown' + count + '" class="timer"></span>');
 
-                            // Append the newly created card to the list or parent container
                             $('#brake_list').append(newCard);
                             $('#loding_icon').hide();
                         }
@@ -251,7 +249,7 @@ function getData() {
                             newCard.find('.card-header').text('Material Delay');
 
                             // Populate the cloned card with issue data
-                            newCard.find('#material_date').text(day); // Change to the appropriate fields
+                            newCard.find('#material_date').text(day); 
                             newCard.find('#material_time').text(time);
                             newCard.find('#material_description').text(issuedata[i].description);
                             newCard.find('#material_responsible').text(issuedata[i].responciblepersonName);
@@ -262,10 +260,10 @@ function getData() {
                             $('#loding_icon').hide();
                         }
                         if (issueid == 3) { // Technical Issue
-                            $('#tecnicaldiv').show(); // Ensure the base template is visible
-                            var newCard = $('#tecnicaldiv').clone(); // Clone the existing card
+                            $('#tecnicaldiv').show(); 
+                            var newCard = $('#tecnicaldiv').clone(); 
                             newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
-                            newCard.find('.card-header').text('Technical Issue'); // Set the header
+                            newCard.find('.card-header').text('Technical Issue'); 
 
                             // Populate the cloned card with issue data
                             newCard.find('#technical_date').text(day);
@@ -275,7 +273,6 @@ function getData() {
                             newCard.find('#technical_status').text(confirmStatus);
                             newCard.find('#technical_since').html('<span id="countdown' + count + '" class="timer"></span>');
 
-                            // Append the newly created card to the list or parent container
                             $('#tecnical_list').append(newCard);
                             $('#loding_icon').hide();
                         }
