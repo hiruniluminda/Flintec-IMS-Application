@@ -70,48 +70,35 @@
                     <div class="col-sm-11" style="margin:20pt">
                         <div id="wrapper">
                             <ul id="vertical-ticker">
-
-
                                 <li id="brake_list">
                                     <div class="card text-white bg-danger mb-3" style="max-width:80rem;" id="brakediv">
                                         <div class="card-header">Machine Breakdown</div>
                                         <div class="card-body" id="breakediv">
-                                            <table class="table" style="max-width:80rem;color:white">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Date</th>
-                                                        <th scope="col">Time</th>
-                                                        <th scope="col">Machine</th>
-                                                        <th scope="col">Description</th>
-                                                        <th scope="col">Responsible Person</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Since Occured</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="breake_body"></tbody>
-                                            </table>
+                                            <div class="d-flex justify-content-between" style="max-width:80rem;color:white">
+                                                <div><strong>Date:</strong> <span id="break_date"></span></div>
+                                                <div><strong>Time:</strong> <span id="break_time"></span></div>
+                                                <div><strong>Machine:</strong> <span id="break_machine"></span></div>
+                                                <div><strong>Description:</strong> <span id="break_description"></span></div>
+                                                <div><strong>Responsible Person:</strong> <span id="break_responsible"></span></div>
+                                                <div><strong>Status:</strong> <span id="break_status"></span></div>
+                                                <div><strong>Since Occurred:</strong> <span id="break_since"></span></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
-
                                 <li id="maririal_list">
-                                    <div class="card text-white bg-warning mb-3" style="max-width: 120rem;" id="maririaldiv">
+                                    <div class="card text-white bg-warning mb-3" style="max-width: 120rem;" id="materialdiv">
                                         <div class="card-header">Material Delay</div>
                                         <div class="card-body">
-                                            <table class="table" style="max-width:120rem;color:black">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Date</th>
-                                                        <th scope="col">Time</th>
-                                                        <th scope="col">Material</th>
-                                                        <th scope="col">Description</th>
-                                                        <th scope="col">Responsible Person</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Since Occured</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="matirial_body"></tbody>
-                                            </table>
+                                            <div class="d-flex justify-content-between" style="max-width:120rem;color:black">
+                                                <div><strong>Date:</strong> <span id="material_date"></span></div>
+                                                <div><strong>Time:</strong> <span id="material_time"></span></div>
+                                                <div><strong>Material:</strong> <span id="material_name"></span></div>
+                                                <div><strong>Description:</strong> <span id="material_description"></span></div>
+                                                <div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
+                                                <div><strong>Status:</strong> <span id="material_status"></span></div>
+                                                <div><strong>Since Occurred:</strong> <span id="material_since"></span></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -119,19 +106,14 @@
                                     <div class="card text-white bg-success mb-3" style="max-width: 120rem;" id="tecnicaldiv">
                                         <div class="card-header">Technical Issue</div>
                                         <div class="card-body">
-                                            <table class="table" style="max-width:120rem;color:white">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Date</th>
-                                                        <th scope="col">Time</th>
-                                                        <th scope="col">Description</th>
-                                                        <th scope="col">Responsible Person</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Since Occured</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="technical_body"></tbody>
-                                            </table>
+                                            <div class="d-flex justify-content-between" style="max-width:120rem;color:white">
+                                                <div><strong>Date:</strong> <span id="technical_date"></span></div>
+                                                <div><strong>Time:</strong> <span id="technical_time"></span></div>
+                                                <div><strong>Description:</strong> <span id="technical_description"></span></div>
+                                                <div><strong>Responsible Person:</strong> <span id="technical_responsible"></span></div>
+                                                <div><strong>Status:</strong> <span id="technical_status"></span></div>
+                                                <div><strong>Since Occurred:</strong> <span id="technical_since"></span></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -139,24 +121,19 @@
                                     <div class="card text-white bg-primary mb-3" style="max-width: 120rem;" id="Softwarediv">
                                         <div class="card-header">IT/Software Issue</div>
                                         <div class="card-body">
-                                            <table class="table" style="max-width:120rem;color:white;">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Date</th>
-                                                        <th scope="col">Time</th>
-                                                        <th scope="col">Description</th>
-                                                        <th scope="col">Responsible Person</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Since Occured</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="it_body"></tbody>
-                                            </table>
+                                            <div class="d-flex justify-content-between" style="max-width:120rem;color:white;">
+                                                <div><strong>Date:</strong> <span id="it_date"></span></div>
+                                                <div><strong>Time:</strong> <span id="it_time"></span></div>
+                                                <div><strong>Description:</strong> <span id="it_description"></span></div>
+                                                <div><strong>Responsible Person:</strong> <span id="it_responsible"></span></div>
+                                                <div><strong>Status:</strong> <span id="it_status"></span></div>
+                                                <div><strong>Since Occurred:</strong> <span id="it_since"></span></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
-
                             </ul>
+
                         </div>
                     </div>
                     <div class="displayheading" style="margin-top:-20pt">
@@ -177,7 +154,7 @@
 
                     <script>
                         $('#brakediv').hide();
-                        $('#maririaldiv').hide();
+                        $('#materialdiv').hide();
                         $('#Softwarediv').hide();
                         $('#qtydiv').hide();
                         $('#tecnicaldiv').hide();
@@ -216,118 +193,135 @@
         $.connection.hub.start();
         getData();
 
-function getData()
-{
-var url = '@Url.Action("GetIssues", "Supervisor")'
-var count=0;
-$.ajax({
-    url: url,
+function getData() {
+    var url = '@Url.Action("GetIssues", "Supervisor")';
+    var count = 0;
+    $.ajax({
+        url: url,
         type: 'GET',
         datatype: 'json',
         success: function (issuedata) {
-        issuedata = $.parseJSON(issuedata);
-        if (issuedata.length > 0)
-        {
-            blinkMap();
-             var seconds=[]
-             for (var i = 0; i < issuedata.length; i++) {
+            issuedata = $.parseJSON(issuedata);
+            if (issuedata.length > 0) {
+                blinkMap();
+                var seconds = [];
+                for (var i = 0; i < issuedata.length; i++) {
 
-                if ((issuedata[i].line_line_id==@ViewBag.Id) && (issuedata[i].issue_satus=="1" ))
-                {
-                    var responcibleperson_ststus= issuedata[i].responsible_person_confirm_status
-                    var issueid = issuedata[i].issue_issue_ID
-                    count++
-                    var date = issuedata[i].issueDate.split(' ');
-                    var day = moment(date[0], 'M/D/Y/').format('Y MMM D');
-                    var time=date[1] +" "+ date[2]
-                    var issue_occurrence_id = issuedata[i].issue_occurrence_id
-                    var d = new Date();
-                    var startDate = new Date(issuedata[i].issueDate);
-                    var confirmStatus
-                    var responsible_person_confirm_status= issuedata[i].responsible_person_confirm_status;
-                    var today= d.getTime();
-                    var milliseconds = startDate.getTime();
-                    var confirmStatus
-                    var commentedDate = moment(issuedata[i].commentedDate.split(' ')[0], 'M/D/Y').format('Y MMM D');
-                    var commentedTime = issuedata[i].commentedDate.split(' ')[1];
-                    var responsible_person_confirm_status= issuedata[i].responsible_person_confirm_status;
-                    var gap = Math.round(Math.abs(today - milliseconds)/1000);
-                  //  var gap2 = Math.round(Math.abs(today - commentedDate.getTime())/1000);
-                     if(responsible_person_confirm_status==1)
-                   {
-                   confirmStatus="Pending"
-                   }else{
-                  confirmStatus = "Commented on " + commentedDate + " " + commentedTime
-                  }
+                    if ((issuedata[i].line_line_id == @ViewBag.Id) && (issuedata[i].issue_satus == "1")) {
+                        var responcibleperson_ststus = issuedata[i].responsible_person_confirm_status;
+                        var issueid = issuedata[i].issue_issue_ID;
+                        count++;
+                        var date = issuedata[i].issueDate.split(' ');
+                        var day = moment(date[0], 'M/D/Y/').format('Y MMM D');
+                        var time = date[1] + " " + date[2];
+                        var d = new Date();
+                        var startDate = new Date(issuedata[i].issueDate);
+                        var today = d.getTime();
+                        var milliseconds = startDate.getTime();
+                        var gap = Math.round(Math.abs(today - milliseconds) / 1000);
+                        seconds.push(gap);
 
-                   seconds.push(gap)
-                    if (issueid == 1)//breakedown
-                    {
-                        $('#brakediv').show()
-                        var divissue = $('#breake_body');
-                        var issue = '<tr><td>' + day + '</td><td>'+time+'</td><td>' + issuedata[i].machine_machine_id+'</td><td>' + issuedata[i].description+'</td><td>' + issuedata[i].responciblepersonName+'</td><td>'+ confirmStatus+'</td><td><span id="countdown'+count+'" class="timer"></span></td></tr>'
-                        divissue.append(issue)
-                        divissue.show('slow');
-                        $('#loding_icon').hide();
+                        var commentedDate = moment(issuedata[i].commentedDate.split(' ')[0], 'M/D/Y').format('Y MMM D');
+                        var commentedTime = issuedata[i].commentedDate.split(' ')[1];
+                        var responsible_person_confirm_status = issuedata[i].responsible_person_confirm_status;
+                        var confirmStatus = responsible_person_confirm_status == 1 ? "Pending" : "Commented on " + commentedDate + " " + commentedTime;
 
-                       // alert(date)
+                        if (issueid == 1) { // Machine Breakdown
+                            $('#brakediv').show(); // Ensure the base template is visible
+                            var newCard = $('#brakediv').clone(); // Clone the existing card
+                            newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
+                            newCard.find('.card-header').text('Machine Breakdown'); // Set the header
 
+                            // Populate the cloned card with issue data
+                            newCard.find('#break_date').text(day); // Change ID based on the card body fields
+                            newCard.find('#break_time').text(time);
+                            newCard.find('#break_description').text(issuedata[i].description);
+                            newCard.find('#break_responsible').text(issuedata[i].responciblepersonName);
+                            newCard.find('#break_status').text(confirmStatus);
+                            newCard.find('#break_since').html('<span id="countdown' + count + '" class="timer"></span>');
 
+                            // Append the newly created card to the list or parent container
+                            $('#brake_list').append(newCard);
+                            $('#loding_icon').hide();
+                        }
+                        if (issueid == 2) { // Material Delay
+                            $('#materialdiv').show();
+                            var newCard = $('#materialdiv').clone();
+                            newCard.removeAttr('id');
+                            newCard.find('.card-header').text('Material Delay');
+
+                            // Populate the cloned card with issue data
+                            newCard.find('#material_date').text(day); // Change to the appropriate fields
+                            newCard.find('#material_time').text(time);
+                            newCard.find('#material_description').text(issuedata[i].description);
+                            newCard.find('#material_responsible').text(issuedata[i].responciblepersonName);
+                            newCard.find('#material_status').text(confirmStatus);
+                            newCard.find('#material_since').html('<span id="countdown' + count + '" class="timer"></span>');
+
+                            $('#maririal_list').append(newCard);
+                            $('#loding_icon').hide();
+                        }
+                        if (issueid == 3) { // Technical Issue
+                            $('#tecnicaldiv').show(); // Ensure the base template is visible
+                            var newCard = $('#tecnicaldiv').clone(); // Clone the existing card
+                            newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
+                            newCard.find('.card-header').text('Technical Issue'); // Set the header
+
+                            // Populate the cloned card with issue data
+                            newCard.find('#technical_date').text(day);
+                            newCard.find('#technical_time').text(time);
+                            newCard.find('#technical_description').text(issuedata[i].description);
+                            newCard.find('#technical_responsible').text(issuedata[i].responciblepersonName);
+                            newCard.find('#technical_status').text(confirmStatus);
+                            newCard.find('#technical_since').html('<span id="countdown' + count + '" class="timer"></span>');
+
+                            // Append the newly created card to the list or parent container
+                            $('#tecnical_list').append(newCard);
+                            $('#loding_icon').hide();
+                        }
+                        if (issueid == 4) { // Quality Issue
+                            $('#qtydiv').show();
+                            var newCard = $('#qtydiv').clone();
+                            newCard.removeAttr('id');
+                            newCard.find('.card-header').text('Quality Issue');
+
+                            // Populate the cloned card with issue data
+                            newCard.find('#quality_date').text(day);
+                            newCard.find('#quality_time').text(time);
+                            newCard.find('#quality_description').text(issuedata[i].description);
+                            newCard.find('#quality_responsible').text(issuedata[i].responciblepersonName);
+                            newCard.find('#quality_status').text(confirmStatus);
+                            newCard.find('#quality_since').html('<span id="countdown' + count + '" class="timer"></span>');
+
+                            $('#qty_list').append(newCard);
+                            $('#loding_icon').hide();
+                        }
+                        if (issueid == 5) { // IT/Software
+                            $('#Softwarediv').show();
+                            var newCard = $('#Softwarediv').clone();
+                            newCard.removeAttr('id');
+                            newCard.find('.card-header').text('IT/Software Issue');
+
+                            // Populate the cloned card with issue data
+                            newCard.find('#it_date').text(day);
+                            newCard.find('#it_time').text(time);
+                            newCard.find('#it_description').text(issuedata[i].description);
+                            newCard.find('#it_responsible').text(issuedata[i].responciblepersonName);
+                            newCard.find('#it_status').text(confirmStatus);
+                            newCard.find('#it_since').html('<span id="countdown' + count + '" class="timer"></span>');
+
+                            $('#IT_list').append(newCard);
+                            $('#loding_icon').hide();
+                        }
                     }
-                    if (issueid == 2)//Material Delay
-                    {
-                        $('#maririaldiv').show()
-                        var divissue = $('#matirial_body');
-                        var issue = '<tr><td>' + day + '</td><td>'+time+'</td><td>' + issuedata[i].matirial + '</td><td>' + issuedata[i].description + '</td><td>' + issuedata[i].responciblepersonName + '</td><td>'+ confirmStatus+'</td><td><span id="countdown'+count+'"class="timer"></span></td></tr>'
-                        divissue.append(issue)
-                        divissue.show('slow');
-                        $('#loding_icon').hide();
-                    }
-                    if (issueid == 3)//Technical Issue
-                    {
-                        $('#tecnicaldiv').show();
-                        var divissue = $('#technical_body');
-                        var issue = '<tr><td>' + day + '</td><td>'+time+'</td><td>' + issuedata[i].description + '</td><td>' + issuedata[i].responciblepersonName + '</td><td>'+ confirmStatus+'</td><td><span id="countdown'+count+'" class="timer"></span></td></tr>'
-                        divissue.append(issue)
-                        divissue.show('slow');
-                        $('#loding_icon').hide();
+                }
 
-
-                    }
-                    if (issueid == 4)//Quility
-                    {
-                       $('#qtydiv').show();
-                        var divissue = $('#qty_body');
-                        var issue = '<tr><td>' + day + '</td><td>'+time+'</td><td>' + issuedata[i].description + '</td><td>' + issuedata[i].responciblepersonName + '</td><td>'+ confirmStatus+'</td><td><span id="countdown'+count+'" class="timer"></span></td></tr>'
-                        divissue.append(issue)
-                        divissue.show('slow');
-                        $('#loding_icon').hide();
-                   }
-                    if (issueid == 5)//IT/Software
-                    {
-                        $('#Softwarediv').show();
-                        var divissue = $('#it_body');
-                        var issue = '<tr><td>' + day + '</td><td>'+time+'</td><td>' + issuedata[i].description + '</td><td>' + issuedata[i].responciblepersonName + '</td><td>'+ confirmStatus+'</td><td><span id="countdown'+count+'" class="timer"></span></td></tr>'
-                        divissue.append(issue)
-                        divissue.show('slow');
-                        $('#loding_icon').hide();
-
-
-                    }
-
-
-            }
-              if(count==0)
-                {
+                if (count == 0) {
                     $('#loding_icon').hide();
                 }
 
-
-        }
-
-       setTimmer(seconds, count)
-
-        var countdownTimer = setInterval('timer()', 1000);
+                setTimmer(seconds, count);
+                var countdownTimer = setInterval('timer()', 1000);
 
     }
 
@@ -335,7 +329,9 @@ $.ajax({
     }
    });
   }
- })
+    })
+
+
  function setTimmer(startTime,i)
   {
     var upgradeTime =startTime;
@@ -364,8 +360,11 @@ $.ajax({
     }
 
   }
+
                     </script>
+
                     <script type="text/javascript">
+
 function init() {
 var s = new CanvasState(document.getElementById('canvas1'));
 
@@ -426,6 +425,7 @@ $('#vertical-ticker').totemticker({
 
                     </script>
                     <script src="~/Scripts/Display/showmapdisplay.js"></script>
+
                     <script>
     var id=@ViewBag.id.ToString();
     var inputPath="../Content/images/"+id+".jpg"
@@ -536,7 +536,7 @@ $.ajax({
                     <div class="col-md-12">
                         <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none;width:100%">
                             <h2 class="number">@ViewBag.MaterialDelayCount</h2>
-                            <span class="desc">Material Delays</span>
+                            <span class="desc">Material Delay</span>
                             <div class="icon">
                                 @{
                                     if (@ViewBag.MaterialDelayCount > 0)
