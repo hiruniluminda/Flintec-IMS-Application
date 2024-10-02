@@ -9,6 +9,7 @@
 @model List<IssueManagementSystem.Models.issue_occurrence>
 @{ string lineName = null; string map = null; }
 <script src="~/Scripts/jquery.min.js"></script>
+
 <link href="~/Content/Display/style.css" rel="stylesheet" />
 <link href="~/Content/Display/css/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/Display/displaystyles.css" rel="stylesheet" />
@@ -54,6 +55,7 @@
 
 <div class="container-fluid" style="display: flex; justify-content: space-between;">
 
+    <!-- Left side content -->
     <div class="left-side" style="flex: 1; margin-right: 20px;">
 
         <div style="display:flex">
@@ -137,6 +139,7 @@
                                     </div>
                                 </li>
                             </ul>
+
                         </div>
                     </div>
                     <div class="displayheading" style="margin-top:-20pt">
@@ -196,6 +199,32 @@
         $.connection.hub.start();
         getData();
 
+        function stackIssues() {
+            var cards = $('.card-stack .card');
+            var currentIndex = 0;
+
+            function showNextCard() {
+                // Remove the active class from the current card and add the "card-behind" class
+                cards.removeClass('card-active').addClass('card-behind');
+
+                // Add the "card-active" class to the next card
+                $(cards[currentIndex]).removeClass('card-behind').addClass('card-active');
+
+                // Increment to show the next card in the stack
+                currentIndex = (currentIndex + 1) % cards.length; // Loop back to the first card
+
+                // Repeat the process after 5 seconds (or set your own interval)
+                setTimeout(showNextCard, 5000);
+            }
+
+            // Start the cycle
+            showNextCard();
+        }
+
+        // Call this function after the issues have been loaded dynamically
+        stackIssues();
+
+
 function getData() {
     var url = '@Url.Action("GetIssues", "Supervisor")';
     var count = 0;
@@ -230,20 +259,23 @@ function getData() {
                         var confirmStatus = responsible_person_confirm_status == 1 ? "Pending" : "Commented on " + commentedDate + " " + commentedTime;
 
                         if (issueid == 1) { // Machine Breakdown
-                            $('#brakediv').show(); 
-                            var newCard = $('#brakediv').clone(); 
+                            $('#brakediv').show(); // Ensure the base template is visible
+                            var newCard = $('#brakediv').clone(); // Clone the existing card
                             newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
-                            newCard.find('.card-header').text('Machine Breakdown'); 
+                            newCard.find('.card-header').text('Machine Breakdown'); // Set the header
 
                             // Populate the cloned card with issue data
-                            newCard.find('#break_date').text(day); 
+                            newCard.find('#break_date').text(day); // Change ID based on the card body fields
                             newCard.find('#break_time').text(time);
                             newCard.find('#break_description').text(issuedata[i].description);
                             newCard.find('#break_responsible').text(issuedata[i].responciblepersonName);
                             newCard.find('#break_status').text(confirmStatus);
                             newCard.find('#break_since').html('<span id="countdown' + count + '" class="timer"></span>');
 
+                            // Append the newly created card to the list or parent container
                             $('#brake_list').append(newCard);
+
+                            // Remove the loading icon
                             $('#loding_icon').hide();
                         }
                         if (issueid == 2) { // Material Delay
@@ -253,7 +285,7 @@ function getData() {
                             newCard.find('.card-header').text('Material Delay');
 
                             // Populate the cloned card with issue data
-                            newCard.find('#material_date').text(day); 
+                            newCard.find('#material_date').text(day); // Change to the appropriate fields
                             newCard.find('#material_time').text(time);
                             newCard.find('#material_description').text(issuedata[i].description);
                             newCard.find('#material_responsible').text(issuedata[i].responciblepersonName);
@@ -264,10 +296,10 @@ function getData() {
                             $('#loding_icon').hide();
                         }
                         if (issueid == 3) { // Technical Issue
-                            $('#tecnicaldiv').show(); 
-                            var newCard = $('#tecnicaldiv').clone(); 
+                            $('#tecnicaldiv').show(); // Ensure the base template is visible
+                            var newCard = $('#tecnicaldiv').clone(); // Clone the existing card
                             newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
-                            newCard.find('.card-header').text('Technical Issue'); 
+                            newCard.find('.card-header').text('Technical Issue'); // Set the header
 
                             // Populate the cloned card with issue data
                             newCard.find('#technical_date').text(day);
@@ -277,7 +309,10 @@ function getData() {
                             newCard.find('#technical_status').text(confirmStatus);
                             newCard.find('#technical_since').html('<span id="countdown' + count + '" class="timer"></span>');
 
+                            // Append the newly created card to the list or parent container
                             $('#tecnical_list').append(newCard);
+
+                            // Remove the loading icon if necessary
                             $('#loding_icon').hide();
                         }
                         if (issueid == 4) { // Quality Issue
@@ -424,6 +459,7 @@ $('#vertical-ticker').totemticker({
 });
 });
 */
+
 
                     </script>
                     <script src="~/Scripts/Display/showmapdisplay.js"></script>
