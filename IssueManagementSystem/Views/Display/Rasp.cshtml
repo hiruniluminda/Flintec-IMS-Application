@@ -12,13 +12,14 @@
 
 <link href="~/Content/Display/style.css" rel="stylesheet" />
 <link href="~/Content/Display/css/bootstrap.min.css" rel="stylesheet" />
-<link href="~/Content/Display/displaystyles.css" rel="stylesheet" />
+@*<link href="~/Content/Display/displaystyles.css" rel="stylesheet" />*@
+
 <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
 <!-- Fontfaces CSS-->
 <link href="~/Content/font-face.css" rel="stylesheet" />
 
-<link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
-<link href="~/Content/material-design-iconic-font.min.css" rel="stylesheet" />
+@*<link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/Content/material-design-iconic-font.min.css" rel="stylesheet" />*@
 
 <!-- Bootstrap CSS-->
 
@@ -47,29 +48,109 @@
 
 
 
-
-
-
-
-<!--  -->
-
-<div class="container-fluid" style="display: flex; justify-content: space-between;">
-
-    <!-- Left side content -->
-    <div class="left-side" style="flex: 1; margin-right: 20px;">
-
-        <div style="display:flex">
-
-            <div class="container-fluid margin">
-
-                <div class="text-center" style="margin-top:20%" id="loding_icon">
-                    <img src="~/Content/images/loding.svg">
+<section class="statistic statistic2" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="statistics-container" style="flex: 1;">
+        <div class="container">
+            <div class="row" style="display: flex;">
+                <div class="col-md-2">
+                    <a class="statistic__item statistic__item--red" onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                        <h2 class="number">@ViewBag.BrakedownCount</h2>
+                        <span class="desc">Machine Breakdown</span>
+                        <div class="icon">
+                            @if (@ViewBag.BrakedownCount > 0)
+                            {
+                                <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+                            }
+                            else
+                            {
+                                <i class="zmdi zmdi-settings"></i>
+                            }
+                        </div>
+                    </a>
                 </div>
-                <div class="row">
 
-                    <div class="col-sm-11" style="margin:20pt">
-                        <div id="wrapper">
-                            <ul class="card-stack" id="m_break">
+                <div class="col-md-2">
+                    <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                        <h2 class="number">@ViewBag.ITIsuue</h2>
+                        <span class="desc">IT/Software Issue</span>
+                        <div class="icon">
+                            @if (@ViewBag.ITIsuue > 0)
+                            {
+                                <i class="zmdi zmdi-windows animated infinite wobble"></i>
+                            }
+                            else
+                            {
+                                <i class="zmdi zmdi-windows"></i>
+                            }
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-2">
+                    <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                        <h2 class="number">@ViewBag.TechnicalIssue</h2>
+                        <span class="desc">Technical Issue</span>
+                        <div class="icon">
+                            @if (@ViewBag.TechnicalIssue > 0)
+                            {
+                                <i class="fas fa-wrench animated infinite wobble"></i>
+                            }
+                            else
+                            {
+                                <i class="fas fa-wrench"></i>
+                            }
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-2">
+                    <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                        <h2 class="number">@ViewBag.MaterialDelayCount</h2>
+                        <span class="desc">Material Delay</span>
+                        <div class="icon">
+                            @if (@ViewBag.MaterialDelayCount > 0)
+                            {
+                                <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
+                            }
+                            else
+                            {
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            }
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="displayheading" style="margin-top:-20pt" style="flex: 0 0 auto; margin-left: 20px;">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="header__logo">
+                    <a href="#">
+                        <img src="~/Content/images/logo.png" alt="CoolAdmin" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-7 text-left">
+                <h3>@lineName Manufacturing Cell</h3>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<div style="display:flex">
+    <div class="container-fluid margin">
+        <div class="text-center" style="margin-top:20%" id="loding_icon">
+            <img src="~/Content/images/loding.svg" alt="Loading Icon">
+        </div>
+        <div class="row">
+            <div class="col-sm-11" style="margin:20pt">
+                <div id="wrapper">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="card-stack" id="m_break" style="list-style-type:none;">
                                 <li id="brake_list">
                                     <div class="card text-white bg-danger mb-3" style="max-width:80rem;" id="brakediv">
                                         <div class="card-header">Machine Breakdown</div>
@@ -87,7 +168,9 @@
                                     </div>
                                 </li>
                             </ul>
-                            <ul class="card-stack" id="m_delay">
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="card-stack" id="m_delay" style="list-style-type:none;">
                                 <li id="maririal_list">
                                     <div class="card text-white bg-warning mb-3" style="max-width: 120rem;" id="materialdiv">
                                         <div class="card-header">Material Delay</div>
@@ -105,24 +188,30 @@
                                     </div>
                                 </li>
                             </ul>
-                            <ul class="card-stack" id="t_issue">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="card-stack" id="t_issue" style="list-style-type:none;">
                                 <li id="tecnical_list">
                                     <div class="card text-white bg-success mb-3" style="max-width: 120rem;" id="tecnicaldiv">
                                         <div class="card-header">Technical Issue</div>
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between" style="max-width:120rem;color:white">
-                                                <div><strong>Date:</strong> <br /> <br /> <span id="technical_date"></span></div>
-                                                <div><strong>Time:</strong> <br /> <br /> <span id="technical_time"></span></div>
-                                                <div><strong>Description:</strong> <br /> <br /> <span id="technical_description"></span></div>
-                                                <div><strong>Responsible Person:</strong> <br /> <br /> <span id="technical_responsible"></span></div>
-                                                <div><strong>Status:</strong> <br /> <br /> <span id="technical_status"></span></div>
-                                                <div><strong>Since Occurred:</strong> <br /> <br /><span id="technical_since"></span></div>
+                                                <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
+                                                <div><strong>Time:</strong> <br /> <span id="technical_time"></span></div>
+                                                <div><strong>Description:</strong> <br /> <span id="technical_description"></span></div>
+                                                <div><strong>Responsible Person:</strong> <br /> <span id="technical_responsible"></span></div>
+                                                <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>
+                                                <div><strong>Since Occurred:</strong> <br /><span id="technical_since"></span></div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
-                            <ul class="card-stack" id="i_issue">
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="card-stack" id="i_issue" style="list-style-type:none;">
                                 <li id="IT_list">
                                     <div class="card text-white bg-primary mb-3" style="max-width: 120rem;" id="Softwarediv">
                                         <div class="card-header">IT/Software Issue</div>
@@ -139,43 +228,31 @@
                                     </div>
                                 </li>
                             </ul>
-
                         </div>
                     </div>
-                    <div class="displayheading" style="margin-top:-20pt">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <div class="header__logo">
-                                    <a href="#">
-                                        <img src="~/Content/images/logo.png" alt="CoolAdmin" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-7 text-left">
-                                <h3>@lineName Manufacturing Cell</h3>
-                            </div>
+                </div>
+            </div>
+        </div>
 
-                        </div>
-                    </div>
 
-                    <script>
-                        $('#brakediv').hide();
-                        $('#materialdiv').hide();
-                        $('#Softwarediv').hide();
-                        $('#qtydiv').hide();
-                        $('#tecnicaldiv').hide();
-                        $('#breake_body').empty();
-                        $('#matirial_body').empty();
-                        $('#technical_body').empty();
-                        $('#it_body').empty();
-                        $('#qty_body').empty();
-                    </script>
+        <script>
+            $('#brakediv').hide();
+            $('#materialdiv').hide();
+            $('#Softwarediv').hide();
+            $('#qtydiv').hide();
+            $('#tecnicaldiv').hide();
+            $('#breake_body').empty();
+            $('#matirial_body').empty();
+            $('#technical_body').empty();
+            $('#it_body').empty();
+            $('#qty_body').empty();
+        </script>
 
-                    <script src="~/Scripts/3.30bootstrap.min.js"></script>
-                    <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
-                    <script src="~/Scripts/moment.min.js"></script>
-                    <script src="~/signalr/Hubs"></script>
-                    <script>
+        <script src="~/Scripts/3.30bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+        <script src="~/Scripts/moment.min.js"></script>
+        <script src="~/signalr/Hubs"></script>
+        <script>
 
     $.connection.hub.start()
                 .done(function(){console.log("Its Works")
@@ -185,7 +262,7 @@
   $.connection.ismHub.client.announce=function(){location.reload();}
     $(document).ready(function () {
 
-        // Proxy created on the fly
+        // Proxy created on the fly  hb
         var hub = $.connection.issueHub;
         var issueCount = 0;
 
@@ -199,30 +276,30 @@
         $.connection.hub.start();
         getData();
 
-        function stackIssues() {
-            var cards = $('.card-stack .card');
-            var currentIndex = 0;
+        //function stackIssues() {
+        //    var cards = $('.card-stack .card');
+        //    var currentIndex = 0;
 
-            function showNextCard() {
-                // Remove the active class from the current card and add the "card-behind" class
-                cards.removeClass('card-active').addClass('card-behind');
+        //    function showNextCard() {
+        //        // Remove the active class from the current card and add the "card-behind" class
+        //        cards.removeClass('card-active').addClass('card-behind');
 
-                // Add the "card-active" class to the next card
-                $(cards[currentIndex]).removeClass('card-behind').addClass('card-active');
+        //        // Add the "card-active" class to the next card
+        //        $(cards[currentIndex]).removeClass('card-behind').addClass('card-active');
 
-                // Increment to show the next card in the stack
-                currentIndex = (currentIndex + 1) % cards.length; // Loop back to the first card
+        //        // Increment to show the next card in the stack
+        //        currentIndex = (currentIndex + 1) % cards.length; // Loop back to the first card
 
-                // Repeat the process after 5 seconds (or set your own interval)
-                setTimeout(showNextCard, 5000);
-            }
+        //        // Repeat the process after 5 seconds (or set your own interval)
+        //        setTimeout(showNextCard, 5000);
+        //    }
 
-            // Start the cycle
-            showNextCard();
-        }
+        //    // Start the cycle
+        //    showNextCard();
+        //}
 
-        // Call this function after the issues have been loaded dynamically
-        stackIssues();
+        //// Call this function after the issues have been loaded dynamically
+        //stackIssues();
 
 
 function getData() {
@@ -274,6 +351,7 @@ function getData() {
 
                             // Append the newly created card to the list or parent container
                             $('#brake_list').append(newCard);
+                            startSlideshow('#brake_list');
 
                             // Remove the loading icon
                             $('#loding_icon').hide();
@@ -293,6 +371,8 @@ function getData() {
                             newCard.find('#material_since').html('<span id="countdown' + count + '" class="timer"></span>');
 
                             $('#maririal_list').append(newCard);
+                            startSlideshow('#maririal_list');
+
                             $('#loding_icon').hide();
                         }
                         if (issueid == 3) { // Technical Issue
@@ -311,6 +391,7 @@ function getData() {
 
                             // Append the newly created card to the list or parent container
                             $('#tecnical_list').append(newCard);
+                            startSlideshow('#tecnical_list');
 
                             // Remove the loading icon if necessary
                             $('#loding_icon').hide();
@@ -347,6 +428,8 @@ function getData() {
                             newCard.find('#it_since').html('<span id="countdown' + count + '" class="timer"></span>');
 
                             $('#IT_list').append(newCard);
+                            startSlideshow('#IT_list');
+
                             $('#loding_icon').hide();
                         }
                     }
@@ -366,6 +449,33 @@ function getData() {
    });
   }
     })
+
+
+
+                function startSlideshow(listSelector) {
+                    var cards = $(listSelector).find('.card');
+                    var currentIndex = 0;
+
+                    function showNextCard() {
+                        // Hide all cards
+                        cards.hide();
+
+                        // Show the current card
+                        $(cards[currentIndex]).show();
+
+                        // Increment the index to point to the next card, looping back when necessary
+                        currentIndex = (currentIndex + 1) % cards.length;
+
+                        // Set a 5-second interval for each card
+                        setTimeout(showNextCard, 5000);
+                    }
+
+                    // Start the slideshow if there are cards present
+                    if (cards.length > 0) {
+                        showNextCard();
+                    }
+                }
+
 
 
  function setTimmer(startTime,i)
@@ -397,9 +507,9 @@ function getData() {
 
   }
 
-                    </script>
+        </script>
 
-                    <script type="text/javascript">
+        <script type="text/javascript">
 
 function init() {
 var s = new CanvasState(document.getElementById('canvas1'));
@@ -446,12 +556,12 @@ $.ajax({
 
     }
 });
-                        }
+    /*xsssa*/                    }
 /*
 $(function () {
 $('#vertical-ticker').totemticker({
     row_height: '100px',
-    next: '#ticker-nm mext',
+    next: '#ticker-next',
     previous: '#ticker-previous',
     stop: '#stop',
     start: '#start',
@@ -461,10 +571,10 @@ $('#vertical-ticker').totemticker({
 */
 
 
-                    </script>
-                    <script src="~/Scripts/Display/showmapdisplay.js"></script>
+        </script>
+        <script src="~/Scripts/Display/showmapdisplay.js"></script>
 
-                    <script>
+        <script>
     var id=@ViewBag.id.ToString();
     var inputPath="../Content/images/"+id+".jpg"
     var url = '@Url.Action("loadBase64Image", "Admin")';
@@ -502,96 +612,7 @@ $.ajax({
 
     },3600000);
 
-                    </script>
-                </div>
-            </div>
-        </div>
+        </script>
     </div>
-    <div class="right-side" style="float: right; margin-right: 20px; width: auto;">
-        <!-- statistic cards -->
-        <section class="statistic statistic2">
-            <div class="container">
+</div>
 
-                <div class="row" style="display:block;">
-                    <div class="col-md-12" style="margin-bottom: 5px;">
-                        <a class="statistic__item statistic__item--red " onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none;width:100%">
-                            <h2 class="number"> @ViewBag.BrakedownCount</h2>
-                            <span class="desc">Machine Breakdown</span>
-                            <div class="icon">
-                                @{
-                                    if (@ViewBag.BrakedownCount > 0)
-                                    {
-                                        <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-                                    }
-                                    else
-                                    {
-                                        <i class="zmdi zmdi-settings"></i>
-                                    }
-                                }
-
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-12">
-                        <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none;width:100%">
-                            <h2 class="number">@ViewBag.ITIsuue</h2>
-                            <span class="desc">IT/SoftWare Issue</span>
-                            <div class="icon">
-                                @{
-                                    if (@ViewBag.ITIsuue > 0)
-                                    {
-                                        <i class="zmdi  zmdi-windows animated infinite wobble"></i>
-                                    }
-                                    else
-                                    {
-                                        <i class="zmdi  zmdi-windows"></i>
-                                    }
-                                }
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-12">
-                        <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none;width:100%">
-                            <h2 class="number">@ViewBag.TechnicalIssue</h2>
-                            <span class="desc">Technical Issue</span>
-                            <div class="icon">
-                                @{
-                                    if (@ViewBag.TechnicalIssue > 0)
-                                    {
-                                        <i class="fas fa-wrench animated infinite wobble"></i>
-                                    }
-                                    else
-                                    {
-                                        <i class="fas fa-wrench"></i>
-                                    }
-                                }
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-12">
-                        <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none;width:100%">
-                            <h2 class="number">@ViewBag.MaterialDelayCount</h2>
-                            <span class="desc">Material Delay</span>
-                            <div class="icon">
-                                @{
-                                    if (@ViewBag.MaterialDelayCount > 0)
-                                    {
-                                        <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
-                                    }
-                                    else
-                                    {
-                                        <i class="zmdi zmdi-shopping-cart"></i>
-                                    }
-                                }
-
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </div>
