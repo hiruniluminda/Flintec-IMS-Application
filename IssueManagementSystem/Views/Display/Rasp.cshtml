@@ -33,7 +33,7 @@
 <link href="~/Content/perfect-scrollbar.css" rel="stylesheet" />
 <link href="~/Content/material-design-iconic-font.min.css" rel="stylesheet" />
 <!-- Main CSS-->
-<link href="~/Content/theme.css" rel="stylesheet" />
+@*<link href="~/Content/theme.css" rel="stylesheet" />*@
 <link href="~/Content/fontawesome.css" rel="stylesheet" />
 <link href="~/Content/bootstrap-toggle.min.css" rel="stylesheet" />
 
@@ -54,7 +54,7 @@
     <div class="statistics-container" style="flex: 1;">
         <div class="container">
             <div class="row" style="display: flex;">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <a class="statistic__item statistic__item--red" onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none; width:100%">
                         <h2 class="number">@ViewBag.BrakedownCount</h2>
                         <span class="desc">Machine Breakdown</span>
@@ -71,7 +71,7 @@
                     </a>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none; width:100%">
                         <h2 class="number">@ViewBag.ITIsuue</h2>
                         <span class="desc">IT/Software Issue</span>
@@ -88,7 +88,7 @@
                     </a>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none; width:100%">
                         <h2 class="number">@ViewBag.TechnicalIssue</h2>
                         <span class="desc">Technical Issue</span>
@@ -105,7 +105,7 @@
                     </a>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none; width:100%">
                         <h2 class="number">@ViewBag.MaterialDelayCount</h2>
                         <span class="desc">Material Delay</span>
