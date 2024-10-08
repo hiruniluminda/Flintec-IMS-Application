@@ -24,7 +24,9 @@
 <!-- Bootstrap CSS-->
 
 <link href="~/Content/animsition.min.css" rel="stylesheet" />
+
 <link href="~/Content/animate.css" rel="stylesheet" />
+
 <link href="~/Content/hamburgers.min.css" rel="stylesheet" />
 <link href="~/Content/slick.css" rel="stylesheet" />
 
@@ -152,9 +154,15 @@
                         <div class="col-md-6">
                             <ul class="card-stack" id="m_break" style="list-style-type:none;">
                                 <li id="brake_list">
-                                    <div class="card text-white bg-danger mb-3" style="max-width:80rem;" id="brakediv">
-                                        <div class="card-header">Machine Breakdown</div>
-                                        <div class="card-body" id="breakediv">
+                                    <div class="card text-white bg-white mb-3" style="border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); padding: 20px; display: flex; flex-direction: row; align-items: center;" id="brakediv">
+                                        <div class="card-header" style="font-size: 16px; font-weight: bold; background-color: transparent;">Machine Breakdown</div>
+
+                                        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px;">
+                                            <div style="font-size: 24px; font-weight: bold;">18</div>
+                                            <div style="font-size: 14px; color: #7f8c8d;">Nov</div>
+                                        </div>
+
+                                        <div class="card-body" style="flex-grow: 1;" id="breakediv">
                                             <div class="d-flex justify-content-between" style="max-width:80rem;color:white">
                                                 <div><strong>Date:</strong> <span id="break_date"></span></div>
                                                 <div><strong>Time:</strong> <span id="break_time"></span></div>
@@ -164,6 +172,9 @@
                                                 <div><strong>Status:</strong> <span id="break_status"></span></div>
                                                 <div><strong>Since Occurred:</strong> <span id="break_since"></span></div>
                                             </div>
+                                        </div>
+                                        <div class="status-badge" style="text-align: right;">
+                                            <span class="badge" style="padding: 10px 15px; background-color: #28a745; color: white; border-radius: 15px;">CONFIRMED</span>
                                         </div>
                                     </div>
                                 </li>
@@ -261,7 +272,7 @@
                 .fail(function(){ console.log("hub Error occurred");});
   $.connection.ismHub.client.announce=function(){location.reload();}
     $(document).ready(function () {
-
+         var categoriesDisplayed = 0;
         // Proxy created on the fly  hb
         var hub = $.connection.issueHub;
         var issueCount = 0;
@@ -336,6 +347,7 @@ function getData() {
                         var confirmStatus = responsible_person_confirm_status == 1 ? "Pending" : "Commented on " + commentedDate + " " + commentedTime;
 
                         if (issueid == 1) { // Machine Breakdown
+                            categoriesDisplayed++;
                             $('#brakediv').show(); // Ensure the base template is visible
                             var newCard = $('#brakediv').clone(); // Clone the existing card
                             newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
@@ -357,6 +369,7 @@ function getData() {
                             $('#loding_icon').hide();
                         }
                         if (issueid == 2) { // Material Delay
+                            categoriesDisplayed++;
                             $('#materialdiv').show();
                             var newCard = $('#materialdiv').clone();
                             newCard.removeAttr('id');
@@ -376,6 +389,7 @@ function getData() {
                             $('#loding_icon').hide();
                         }
                         if (issueid == 3) { // Technical Issue
+                            categoriesDisplayed++;
                             $('#tecnicaldiv').show(); // Ensure the base template is visible
                             var newCard = $('#tecnicaldiv').clone(); // Clone the existing card
                             newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
@@ -397,6 +411,7 @@ function getData() {
                             $('#loding_icon').hide();
                         }
                         if (issueid == 4) { // Quality Issue
+                            categoriesDisplayed++;
                             $('#qtydiv').show();
                             var newCard = $('#qtydiv').clone();
                             newCard.removeAttr('id');
@@ -414,6 +429,7 @@ function getData() {
                             $('#loding_icon').hide();
                         }
                         if (issueid == 5) { // IT/Software
+                            categoriesDisplayed++;
                             $('#Softwarediv').show();
                             var newCard = $('#Softwarediv').clone();
                             newCard.removeAttr('id');
@@ -438,7 +454,8 @@ function getData() {
                 if (count == 0) {
                     $('#loding_icon').hide();
                 }
-
+                console.log(categoriesDisplayed);
+                adjustLayout(categoriesDisplayed); // Call function to adjust layout based on categories
                 setTimmer(seconds, count);
                 var countdownTimer = setInterval('timer()', 1000);
 
@@ -475,9 +492,52 @@ function getData() {
                         showNextCard();
                     }
                 }
+/*
+            // Function to adjust the layout dynamically based on the number of categories displayed
+            function adjustLayout(categoryCount) {
+                var colClass = "";
 
+                switch (categoryCount) {
+                    case 1:
+                        colClass = "col-full"; // Full screen width for 1 category
+                        break;
+                    case 2:
+                        colClass = "col-half"; // 50% width for each of 2 categories
+                        break;
+                    case 3:
+                        colClass = "col-third"; // 33.3% width for each of 3 categories
+                        break;
+                    case 4:
+                        colClass = "col-quarter"; // 25% width for each of 4 categories
+                        break;
+                }
 
+                // Apply the correct class to the columns based on how many categories are displayed
+                if ($('#break_list').children().length > 0) {
+                    $('#m_break').removeClass().addClass(colClass);
+                } else {
+                    $('#m_break').addClass('empty'); // Hide the empty column
+                }
 
+                if ($('#material_list').children().length > 0) {
+                    $('#m_delay').removeClass().addClass(colClass);
+                } else {
+                    $('#m_delay').addClass('empty');
+                }
+
+                if ($('#technical_list').children().length > 0) {
+                    $('#t_issue').removeClass().addClass(colClass);
+                } else {
+                    $('#t_issue').addClass('empty');
+                }
+
+                if ($('#it_list').children().length > 0) {
+                    $('#i_issue').removeClass().addClass(colClass);
+                } else {
+                    $('#i_issue').addClass('empty');
+                }
+            }
+*/
  function setTimmer(startTime,i)
   {
     var upgradeTime =startTime;

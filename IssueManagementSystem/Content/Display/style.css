@@ -3,6 +3,29 @@
 	Zach Dunn / Build Internet (buildinternet.com)
 	Winter 2011
 */
+.col-full {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.col-half {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.col-third {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+}
+
+.col-quarter {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.empty {
+    display: none;
+}
 
 
 
@@ -77,5 +100,143 @@ p {
     margin: 0;
     padding: 0;
 
+}
+
+/**/
+/* General card styling */
+.card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+}
+
+/* Left-aligned date box */
+.date-box {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 15px 0 0 15px;
+    text-align: center;
+    color: #2c3e50;
+    margin-right: 20px;
+}
+
+    .date-box .date {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .date-box .month {
+        font-size: 14px;
+        color: #7f8c8d;
+    }
+
+/* Styling for the card content */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .card-body .d-flex {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card-body div {
+        margin-right: 10px;
+    }
+
+    /* Styling the card title and text */
+    .card-body strong {
+        font-size: 14px;
+        color: #333;
+    }
+
+    .card-body span {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .card-body .card-title {
+        font-weight: bold;
+        font-size: 18px;
+        color: #2c3e50;
+    }
+
+/* Avatars styling */
+.avatars {
+    display: flex;
+    align-items: center;
+}
+
+    .avatars img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+/* Status badge */
+.status-badge {
+    text-align: right;
+}
+
+    .status-badge .badge {
+        padding: 10px 15px;
+        font-size: 14px;
+        border-radius: 15px;
+        background-color: #28a745;
+        color: white;
+    }
+
+/* Specific card backgrounds */
+.bg-danger {
+    background-color: #e74c3c !important;
+}
+
+.bg-warning {
+    background-color: #f39c12 !important;
+}
+
+.bg-success {
+    background-color: #2ecc71 !important;
+}
+
+.bg-primary {
+    background-color: #3498db !important;
+}
+
+/* Specific color and spacing */
+.card .d-flex div {
+    color: #333;
+    font-size: 14px;
+}
+
+/* Flex layout for equal height cards */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card .d-flex {
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Loading icon styling */
+#loding_icon img {
+    width: 50px;
 }
 
