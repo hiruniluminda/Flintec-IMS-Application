@@ -113,6 +113,16 @@ p {
     flex-direction: row;
     align-items: center;
     padding: 20px;
+
+}
+
+.cardxyz {
+    background: rgba(155, 155, 155, 0.24);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.7px);
+    -webkit-backdrop-filter: blur(4.7px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .card-header {
@@ -196,7 +206,7 @@ p {
         padding: 10px 15px;
         font-size: 14px;
         border-radius: 15px;
-        background-color: #28a745;
+        background-color: red;
         color: white;
     }
 
@@ -463,6 +473,7 @@ body {
     color: #666;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+   /* background-color: darkslategrey;*/
 }
 
 h1,
