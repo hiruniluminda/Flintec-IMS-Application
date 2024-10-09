@@ -111,7 +111,7 @@ p {
     flex-direction: row;
     align-items: center;
     padding: 10px;
-    min-height: 180px;
+    min-height: 400px;
 }
 
 .cardxyz {
@@ -157,7 +157,7 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: -30px
+    margin-top: -30px;
 }
 
     .card-body .d-flex {
