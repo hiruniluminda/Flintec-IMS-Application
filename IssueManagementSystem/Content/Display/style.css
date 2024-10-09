@@ -255,12 +255,16 @@ p {
 
 
 .displayheading {
-    width: 40%;
+    width: 35%;
     padding: 10px;
     color: white;
     background: black;
     border-end-start-radius: 50px;
     z-index: 1000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0;
 }
 
 

@@ -50,165 +50,167 @@
 
 
 <div style="background-image: url('https://images.pexels.com/photos/776656/pexels-photo-776656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center;">
-<section class="statistic statistic2" style="display: flex; justify-content: space-between; align-items: center;">
-    <div class="statistics-container" style="flex: 1;">
-        <div class="container">
-            <div class="row" style="display: flex;">
-                <div class="col-md-3">
-                    <a class="statistic__item statistic__item--red" onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none; width:100%">
-                        <h2 class="number">@ViewBag.BrakedownCount</h2>
-                        <span class="desc">Machine Breakdown</span>
-                        <div class="icon">
-                            @if (@ViewBag.BrakedownCount > 0)
-                            {
-                                <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-                            }
-                            else
-                            {
-                                <i class="zmdi zmdi-settings"></i>
-                            }
+    <div class="top-row" style="display: flex; justify-content: space-between; align-items: flex-start; position: relative;">
+        <section class="statistic statistic2" style="display: flex; margin-right: 500px; justify-content: space-between; align-items: center;">
+            <div class="statistics-container" style="flex: 1;">
+                <div class="container">
+                    <div class="row" style="display: flex;">
+                        <div class="col-md-3">
+                            <a class="statistic__item statistic__item--red" onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                                <h2 class="number">@ViewBag.BrakedownCount</h2>
+                                <span class="desc">Machine Breakdown</span>
+                                <div class="icon">
+                                    @if (@ViewBag.BrakedownCount > 0)
+                                    {
+                                        <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="zmdi zmdi-settings"></i>
+                                    }
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
 
-                <div class="col-md-3">
-                    <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none; width:100%">
-                        <h2 class="number">@ViewBag.ITIsuue</h2>
-                        <span class="desc">IT/Software Issue</span>
-                        <div class="icon">
-                            @if (@ViewBag.ITIsuue > 0)
-                            {
-                                <i class="zmdi zmdi-windows animated infinite wobble"></i>
-                            }
-                            else
-                            {
-                                <i class="zmdi zmdi-windows"></i>
-                            }
+                        <div class="col-md-3">
+                            <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                                <h2 class="number">@ViewBag.ITIsuue</h2>
+                                <span class="desc">IT/Software Issue</span>
+                                <div class="icon">
+                                    @if (@ViewBag.ITIsuue > 0)
+                                    {
+                                        <i class="zmdi zmdi-windows animated infinite wobble"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="zmdi zmdi-windows"></i>
+                                    }
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
 
-                <div class="col-md-3">
-                    <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none; width:100%">
-                        <h2 class="number">@ViewBag.TechnicalIssue</h2>
-                        <span class="desc">Technical Issue</span>
-                        <div class="icon">
-                            @if (@ViewBag.TechnicalIssue > 0)
-                            {
-                                <i class="fas fa-wrench animated infinite wobble"></i>
-                            }
-                            else
-                            {
-                                <i class="fas fa-wrench"></i>
-                            }
+                        <div class="col-md-3">
+                            <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                                <h2 class="number">@ViewBag.TechnicalIssue</h2>
+                                <span class="desc">Technical Issue</span>
+                                <div class="icon">
+                                    @if (@ViewBag.TechnicalIssue > 0)
+                                    {
+                                        <i class="fas fa-wrench animated infinite wobble"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-wrench"></i>
+                                    }
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
 
-                <div class="col-md-3">
-                    <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none; width:100%">
-                        <h2 class="number">@ViewBag.MaterialDelayCount</h2>
-                        <span class="desc">Material Delay</span>
-                        <div class="icon">
-                            @if (@ViewBag.MaterialDelayCount > 0)
-                            {
-                                <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
-                            }
-                            else
-                            {
-                                <i class="zmdi zmdi-shopping-cart"></i>
-                            }
+                        <div class="col-md-3">
+                            <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                                <h2 class="number">@ViewBag.MaterialDelayCount</h2>
+                                <span class="desc">Material Delay</span>
+                                <div class="icon">
+                                    @if (@ViewBag.MaterialDelayCount > 0)
+                                    {
+                                        <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                    }
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <div class="displayheading" style="flex: 0 0 auto; margin-left: 20px;">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="header__logo">
+                        <a href="#">
+                            <img src="~/Content/images/logo.png" alt="CoolAdmin" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 text-left">
+                    <h3>@lineName Manufacturing Cell</h3>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="displayheading" style="margin-top:-20pt" style="flex: 0 0 auto; margin-left: 20px;">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="header__logo">
-                    <a href="#">
-                        <img src="~/Content/images/logo.png" alt="CoolAdmin" />
-                    </a>
+        </div>
+
+        <div style="display:flex">
+            <div class="container-fluid margin">
+                <div class="text-center" style="margin-top:20%" id="loding_icon">
+                    <img src="~/Content/images/loding.svg" alt="Loading Icon">
                 </div>
-            </div>
-            <div class="col-lg-7 text-left">
-                <h3>@lineName Manufacturing Cell</h3>
-            </div>
-        </div>
-    </div>
+                <div class="row">
+                    <div class="col-sm-11" style="margin:20pt">
+                        <div id="wrapper">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="card-stack" id="m_break" style="list-style-type:none;">
+                                        <li id="brake_list">
+                                            <div class="card text-white mb-3" style="/* From https://css.glass */ background-image: url('https://img.freepik.com/free-vector/royal-watercolor-valentine-red-background_1340-4006.jpg?ga=GA1.1.1475138255.1728444286&semt=ais_hybrid'); background-size: cover; background-position: center; border-radius: 15px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 2px solid rgba(255, 0, 0, 0.3); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="brakediv">
 
-</section>
+                                                <div style="background-color: #cc0000; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white; margin-top:-30px">
+                                                    <div><strong>Date:</strong> <span id="break_date"></span></div>
 
+                                                </div>
 
-<div style="display:flex">
-    <div class="container-fluid margin">
-        <div class="text-center" style="margin-top:20%" id="loding_icon">
-            <img src="~/Content/images/loding.svg" alt="Loading Icon">
-        </div>
-        <div class="row">
-            <div class="col-sm-11" style="margin:20pt">
-                <div id="wrapper">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul class="card-stack" id="m_break" style="list-style-type:none;">
-                                <li id="brake_list">
-                                    <div class="card text-white mb-3" style="/* From https://css.glass */ background-image: url('https://img.freepik.com/free-vector/royal-watercolor-valentine-red-background_1340-4006.jpg?ga=GA1.1.1475138255.1728444286&semt=ais_hybrid'); background-size: cover; background-position: center; border-radius: 15px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 2px solid rgba(255, 0, 0, 0.3); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="brakediv">
+                                                <div class="card-body text-white" style="flex-grow: 1; color: white;" id="breakediv">
+                                                    <div class="card-header" style="font-size: 20px; font-weight: bold; background-color: transparent; color:white">Machine Breakdown</div>
 
-                                        <div style="background-color: #cc0000; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white; margin-top:-30px">
-                                            <div><strong>Date:</strong> <span id="break_date"></span></div>
+                                                    <div class="d-flex justify-content-between text-white" style="max-width:80rem;color:white;">
+                                                        <div><strong>Time:</strong> <span id="break_time"></span></div>
+                                                        <div><strong>Machine:</strong> <span id="break_machine"></span></div>
+                                                        <div><strong>Description:</strong> <span id="break_description"></span></div>
+                                                        @*<div><strong>Responsible Person:</strong> <span id="break_responsible"></span></div>*@
+                                                        @* <div><strong>Status:</strong> <span id="break_status"></span></div>*@
+                                                        <div><strong>Since Occurred:</strong> <span id="break_since"></span></div>
+                                                    </div>
+                                                </div>
+                                                <div style="position: absolute; bottom: 10px; left: 20px; color:white; margin-top:50px;"><strong>Responsible Person:</strong> <span id="break_responsible"></span></div>
 
-                                        </div>
-
-                                        <div class="card-body text-white" style="flex-grow: 1; color: white;" id="breakediv">
-                                            <div class="card-header" style="font-size: 20px; font-weight: bold; background-color: transparent; color:white">Machine Breakdown</div>
-
-                                            <div class="d-flex justify-content-between text-white" style="max-width:80rem;color:white;">
-                                                <div><strong>Time:</strong> <span id="break_time"></span></div>
-                                                <div><strong>Machine:</strong> <span id="break_machine"></span></div>
-                                                <div><strong>Description:</strong> <span id="break_description"></span></div>
-                                                @*<div><strong>Responsible Person:</strong> <span id="break_responsible"></span></div>*@
-                                                @* <div><strong>Status:</strong> <span id="break_status"></span></div>*@
-                                                <div><strong>Since Occurred:</strong> <span id="break_since"></span></div>
+                                                <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; margin-top: 50px;">
+                                                    <span class="badge" id="break_status">Status</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div style="position: absolute; bottom: 10px; left: 20px; color:white; margin-top:50px;"><strong>Responsible Person:</strong> <span id="break_responsible"></span></div>
-
-                                        <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; margin-top: 50px;">
-                                            <span class="badge" id="break_status">Status</span>
-                                        </div>
-                                    </div>
                                         </li>
                                     </ul>
                                 </div>
-                        <div class="col-md-6">
-                            <ul class="card-stack" id="m_delay" style="list-style-type:none;">
-                                <li id="maririal_list">
-                                    <div class="card text-white bg-white mb-3" style="/* From https://css.glass */ background-image: url('https://img.freepik.com/premium-vector/minimal-gradient-orange-wavy-shapes-background_6689-118.jpg?w=826'); background-size: cover; background-position: center; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">
-                                        <div style="background-color: #e6b800; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: black">
-                                            <div><strong>Date:</strong> <span id="material_date"></span></div>
-                                        </div>
-                                        <div class="card-body" style="flex-grow: 1;" id="materialdiv">
-                                            <div class="card-header" style="font-size: 16px; font-weight: bold; background-color: transparent; color:white">Material Delay</div>
+                                <div class="col-md-6">
+                                    <ul class="card-stack" id="m_delay" style="list-style-type:none;">
+                                        <li id="maririal_list">
+                                            <div class="card text-white bg-white mb-3" style="/* From https://css.glass */ background-image: url('https://img.freepik.com/premium-vector/minimal-gradient-orange-wavy-shapes-background_6689-118.jpg?w=826'); background-size: cover; background-position: center; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">
+                                                <div style="background-color: #e6b800; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: black">
+                                                    <div><strong>Date:</strong> <span id="material_date"></span></div>
+                                                </div>
+                                                <div class="card-body" style="flex-grow: 1;" id="materialdiv">
+                                                    <div class="card-header" style="font-size: 16px; font-weight: bold; background-color: transparent; color:white">Material Delay</div>
 
-                                            <div class="d-flex justify-content-between" style="max-width: 120rem; color: white">
-                                                <div><strong>Time:</strong> <span id="material_time"></span></div>
-                                                <div><strong>Material:</strong> <span id="material_name"></span></div>
-                                                <div><strong>Description:</strong> <span id="material_description"></span></div>
-                                                @*<div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
-                            <div><strong>Status:</strong> <span id="material_status"></span></div>*@
-                                                <div><strong>Since Occurred:</strong> <span id="material_since"></span></div>
+                                                    <div class="d-flex justify-content-between" style="max-width: 120rem; color: white">
+                                                        <div><strong>Time:</strong> <span id="material_time"></span></div>
+                                                        <div><strong>Material:</strong> <span id="material_name"></span></div>
+                                                        <div><strong>Description:</strong> <span id="material_description"></span></div>
+                                                        @*<div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
+                                                            <div><strong>Status:</strong> <span id="material_status"></span></div>*@
+                                                        <div><strong>Since Occurred:</strong> <span id="material_since"></span></div>
+                                                    </div>
+                                                </div>
+                                                <div style="position: absolute; bottom: 10px; left: 20px; color: white"><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
+                                                <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; ">
+                                                    <span class="badge" style="background-color: #e6b800; " id="material_status">Status</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div style="position: absolute; bottom: 10px; left: 20px; color: white"><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
-                                        <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; ">
-                                            <span class="badge" style="background-color: #e6b800; " id="material_status">Status</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -226,7 +228,7 @@
                                                         <div><strong>Time:</strong> <br /> <span id="technical_time"></span></div>
                                                         <div><strong>Description:</strong> <br /> <span id="technical_description"></span></div>
                                                         @*<div><strong>Responsible Person:</strong> <br /> <span id="technical_responsible"></span></div>
-                                                        <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>*@
+                                                            <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>*@
                                                         <div><strong>Since Occurred:</strong> <br /><span id="technical_since"></span></div>
                                                     </div>
                                                 </div>
@@ -253,7 +255,7 @@
                                                         <div><strong>Time:</strong> <span id="it_time"></span></div>
                                                         <div><strong>Description:</strong> <span id="it_description"></span></div>
                                                         @*<div><strong>Responsible Person:</strong> <span id="it_responsible"></span></div>
-                                                        <div><strong>Status:</strong> <span id="it_status"></span></div>*@
+                                                            <div><strong>Status:</strong> <span id="it_status"></span></div>*@
                                                         <div><strong>Since Occurred:</strong> <span id="it_since"></span></div>
                                                     </div>
                                                 </div>
@@ -377,7 +379,7 @@
                                     var newCard = $('#brakediv').clone(); // Clone the existing card
                                     newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
                                     newCard.find('.card-header').text('Machine Breakdown'); // Set the header
-                                   
+
 
                                     // Populate the cloned card with issue data
                                     newCard.find('#break_date').text(day); // Change ID based on the card body fields
