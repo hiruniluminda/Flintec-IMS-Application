@@ -113,6 +113,7 @@ p {
     flex-direction: row;
     align-items: center;
     padding: 10px;
+    min-height:180px;
 
 }
 
@@ -258,6 +259,7 @@ p {
     width: 35%;
     padding: 10px;
     color: white;
+    height:170px;
     background: black;
     border-end-start-radius: 50px;
     z-index: 1000;
@@ -281,7 +283,7 @@ p {
     position: relative;
     min-height: 150px;
     overflow: hidden;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -3025,10 +3027,10 @@ section {
     -webkit-align-items: center;
     -moz-box-align: center;
     -ms-flex-align: center;
-    align-items: center;
     position: relative;
     z-index: 3;
 }
+
 
 .header__navbar ul {
     display: -webkit-box;
