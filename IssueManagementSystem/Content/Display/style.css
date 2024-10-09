@@ -40,35 +40,34 @@
 
 
 
-    #banner.transparent {
-        background-color: transparent;
-    }
+#banner.transparent {
+    background-color: transparent;
+}
 
-    #banner.above {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+#banner.above {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
-    #banner .logo-zone {
-        height: auto;
-        clear: left;
-        float: left;
-        overflow: hidden;
-    }
+#banner .logo-zone {
+    height: auto;
+    clear: left;
+    float: left;
+    overflow: hidden;
+}
 
- 
 
-        #banner h1#logo-link a {
-            text-indent: -9999px;
-            display: block;
-            height: 100%;
-            width: 100%;
-            text-decoration: none;
-        }
+
+#banner h1#logo-link a {
+    text-indent: -9999px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
 
 #wrapper {
-  
     width: 100%;
     margin: 0 auto;
 }
@@ -95,11 +94,10 @@ p {
 
 
 #vertical-ticker {
-    height:87%;
+    height: 87%;
     overflow: hidden;
     margin: 0;
     padding: 0;
-
 }
 
 /**/
@@ -113,8 +111,7 @@ p {
     flex-direction: row;
     align-items: center;
     padding: 10px;
-    min-height:180px;
-
+    min-height: 180px;
 }
 
 .cardxyz {
@@ -132,7 +129,7 @@ p {
     font-size: 16px;
     background-color: transparent;
     border: none;
-    color:white;
+    color: white;
 }
 
 /* Left-aligned date box */
@@ -260,7 +257,7 @@ p {
     height: 170px;
     padding: 10px;
     color: white;
-    height:170px;
+    height: 170px;
     background: black;
     border-end-start-radius: 50px;
     z-index: 1000;
@@ -297,7 +294,7 @@ p {
     font-size: 46px;
     font-weight: 600;
     color: #4272d7;
-    text-align:center;
+    text-align: center;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -312,7 +309,7 @@ p {
     text-transform: uppercase;
     font-weight: 600;
     color: rgba(128, 128, 128, 0.6);
-    text-align:center;
+    text-align: center;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -488,7 +485,7 @@ body {
     color: #666;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-   /* background-color: darkslategrey;*/
+    /* background-color: darkslategrey;*/
 }
 
 h1,
@@ -3030,7 +3027,6 @@ section {
     -ms-flex-align: center;
     position: relative;
     z-index: 3;
-
 }
 
 
@@ -14924,14 +14920,3 @@ section {
 .vue-lists ul, .vue-lists ol {
     padding-left: 30px;
 }
-
-
-
-
-
-
-
-
-
-
-
