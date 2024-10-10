@@ -104,7 +104,6 @@ p {
 /* General card styling */
 .card {
     border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border: none;
     margin-bottom: 20px;
     display: flex;
@@ -114,24 +113,36 @@ p {
     min-height: 400px;
 }
 
-.cardxyz {
-    /* From https://css.glass */
-    background: rgba(255, 0, 0, 0.31);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 0, 0, 0.3);
-}
-
-.card-header {
+.card-head {
     font-weight: bold;
-    font-size: 16px;
-    background-color: transparent;
-    border: none;
+    font-size: 22px;
+    text-align:center;
     color: white;
+    margin-top: -80px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid grey;
+    margin-bottom:20px;
+}
+.head-bdr {
 }
 
+.card-dtls{
+    font-size: 16px;
+}
+
+.card-dtls div{
+    margin-bottom:15px;
+}
+
+.responsper{
+}
+
+.respimg {
+    width: 30px;
+}
+
+.shapex {
+}
 /* Left-aligned date box */
 .date-box {
     padding: 15px;
