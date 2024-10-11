@@ -213,10 +213,10 @@
                                                     </div>
                                                 </div>
 
-                                                <div style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
                                                     <strong>Responsible Person:</strong>
                                                 </div>
-                                                <div style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px;">
+                                                <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px; width: 30px;">
                                                     <img class="respimg" src="~/Content/images/responsibleptest.png" />
                                                     <span id="break_responsible"></span>
                                                 </div>             
@@ -250,10 +250,10 @@
                                                 </div>
 
 
-                                                <div style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
                                                     <strong>Responsible Person:</strong>
                                                 </div>
-                                                <div style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px;">
+                                                <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px; width: 30px;">
                                                     <img class="respimg" src="~/Content/images/responsibleptest.png" />
                                                     <span id="break_responsible"></span>
                                                 </div>            
@@ -286,10 +286,10 @@
                                                 </div>
 
 
-                                                <div style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
                                                     <strong>Responsible Person:</strong>
                                                 </div>
-                                                <div style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px;">
+                                                <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px; width: 30px;">
                                                     <img class="respimg" src="~/Content/images/responsibleptest.png" />
                                                     <span id="break_responsible"></span>
                                                 </div>                  
@@ -542,7 +542,7 @@
                                 cards.hide();
 
                                 // Show the current card
-                                $(cards[currentIndex]).addClass('rotate');
+                                $(cards[currentIndex]).show();
 
                                 // Increment the index to point to the next card, looping back when necessary
                                 currentIndex = (currentIndex + 1) % cards.length;
