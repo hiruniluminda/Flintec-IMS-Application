@@ -113,6 +113,27 @@ p {
     min-height: 400px;
 }
 
+/*    .card.active {
+        opacity: 1;
+        transform: translateX(0);
+    }*/
+
+
+.rotate {
+    animation: rotateElement 2s infinite;
+}
+
+@keyframes rotateElement {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 .card-head {
     font-weight: bold;
     font-size: 22px;
@@ -122,6 +143,7 @@ p {
     padding-bottom: 10px;
     border-bottom: 2px solid grey;
     margin-bottom:20px;
+    position:fixed;
 }
 .head-bdr {
 }

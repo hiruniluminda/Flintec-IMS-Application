@@ -195,23 +195,31 @@
                                 <div class="col-md-3">
                                     <ul class="card-stack" id="m_delay" style="list-style-type:none;">
                                         <li id="maririal_list">
-                                            <div class="card text-white mb-3" style="background-color: #e7e4ed; border-radius: 0px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">
+                                            <div class="card text-white mb-3" style="background-color: #e7e4ed; border-radius: 0px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">
                                                 @*<div style="background-color: #e6b800; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: black">
-                                                    <div><strong>Date:</strong> <span id="material_date"></span></div>
-                                                </div>*@
+            <div><strong>Date:</strong> <span id="material_date"></span></div>
+        </div>*@
                                                 <div class="card-body" style="flex-grow: 1;" id="materialdiv">
-                                                    <div class="card-header" style="font-size: 16px; font-weight: bold; background-color: transparent; color:white">Material Delay</div>
+                                                    <div class="card-head" style="">Material Delay</div>
 
-                                                    <div class="d-flex justify-content-between" style="max-width: 120rem; color: white">
+                                                    <div class=card-dtls text-white" style="max-width: 80rem; color: white">
                                                         <div><strong>Time:</strong> <span id="material_time"></span></div>
                                                         <div><strong>Material:</strong> <span id="material_name"></span></div>
                                                         <div><strong>Description:</strong> <span id="material_description"></span></div>
                                                         @*<div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
-                                                            <div><strong>Status:</strong> <span id="material_status"></span></div>*@
+                <div><strong>Status:</strong> <span id="material_status"></span></div>*@
                                                         <div><strong>Since Occurred:</strong> <span id="material_since"></span></div>
                                                     </div>
                                                 </div>
-                                                <div style="position: absolute; bottom: 10px; left: 20px; color: white"><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
+
+                                                <div style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                    <strong>Responsible Person:</strong>
+                                                </div>
+                                                <div style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px;">
+                                                    <img class="respimg" src="~/Content/images/responsibleptest.png" />
+                                                    <span id="break_responsible"></span>
+                                                </div>             
+                                                
                                                 <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; ">
                                                     <span class="badge" style="background-color: #e6b800; " id="material_status">Status</span>
                                                 </div>
@@ -223,23 +231,32 @@
                                 <div class="col-md-3">
                                     <ul class="card-stack" id="t_issue" style="list-style-type:none;">
                                         <li id="tecnical_list">
-                                            <div class="card text-white mb-3" style="background-color: #e7e4ed; border-radius: 0px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7); padding: 20px; display: flex; flex-direction: row; align-items: center; max-width: 120rem; " id="tecnicaldiv">
+                                            <div class="card text-white mb-3" style="background-color: #e7e4ed; border-radius: 0px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="tecnicaldiv">
                                                 @*<div style="background-color: #00b300; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white">
-                                                    <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
+            <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
 
-                                                </div>*@
+        </div>*@
                                                 <div class="card-body" style="flex-grow: 1;" id="tecnicaldiv">
-                                                    <div class="card-header" style="font-size: 16px; font-weight: bold; background-color: transparent; color:black">Technical Issue</div>
+                                                    <div class="card-head" style="">Technical Issue</div>
 
-                                                    <div class="d-flex justify-content-between" style="max-width:120rem;color:white">
+                                                    <div class="card-dtls text-white" style="max-width:80rem;color:white">
                                                         <div><strong>Time:</strong> <br /> <span id="technical_time"></span></div>
                                                         <div><strong>Description:</strong> <br /> <span id="technical_description"></span></div>
                                                         @*<div><strong>Responsible Person:</strong> <br /> <span id="technical_responsible"></span></div>
-                                                            <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>*@
+                <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>*@
                                                         <div><strong>Since Occurred:</strong> <br /><span id="technical_since"></span></div>
                                                     </div>
                                                 </div>
-                                                <div style="position: absolute; bottom: 10px; left: 20px; color: white"><strong>Responsible Person:</strong> <span id="technical_responsible"></span></div>
+
+
+                                                <div style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                    <strong>Responsible Person:</strong>
+                                                </div>
+                                                <div style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px;">
+                                                    <img class="respimg" src="~/Content/images/responsibleptest.png" />
+                                                    <span id="break_responsible"></span>
+                                                </div>            
+                                                
                                                 <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px;">
                                                     <span class="badge" style="background-color: #00b300;" id="technical_status">Status</span>
                                                 </div>
@@ -250,23 +267,32 @@
                                 <div class="col-md-3">
                                     <ul class="card-stack" id="i_issue" style="list-style-type:none;">
                                         <li id="IT_list">
-                                            <div class="card text-white mb-3" style="background-color: #e7e4ed; border-radius: 0px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="Softwarediv">
+                                            <div class="card text-white mb-3" style="background-color: #e7e4ed; border-radius: 0px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="Softwarediv">
                                                 @*<div style="background-color: #0033cc; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white ">
-                                                    <div><strong>Date:</strong> <span id="it_date"></span></div>
+            <div><strong>Date:</strong> <span id="it_date"></span></div>
 
-                                                </div>*@
+        </div>*@
                                                 <div class="card-body" style="flex-grow: 1;" id="Softwarediv">
-                                                    <div class="card-header" style="font-size: 16px; font-weight: bold; background-color: transparent; color: white">IT/Software Issue</div>
+                                                    <div class="card-head" style="">IT/Software Issue</div>
 
-                                                    <div class="d-flex justify-content-between" style="max-width:120rem;color:white;">
+                                                    <div class="card-dtls text-white" style="max-width:80rem;color:white;">
                                                         <div><strong>Time:</strong> <span id="it_time"></span></div>
                                                         <div><strong>Description:</strong> <span id="it_description"></span></div>
                                                         @*<div><strong>Responsible Person:</strong> <span id="it_responsible"></span></div>
-                                                            <div><strong>Status:</strong> <span id="it_status"></span></div>*@
+                <div><strong>Status:</strong> <span id="it_status"></span></div>*@
                                                         <div><strong>Since Occurred:</strong> <span id="it_since"></span></div>
                                                     </div>
                                                 </div>
-                                                <div style="position: absolute; bottom: 10px; left: 20px; color: white"><strong>Responsible Person:</strong> <span id="it_responsible"></span></div>
+
+
+                                                <div style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                    <strong>Responsible Person:</strong>
+                                                </div>
+                                                <div style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px;">
+                                                    <img class="respimg" src="~/Content/images/responsibleptest.png" />
+                                                    <span id="break_responsible"></span>
+                                                </div>                  
+                                                
                                                 <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px;">
                                                     <span class="badge" style="background-color: #0033cc " id="it_status">Status</span>
                                                 </div>
@@ -515,7 +541,7 @@
                                 cards.hide();
 
                                 // Show the current card
-                                $(cards[currentIndex]).show();
+                                $(cards[currentIndex]).addClass('rotate');
 
                                 // Increment the index to point to the next card, looping back when necessary
                                 currentIndex = (currentIndex + 1) % cards.length;
