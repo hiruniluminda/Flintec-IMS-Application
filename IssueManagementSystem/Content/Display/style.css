@@ -44,11 +44,40 @@
     right: 0;
     width: 0;
     height: 0;
-    border-left: 50px solid transparent;
-    border-top: 50px solid #ff6347; /* You can change the color here */
+    border-left: 70px solid transparent;
+    border-top: 70px solid #fa4251; /* You can change the color here */
 }
 
+.triangle1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-top: 70px solid #ff8300; /* You can change the color here */
 
+}
+
+.triangle2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-top: 70px solid #00b26f; /* You can change the color here */
+}
+
+.triangle3 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-top: 70px solid #00b5e9; /* You can change the color here */
+}
 
 #banner.transparent {
     background-color: transparent;
@@ -286,7 +315,7 @@ p {
         padding: 10px 15px;
         font-size: 14px;
         border-radius: 15px;
-        background-color: #cc0000;
+        background-color: #ff4251;
         color: white;
         margin-top: 1000px;
     }
