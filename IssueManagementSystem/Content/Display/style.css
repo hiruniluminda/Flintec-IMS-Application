@@ -38,6 +38,16 @@
     display: block;
 }
 
+.triangle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-top: 50px solid #ff6347; /* You can change the color here */
+}
+
 
 
 #banner.transparent {
@@ -150,6 +160,21 @@ p {
 
 .card-dtls{
     font-size: 16px;
+    opacity: 0; /* Initially hidden */
+    transform: translateX(100%); /* Start outside the viewport */
+    animation: slide-left 1s forwards; /* Trigger animation */
+}
+
+@keyframes slide-left {
+    0% {
+        opacity: 0;
+        transform: translateX(100%); /* Start off-screen to the right */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* Slide to its normal position */
+    }
+}
 }
 
 .card-dtls div{
@@ -157,10 +182,31 @@ p {
 }
 
 .responsper{
+    background: #ff4b5a;
+}
+
+.respo {
+    opacity: 0; /* Initially hidden */
+    transform: translateX(100%); /* Start outside the viewport */
+    animation: slide-left 1s forwards; /* Trigger animation */
+}
+
+@keyframes slide-left {
+    0% {
+        opacity: 0;
+        transform: translateX(100%); /* Start off-screen to the right */
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* Slide to its normal position */
+    }
+}
 }
 
 .respimg {
     width: 30px;
+    height:30px;
 }
 
 .shapex {
