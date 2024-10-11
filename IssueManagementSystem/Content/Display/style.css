@@ -126,9 +126,20 @@ p {
     border-bottom: 1px dotted #e8914c;
 }
 
+.wrap {
+    display: flex;
+    justify-content: center; /* Center the cards horizontally */
+    align-items: center; /* Center the cards vertically */
+    width: 100%;
 
+}
 
-
+.card-stack {
+    margin-left: 15px; 
+    flex: 1;
+    max-width: 280px;
+    
+}
 
 
 
@@ -147,8 +158,10 @@ p {
     margin-bottom: 20px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
+    width: 280px;
     min-height: 400px;
 }
 
