@@ -56,7 +56,8 @@
                 <div class="container">
                     <div class="row" style="display: flex;">
                         <div class="col-md-3">
-                            <a class="statistic__item statistic__item--red" onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                            
+                            <a class="statistic__item statistic__item--red" onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7); width: 100%">
                                 <h2 class="number">@ViewBag.BrakedownCount</h2>
                                 <span class="desc">Machine Breakdown</span>
                                 <div class="icon">
@@ -73,7 +74,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                            <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7); width: 100%">
                                 <h2 class="number">@ViewBag.ITIsuue</h2>
                                 <span class="desc">IT/Software Issue</span>
                                 <div class="icon">
@@ -90,7 +91,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                            <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7); width: 100%">
                                 <h2 class="number">@ViewBag.TechnicalIssue</h2>
                                 <span class="desc">Technical Issue</span>
                                 <div class="icon">
@@ -107,7 +108,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none; width:100%">
+                            <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7); width: 100%">
                                 <h2 class="number">@ViewBag.MaterialDelayCount</h2>
                                 <span class="desc">Material Delay</span>
                                 <div class="icon">
@@ -131,15 +132,15 @@
         </section>
         <div class="displayheading" style="margin-left: 10px;">
                 <div class="row" style="display:flex; float:right;">
-                   
-                    <div class="header__logo col-7" style="margin-left:-30px;">
+                    <div class="col-4" style="margin-left:40px; margin-top:20px;">
+                        <h3>@lineName Manufacturing Cell</h3>
+                    </div>
+                    <div class="header__logo col-7" style="margin-left:0px;">
                         <a href="">
                             <img style="" src="~/Content/images/qrtest.png" alt="CoolAdmin" />
                         </a>
                     </div>
-                <div class="col-3" style="margin-left:-50px; margin-top:20px;">
-                    <h3>@lineName Manufacturing Cell</h3>
-                </div>
+                
             </div>
         </div>
         </div>
@@ -149,14 +150,14 @@
                 <div class="text-center" style="margin-top:20%" id="loding_icon">
                     <img src="~/Content/images/loding.svg" alt="Loading Icon">
                 </div>
-                <div class="row">
+                <div class="card-container row">
                     <div class="col-sm-11" style="margin:20pt">
                         <div id="wrapper">
                             <div class="row">
                                 <div class="col-md-3">
                                     <ul class="card-stack" id="m_break" style="list-style-type:none;">
                                         <li id="brake_list">
-                                            <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="brakediv">
+                                            <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; " id="brakediv">
 
                                                 <div class="triangle"></div>
                                                 <div class="card-body text-white" style="flex-grow: 1; color: white;" id="breakediv">
@@ -557,7 +558,41 @@
                             if (cards.length > 0) {
                                 showNextCard();
                             }
+                    }
+
+
+
+
+
+
+
+                    $(document).ready(function () {
+                        // Function to center cards and apply styles based on count
+                        function styleCards() {
+                            const visibleCards = $('.card').length;
+
+                            // Remove any previous class
+                            $('.card').removeClass('one-card two-cards three-cards four-cards');
+
+                            if (visibleCards === 1) {
+                                $('.card').addClass('one-card');
+                            } else if (visibleCards === 2) {
+                                $('.card:visible').addClass('two-cards');
+                            } else if (visibleCards === 3) {
+                                $('.card:visible').addClass('three-cards');
+                            } else if (visibleCards === 4) {
+                                $('.card:visible').addClass('four-cards');
+                            }
                         }
+
+                        // Initially style the cards
+                        styleCards();
+
+                        // Example to dynamically hide/show cards
+                        // Call styleCards() after any visibility change to re-center
+                        $('.card').eq(0).hide(); // Hides first card (as an example)
+                        styleCards(); // Reapply styles
+                    });
         /*
                     // Function to adjust the layout dynamically based on the number of categories displayed
                     function adjustLayout(categoryCount) {

@@ -156,7 +156,32 @@ p {
         opacity: 1;
         transform: translateX(0);
     }*/
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows cards to wrap if needed */
+    margin: 20px;
+}
 
+.card.one-card {
+    font-size:50px;
+    align-items:center;
+    min-height:100px;
+    margin-left:500px;
+}
+
+.card.two-cards {
+    background-color: #ccffcc;
+}
+
+.card.three-cards {
+    background-color: #ccccff;
+}
+
+.card.four-cards {
+    background-color: #ffe599;
+}
 
 .rotate {
     animation: rotateElement 2s infinite;
@@ -359,13 +384,58 @@ p {
     width: 50px;
 }
 
+/*
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 100%; /* Hidden by default */
+    /*display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+    font-size: 2rem;
+    transition: all 1s ease;
+    animation: slide 10s infinite;
+}
+
+#screen1 {
+    background-color: #ff9e9e;
+}
+
+#screen2 {
+    background-color: #9eafff;
+}*/
+
+/* Define keyframes to handle auto-sliding */
+/*@keyframes slide {
+    0%, 40% {
+        left: 0;
+    }*/
+    /* Screen 1 visible */
+    /*50%, 90% {
+        left: -100%;
+    }*/
+    /* Screen 1 slides out, Screen 2 slides in */
+    /*100% {
+        left: 100%;
+    }*/
+    /* Reset to original position for Screen 1 */
+/*}*/
+
+/* Adding animation delay for second screen */
+/*#screen2 {
+    animation-delay: 5s;*/ /* Start Screen 2 after 5 seconds */
+/*}*/
+
+
 
 .displayheading {
     width: 35%;
     height: 170px;
     padding: 10px;
     color: white;
-    height: 170px;
     background: black;
     border-end-start-radius: 50px;
     z-index: 1000;
