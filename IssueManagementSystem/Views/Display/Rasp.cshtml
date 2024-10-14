@@ -413,6 +413,7 @@
                                 if (issueid == 1) { // Machine Breakdown
                                     categoriesDisplayed++;
                                     $('#brakediv').show(); // Ensure the base template is visible
+
                                     var newCard = $('#brakediv').clone(); // Clone the existing card
                                     newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
                                     newCard.find('.card-header').text('Machine Breakdown'); // Set the header
@@ -536,17 +537,23 @@
 
 
 
-                        function startSlideshow(listSelector) {
-                            var cards = $(listSelector).find('.card');
-                            var currentIndex = 0;
+                    function startSlideshow(listSelector) {
+                        var cards = $(listSelector).find('.card');
+                        var currentIndex = 0;
 
+                        // Check if there are any cards present
+                        if (cards.length > 0) {
+                            // Function to show the next card
                             function showNextCard() {
                                 // Hide all cards
                                 cards.hide();
 
                                 // Show the current card
-                                $(cards[currentIndex]).show();
-
+                                if (currentIndex >= 1) {
+                                    $(cards[currentIndex]).show();
+                                } else {
+                                    $(cards[currentIndex+1]).show();
+                                }
                                 // Increment the index to point to the next card, looping back when necessary
                                 currentIndex = (currentIndex + 1) % cards.length;
 
@@ -554,11 +561,16 @@
                                 setTimeout(showNextCard, 5000);
                             }
 
-                            // Start the slideshow if there are cards present
-                            if (cards.length > 0) {
+                            // If there are more than one card, start the slideshow
+                            if (cards.length > 2) {
                                 showNextCard();
+                            } else {
+                                cards.hide(); // Hide all cards
+                                $(cards[1]).show(); // Show the second card
                             }
+                        }
                     }
+
 
 
 
