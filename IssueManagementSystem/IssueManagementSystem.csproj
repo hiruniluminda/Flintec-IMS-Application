@@ -379,6 +379,9 @@
     <Content Include="Content\flipclock.css" />
     <Content Include="Content\images\error.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\pexels-clarissa-schwarz-8941369.jpg" />
+    <Content Include="Content\images\qrtest.png" />
+    <Content Include="Content\images\responsibleptest.png" />
     <Content Include="Models\IssueManagementSystem.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IssueManagementSystem.edmx</DependentUpon>

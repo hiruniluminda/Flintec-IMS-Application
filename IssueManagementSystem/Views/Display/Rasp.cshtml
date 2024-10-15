@@ -24,14 +24,16 @@
 <!-- Bootstrap CSS-->
 
 <link href="~/Content/animsition.min.css" rel="stylesheet" />
+
 <link href="~/Content/animate.css" rel="stylesheet" />
+
 <link href="~/Content/hamburgers.min.css" rel="stylesheet" />
 <link href="~/Content/slick.css" rel="stylesheet" />
 
 <link href="~/Content/perfect-scrollbar.css" rel="stylesheet" />
 <link href="~/Content/material-design-iconic-font.min.css" rel="stylesheet" />
 <!-- Main CSS-->
-<link href="~/Content/theme.css" rel="stylesheet" />
+@*<link href="~/Content/theme.css" rel="stylesheet" />*@
 <link href="~/Content/fontawesome.css" rel="stylesheet" />
 <link href="~/Content/bootstrap-toggle.min.css" rel="stylesheet" />
 
@@ -46,573 +48,768 @@
     }
 }
 
+<div id="slideshow">
+    <div class="slide" style="background-color: #eeedeb; background-size: cover; height: 100vh ">
+        <div class="top-row" style="display: flex; justify-content: space-between; align-items: flex-start; position: relative;">
+            <section class="statistic statistic2" style="display: flex; margin-right: 500px; justify-content: space-between; align-items: center;">
+                <div class="statistics-container" style="flex: 1;">
+                    <div class="container">
+                        <div class="row" style="display: flex;">
+                            <div class="col-md-3">
 
-
-<section class="statistic statistic2" style="display: flex; justify-content: space-between; align-items: center;">
-    <div class="statistics-container" style="flex: 1;">
-        <div class="container">
-            <div class="row" style="display: flex;">
-                <div class="col-md-2">
-                    <a class="statistic__item statistic__item--red" onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none; width:100%">
-                        <h2 class="number">@ViewBag.BrakedownCount</h2>
-                        <span class="desc">Machine Breakdown</span>
-                        <div class="icon">
-                            @if (@ViewBag.BrakedownCount > 0)
-                            {
-                                <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-                            }
-                            else
-                            {
-                                <i class="zmdi zmdi-settings"></i>
-                            }
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-2">
-                    <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none; width:100%">
-                        <h2 class="number">@ViewBag.ITIsuue</h2>
-                        <span class="desc">IT/Software Issue</span>
-                        <div class="icon">
-                            @if (@ViewBag.ITIsuue > 0)
-                            {
-                                <i class="zmdi zmdi-windows animated infinite wobble"></i>
-                            }
-                            else
-                            {
-                                <i class="zmdi zmdi-windows"></i>
-                            }
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-2">
-                    <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none; width:100%">
-                        <h2 class="number">@ViewBag.TechnicalIssue</h2>
-                        <span class="desc">Technical Issue</span>
-                        <div class="icon">
-                            @if (@ViewBag.TechnicalIssue > 0)
-                            {
-                                <i class="fas fa-wrench animated infinite wobble"></i>
-                            }
-                            else
-                            {
-                                <i class="fas fa-wrench"></i>
-                            }
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-2">
-                    <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none; width:100%">
-                        <h2 class="number">@ViewBag.MaterialDelayCount</h2>
-                        <span class="desc">Material Delay</span>
-                        <div class="icon">
-                            @if (@ViewBag.MaterialDelayCount > 0)
-                            {
-                                <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
-                            }
-                            else
-                            {
-                                <i class="zmdi zmdi-shopping-cart"></i>
-                            }
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="displayheading" style="margin-top:-20pt" style="flex: 0 0 auto; margin-left: 20px;">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="header__logo">
-                    <a href="#">
-                        <img src="~/Content/images/logo.png" alt="CoolAdmin" />
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-7 text-left">
-                <h3>@lineName Manufacturing Cell</h3>
-            </div>
-        </div>
-    </div>
-
-</section>
-
-
-<div style="display:flex">
-    <div class="container-fluid margin">
-        <div class="text-center" style="margin-top:20%" id="loding_icon">
-            <img src="~/Content/images/loding.svg" alt="Loading Icon">
-        </div>
-        <div class="row">
-            <div class="col-sm-11" style="margin:20pt">
-                <div id="wrapper">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul class="card-stack" id="m_break" style="list-style-type:none;">
-                                <li id="brake_list">
-                                    <div class="card text-white bg-danger mb-3" style="max-width:80rem;" id="brakediv">
-                                        <div class="card-header">Machine Breakdown</div>
-                                        <div class="card-body" id="breakediv">
-                                            <div class="d-flex justify-content-between" style="max-width:80rem;color:white">
-                                                <div><strong>Date:</strong> <span id="break_date"></span></div>
-                                                <div><strong>Time:</strong> <span id="break_time"></span></div>
-                                                <div><strong>Machine:</strong> <span id="break_machine"></span></div>
-                                                <div><strong>Description:</strong> <span id="break_description"></span></div>
-                                                <div><strong>Responsible Person:</strong> <span id="break_responsible"></span></div>
-                                                <div><strong>Status:</strong> <span id="break_status"></span></div>
-                                                <div><strong>Since Occurred:</strong> <span id="break_since"></span></div>
-                                            </div>
-                                        </div>
+                                <a class="statistic__item statistic__item--red" onclick="topCardClick('mb')" href="#mainTableContainer" style="text-decoration: none; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7); width: 100%">
+                                    <h2 class="number">@ViewBag.BrakedownCount</h2>
+                                    <span class="desc">Machine Breakdown</span>
+                                    <div class="icon">
+                                        @if (@ViewBag.BrakedownCount > 0)
+                                        {
+                                            <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="zmdi zmdi-settings"></i>
+                                        }
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="card-stack" id="m_delay" style="list-style-type:none;">
-                                <li id="maririal_list">
-                                    <div class="card text-white bg-warning mb-3" style="max-width: 120rem;" id="materialdiv">
-                                        <div class="card-header">Material Delay</div>
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between" style="max-width:120rem;color:black">
-                                                <div><strong>Date:</strong> <span id="material_date"></span></div>
-                                                <div><strong>Time:</strong> <span id="material_time"></span></div>
-                                                <div><strong>Material:</strong> <span id="material_name"></span></div>
-                                                <div><strong>Description:</strong> <span id="material_description"></span></div>
-                                                <div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
-                                                <div><strong>Status:</strong> <span id="material_status"></span></div>
-                                                <div><strong>Since Occurred:</strong> <span id="material_since"></span></div>
-                                            </div>
-                                        </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3">
+                                <a class="statistic__item statistic__item--blue" onclick="topCardClick('it')" href="#mainTableContainer" style="text-decoration: none; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7); width: 100%">
+                                    <h2 class="number">@ViewBag.ITIsuue</h2>
+                                    <span class="desc">IT/Software Issue</span>
+                                    <div class="icon">
+                                        @if (@ViewBag.ITIsuue > 0)
+                                        {
+                                            <i class="zmdi zmdi-windows animated infinite wobble"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="zmdi zmdi-windows"></i>
+                                        }
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul class="card-stack" id="t_issue" style="list-style-type:none;">
-                                <li id="tecnical_list">
-                                    <div class="card text-white bg-success mb-3" style="max-width: 120rem;" id="tecnicaldiv">
-                                        <div class="card-header">Technical Issue</div>
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between" style="max-width:120rem;color:white">
-                                                <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
-                                                <div><strong>Time:</strong> <br /> <span id="technical_time"></span></div>
-                                                <div><strong>Description:</strong> <br /> <span id="technical_description"></span></div>
-                                                <div><strong>Responsible Person:</strong> <br /> <span id="technical_responsible"></span></div>
-                                                <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>
-                                                <div><strong>Since Occurred:</strong> <br /><span id="technical_since"></span></div>
-                                            </div>
-                                        </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3">
+                                <a class="statistic__item statistic__item--green" onclick="topCardClick('ti')" href="#mainTableContainer" style="text-decoration: none; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7); width: 100%">
+                                    <h2 class="number">@ViewBag.TechnicalIssue</h2>
+                                    <span class="desc">Technical Issue</span>
+                                    <div class="icon">
+                                        @if (@ViewBag.TechnicalIssue > 0)
+                                        {
+                                            <i class="fas fa-wrench animated infinite wobble"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fas fa-wrench"></i>
+                                        }
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="card-stack" id="i_issue" style="list-style-type:none;">
-                                <li id="IT_list">
-                                    <div class="card text-white bg-primary mb-3" style="max-width: 120rem;" id="Softwarediv">
-                                        <div class="card-header">IT/Software Issue</div>
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between" style="max-width:120rem;color:white;">
-                                                <div><strong>Date:</strong> <span id="it_date"></span></div>
-                                                <div><strong>Time:</strong> <span id="it_time"></span></div>
-                                                <div><strong>Description:</strong> <span id="it_description"></span></div>
-                                                <div><strong>Responsible Person:</strong> <span id="it_responsible"></span></div>
-                                                <div><strong>Status:</strong> <span id="it_status"></span></div>
-                                                <div><strong>Since Occurred:</strong> <span id="it_since"></span></div>
-                                            </div>
-                                        </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3">
+                                <a class="statistic__item statistic__item--orange" onclick="topCardClick('md')" href="#mainTableContainer" style="text-decoration: none; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7); width: 100%">
+                                    <h2 class="number">@ViewBag.MaterialDelayCount</h2>
+                                    <span class="desc">Material Delay</span>
+                                    <div class="icon">
+                                        @if (@ViewBag.MaterialDelayCount > 0)
+                                        {
+                                            <i class="zmdi animated infinite wobble zmdi-shopping-cart"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                        }
                                     </div>
-                                </li>
-                            </ul>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                @*width:70%; margin-left:-80px;margin-top:-20px*@
+
+            </section>
+            <div class="displayheading" style="margin-left: 10px;">
+                <div class="row" style="display:flex; float:right;">
+                    <div class="col-4" style="margin-left:40px; margin-top:20px;">
+                        <h3>@lineName Manufacturing Cell</h3>
+                    </div>
+                    <div class="header__logo col-7" style="margin-left:0px;">
+                        <a href="">
+                            <img style="" src="~/Content/images/qrtest.png" alt="CoolAdmin" />
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
 
+        <div style="display:flex">
+            <div class="container-fluid margin">
+                <div class="text-center" style="margin-top:20%" id="loding_icon">
+                    <img src="~/Content/images/loding.svg" alt="Loading Icon">
+                </div>
+                <div class="card-container row">
+                    <div class="col-sm-11" style="margin:20pt">
+                        <div class="wrap" id="wrapper">
+                            <div class="row">
+                                <div class="card-stack">
+                                    <ul id="m_break" style="list-style-type:none;">
+                                        <li id="brake_list">
+                                            <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; " id="brakediv">
 
-        <script>
-            $('#brakediv').hide();
-            $('#materialdiv').hide();
-            $('#Softwarediv').hide();
-            $('#qtydiv').hide();
-            $('#tecnicaldiv').hide();
-            $('#breake_body').empty();
-            $('#matirial_body').empty();
-            $('#technical_body').empty();
-            $('#it_body').empty();
-            $('#qty_body').empty();
-        </script>
+                                                <div class="triangle"></div>
+                                                <div class="card-body text-white" style="flex-grow: 1; color: white;" id="breakediv">
 
-        <script src="~/Scripts/3.30bootstrap.min.js"></script>
-        <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
-        <script src="~/Scripts/moment.min.js"></script>
-        <script src="~/signalr/Hubs"></script>
-        <script>
+                                                    <div class="card-head" style="">Machine Breakdown</div>
+                                                    @*<div class="head-bdr"></div>*@
+                                                    <div class="card-dtls text-white" style="max-width:80rem;">
+                                                        <div><strong>Time:</strong> <span id="break_time"></span></div>
+                                                        <div><strong>Machine:</strong> <span id="break_machine"></span></div>
+                                                        <div><strong>Description:</strong> <span id="break_description"></span></div>
+                                                        @*<div><strong>Responsible Person:</strong> <span id="break_responsible"></span></div>*@
+                                                        @* <div><strong>Status:</strong> <span id="break_status"></span></div>*@
+                                                        <div><strong>Since Occurred:</strong> <span id="break_since"></span></div>
+                                                    </div>
+                                                </div>
 
-    $.connection.hub.start()
-                .done(function(){console.log("Its Works")
-                //   $.connection.ismHub.server.announce();
-                })
-                .fail(function(){ console.log("hub Error occurred");});
-  $.connection.ismHub.client.announce=function(){location.reload();}
-    $(document).ready(function () {
+                                                <div class="responsper">
+                                                    <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                        <strong>Responsible Person:</strong>
+                                                    </div>
+                                                    <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px; width: 30px;">
+                                                        <img class="respimg" src="~/Content/images/responsibleptest.png" />
+                                                        <span id="break_responsible"></span>
+                                                    </div>
+                                                </div>
 
-        // Proxy created on the fly  hb
-        var hub = $.connection.issueHub;
-        var issueCount = 0;
-
-        // Declare a function on the hub hub so the server can invoke it
-        hub.client.displayStatus = function () {
-
-            getData();
-        };
-
-        // Start the connection
-        $.connection.hub.start();
-        getData();
-
-        //function stackIssues() {
-        //    var cards = $('.card-stack .card');
-        //    var currentIndex = 0;
-
-        //    function showNextCard() {
-        //        // Remove the active class from the current card and add the "card-behind" class
-        //        cards.removeClass('card-active').addClass('card-behind');
-
-        //        // Add the "card-active" class to the next card
-        //        $(cards[currentIndex]).removeClass('card-behind').addClass('card-active');
-
-        //        // Increment to show the next card in the stack
-        //        currentIndex = (currentIndex + 1) % cards.length; // Loop back to the first card
-
-        //        // Repeat the process after 5 seconds (or set your own interval)
-        //        setTimeout(showNextCard, 5000);
-        //    }
-
-        //    // Start the cycle
-        //    showNextCard();
-        //}
-
-        //// Call this function after the issues have been loaded dynamically
-        //stackIssues();
+                                                <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; margin-top: 50px;">
+                                                    <span class="badge" id="break_status">Status</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-stack">
+                                    <ul id="m_delay" style="list-style-type:none;">
+                                        <li id="maririal_list">
+                                            <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">
+                                                @*<div style="background-color: #e6b800; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: black">
+                                                        <div><strong>Date:</strong> <span id="material_date"></span></div>
 
 
-function getData() {
-    var url = '@Url.Action("GetIssues", "Supervisor")';
-    var count = 0;
-    $.ajax({
-        url: url,
-        type: 'GET',
-        datatype: 'json',
-        success: function (issuedata) {
-            issuedata = $.parseJSON(issuedata);
-            if (issuedata.length > 0) {
-                blinkMap();
-                var seconds = [];
-                for (var i = 0; i < issuedata.length; i++) {
+                                                    </div>*@
+                                                <div class="triangle1"></div>
+                                                <div class="card-body" style="flex-grow: 1;" id="materialdiv">
+                                                    <div class="card-head" style="">Material Delay</div>
 
-                    if ((issuedata[i].line_line_id == @ViewBag.Id) && (issuedata[i].issue_satus == "1")) {
-                        var responcibleperson_ststus = issuedata[i].responsible_person_confirm_status;
-                        var issueid = issuedata[i].issue_issue_ID;
-                        count++;
-                        var date = issuedata[i].issueDate.split(' ');
-                        var day = moment(date[0], 'M/D/Y/').format('Y MMM D');
-                        var time = date[1] + " " + date[2];
-                        var d = new Date();
-                        var startDate = new Date(issuedata[i].issueDate);
-                        var today = d.getTime();
-                        var milliseconds = startDate.getTime();
-                        var gap = Math.round(Math.abs(today - milliseconds) / 1000);
-                        seconds.push(gap);
+                                                    <div class=card-dtls text-white" style="max-width: 80rem; color: white">
+                                                        <div><strong>Time:</strong> <span id="material_time"></span></div>
+                                                        <div><strong>Material:</strong> <span id="material_name"></span></div>
+                                                        <div><strong>Description:</strong> <span id="material_description"></span></div>
+                                                        @*<div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
+                                                            <div><strong>Status:</strong> <span id="material_status"></span></div>*@
+                                                        <div><strong>Since Occurred:</strong> <span id="material_since"></span></div>
+                                                    </div>
+                                                </div>
 
-                        var commentedDate = moment(issuedata[i].commentedDate.split(' ')[0], 'M/D/Y').format('Y MMM D');
-                        var commentedTime = issuedata[i].commentedDate.split(' ')[1];
-                        var responsible_person_confirm_status = issuedata[i].responsible_person_confirm_status;
-                        var confirmStatus = responsible_person_confirm_status == 1 ? "Pending" : "Commented on " + commentedDate + " " + commentedTime;
+                                                <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                    <strong>Responsible Person:</strong>
+                                                </div>
+                                                <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px; width: 30px;">
+                                                    <img class="respimg" src="~/Content/images/responsibleptest.png" />
+                                                    <span id="break_responsible"></span>
+                                                </div>
 
-                        if (issueid == 1) { // Machine Breakdown
-                            $('#brakediv').show(); // Ensure the base template is visible
-                            var newCard = $('#brakediv').clone(); // Clone the existing card
-                            newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
-                            newCard.find('.card-header').text('Machine Breakdown'); // Set the header
+                                                <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; ">
+                                                    <span class="badge" style="background-color: #ff8300; " id="material_status">Status</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                            // Populate the cloned card with issue data
-                            newCard.find('#break_date').text(day); // Change ID based on the card body fields
-                            newCard.find('#break_time').text(time);
-                            newCard.find('#break_description').text(issuedata[i].description);
-                            newCard.find('#break_responsible').text(issuedata[i].responciblepersonName);
-                            newCard.find('#break_status').text(confirmStatus);
-                            newCard.find('#break_since').html('<span id="countdown' + count + '" class="timer"></span>');
+                                <div class="card-stack">
+                                    <ul id="t_issue" style="list-style-type:none;">
+                                        <li id="tecnical_list">
+                                            <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="tecnicaldiv">
+                                                @*<div style="background-color: #00b300; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white">
+                                                        <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
 
-                            // Append the newly created card to the list or parent container
-                            $('#brake_list').append(newCard);
-                            startSlideshow('#brake_list');
+                                                    </div>*@
+                                                <div class="triangle2"></div>
+                                                <div class="card-body" style="flex-grow: 1;" id="tecnicaldiv">
+                                                    <div class="card-head" style="">Technical Issue</div>
 
-                            // Remove the loading icon
+                                                    <div class="card-dtls text-white" style="max-width:80rem;color:white">
+                                                        <div><strong>Time:</strong> <br /> <span id="technical_time"></span></div>
+                                                        <div><strong>Description:</strong> <br /> <span id="technical_description"></span></div>
+                                                        @*<div><strong>Responsible Person:</strong> <br /> <span id="technical_responsible"></span></div>
+                                                            <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>*@
+                                                        <div><strong>Since Occurred:</strong> <br /><span id="technical_since"></span></div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                    <strong>Responsible Person:</strong>
+                                                </div>
+                                                <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px; width: 30px;">
+                                                    <img class="respimg" src="~/Content/images/responsibleptest.png" />
+                                                    <span id="break_responsible"></span>
+                                                </div>
+
+                                                <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px;">
+                                                    <span class="badge" style="background-color: #00b26f;" id="technical_status">Status</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-stack">
+                                    <ul id="i_issue" style="list-style-type:none;">
+                                        <li id="IT_list">
+                                            <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="Softwarediv">
+                                                @*<div style="background-color: #0033cc; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white ">
+                                                        <div><strong>Date:</strong> <span id="it_date"></span></div>
+
+                                                    </div>*@
+                                                <div class="triangle3"></div>
+                                                <div class="card-body" style="flex-grow: 1;" id="Softwarediv">
+                                                    <div class="card-head" style="">IT/Software Issue</div>
+
+                                                    <div class="card-dtls text-white" style="max-width:80rem;color:white;">
+                                                        <div><strong>Time:</strong> <span id="it_time"></span></div>
+                                                        <div><strong>Description:</strong> <span id="it_description"></span></div>
+                                                        @*<div><strong>Responsible Person:</strong> <span id="it_responsible"></span></div>
+                                                            <div><strong>Status:</strong> <span id="it_status"></span></div>*@
+                                                        <div><strong>Since Occurred:</strong> <span id="it_since"></span></div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                                    <strong>Responsible Person:</strong>
+                                                </div>
+                                                <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px; width: 30px;">
+                                                    <img class="respimg" src="~/Content/images/responsibleptest.png" />
+                                                    <span id="break_responsible"></span>
+                                                </div>
+
+                                                <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px;">
+                                                    <span class="badge" style="background-color: #00b5e9 " id="it_status">Status</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <script>
+                    $('#brakediv').hide();
+                    $('#materialdiv').hide();
+                    $('#Softwarediv').hide();
+                    $('#qtydiv').hide();
+                    $('#tecnicaldiv').hide();
+                    $('#breake_body').empty();
+                    $('#matirial_body').empty();
+                    $('#technical_body').empty();
+                    $('#it_body').empty();
+                    $('#qty_body').empty();
+                </script>
+
+                <script src="~/Scripts/3.30bootstrap.min.js"></script>
+                <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+                <script src="~/Scripts/moment.min.js"></script>
+                <script src="~/signalr/Hubs"></script>
+                <script>
+
+            $.connection.hub.start()
+                        .done(function(){console.log("Its Works")
+                        //   $.connection.ismHub.server.announce();
+                        })
+                        .fail(function(){ console.log("hub Error occurred");});
+          $.connection.ismHub.client.announce=function(){location.reload();}
+            $(document).ready(function () {
+                 var categoriesDisplayed = 0;
+                // Proxy created on the fly  hb
+                var hub = $.connection.issueHub;
+                var issueCount = 0;
+
+                // Declare a function on the hub hub so the server can invoke it
+                hub.client.displayStatus = function () {
+
+                    getData();
+                };
+
+                // Start the connection
+                $.connection.hub.start();
+                getData();
+
+                //function stackIssues() {
+                //    var cards = $('.card-stack .card');
+                //    var currentIndex = 0;
+
+                //    function showNextCard() {
+                //        // Remove the active class from the current card and add the "card-behind" class
+                //        cards.removeClass('card-active').addClass('card-behind');
+
+                //        // Add the "card-active" class to the next card
+                //        $(cards[currentIndex]).removeClass('card-behind').addClass('card-active');
+
+                //        // Increment to show the next card in the stack
+                //        currentIndex = (currentIndex + 1) % cards.length; // Loop back to the first card
+
+                //        // Repeat the process after 5 seconds (or set your own interval)
+                //        setTimeout(showNextCard, 5000);
+                //    }
+
+                //    // Start the cycle
+                //    showNextCard();
+                //}
+
+                //// Call this function after the issues have been loaded dynamically
+                //stackIssues();
+
+
+        function getData() {
+            var url = '@Url.Action("GetIssues", "Supervisor")';
+            var count = 0;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                datatype: 'json',
+                success: function (issuedata) {
+                    issuedata = $.parseJSON(issuedata);
+                    if (issuedata.length > 0) {
+                        blinkMap();
+                        var seconds = [];
+                        for (var i = 0; i < issuedata.length; i++) {
+
+                            if ((issuedata[i].line_line_id == @ViewBag.Id) && (issuedata[i].issue_satus == "1")) {
+                                var responcibleperson_ststus = issuedata[i].responsible_person_confirm_status;
+                                var issueid = issuedata[i].issue_issue_ID;
+                                count++;
+                                var date = issuedata[i].issueDate.split(' ');
+                                var day = moment(date[0], 'M/D/Y/').format('Y MMM D');
+                                var time = date[1] + " " + date[2];
+                                var d = new Date();
+                                var startDate = new Date(issuedata[i].issueDate);
+                                var today = d.getTime();
+                                var milliseconds = startDate.getTime();
+                                var gap = Math.round(Math.abs(today - milliseconds) / 1000);
+                                seconds.push(gap);
+
+                                var commentedDate = moment(issuedata[i].commentedDate.split(' ')[0], 'M/D/Y').format('Y MMM D');
+                                var commentedTime = issuedata[i].commentedDate.split(' ')[1];
+                                var responsible_person_confirm_status = issuedata[i].responsible_person_confirm_status;
+                                var confirmStatus = responsible_person_confirm_status == 1 ? "Pending" : "Commented on " + commentedDate + " " + commentedTime;
+
+                                if (issueid == 1) { // Machine Breakdown
+                                    categoriesDisplayed++;
+                                    $('#brakediv').show(); // Ensure the base template is visible
+
+                                    var newCard = $('#brakediv').clone(); // Clone the existing card
+                                    newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
+                                    newCard.find('.card-header').text('Machine Breakdown'); // Set the header
+
+
+                                    // Populate the cloned card with issue data
+                                    newCard.find('#break_date').text(day); // Change ID based on the card body fields
+                                    newCard.find('#break_time').text(time);
+                                    newCard.find('#break_machine').text(issuedata[i].machine_machine_id);
+                                    newCard.find('#break_description').text(issuedata[i].description);
+                                    newCard.find('#break_responsible').text(issuedata[i].responciblepersonName);
+                                    newCard.find('#break_status').text(confirmStatus);
+                                    newCard.find('#break_since').html('<span id="countdown' + count + '" class="timer"></span>');
+                                    // Append the newly created card to the list or parent container
+                                    $('#brake_list').append(newCard);
+                                    startSlideshow('#brake_list');
+                                    console.log(count + "h");
+
+                                    // Remove the loading icon
+                                    $('#loding_icon').hide();
+                                }
+                                if (issueid == 2) { // Material Delay
+                                    categoriesDisplayed++;
+                                    $('#materialdiv').show();
+                                    var newCard = $('#materialdiv').clone();
+                                    newCard.removeAttr('id');
+                                    newCard.find('.card-header').text('Material Delay');
+
+                                    // Populate the cloned card with issue data
+                                    newCard.find('#material_date').text(day); // Change to the appropriate fields
+                                    newCard.find('#material_time').text(time);
+                                    newCard.find('#material_description').text(issuedata[i].description);
+                                    newCard.find('#material_responsible').text(issuedata[i].responciblepersonName);
+                                    newCard.find('#material_status').text(confirmStatus);
+                                    newCard.find('#material_since').html('<span id="countdown' + count + '" class="timer"></span>');
+
+                                    $('#maririal_list').append(newCard);
+                                    startSlideshow('#maririal_list');
+
+                                    $('#loding_icon').hide();
+                                }
+                                if (issueid == 3) { // Technical Issue
+                                    categoriesDisplayed++;
+                                    $('#tecnicaldiv').show(); // Ensure the base template is visible
+                                    var newCard = $('#tecnicaldiv').clone(); // Clone the existing card
+                                    newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
+                                    newCard.find('.card-header').text('Technical Issue'); // Set the header
+
+                                    // Populate the cloned card with issue data
+                                    newCard.find('#technical_date').text(day);
+                                    newCard.find('#technical_time').text(time);
+                                    newCard.find('#technical_description').text(issuedata[i].description);
+                                    newCard.find('#technical_responsible').text(issuedata[i].responciblepersonName);
+                                    newCard.find('#technical_status').text(confirmStatus);
+                                    newCard.find('#technical_since').html('<span id="countdown' + count + '" class="timer"></span>');
+
+                                    // Append the newly created card to the list or parent container
+                                    $('#tecnical_list').append(newCard);
+                                    startSlideshow('#tecnical_list');
+
+                                    // Remove the loading icon if necessary
+                                    $('#loding_icon').hide();
+                                }
+                                if (issueid == 4) { // Quality Issue
+                                    categoriesDisplayed++;
+                                    $('#qtydiv').show();
+                                    var newCard = $('#qtydiv').clone();
+                                    newCard.removeAttr('id');
+                                    newCard.find('.card-header').text('Quality Issue');
+
+                                    // Populate the cloned card with issue data
+                                    newCard.find('#quality_date').text(day);
+                                    newCard.find('#quality_time').text(time);
+                                    newCard.find('#quality_description').text(issuedata[i].description);
+                                    newCard.find('#quality_responsible').text(issuedata[i].responciblepersonName);
+                                    newCard.find('#quality_status').text(confirmStatus);
+                                    newCard.find('#quality_since').html('<span id="countdown' + count + '" class="timer"></span>');
+
+                                    $('#qty_list').append(newCard);
+                                    $('#loding_icon').hide();
+                                }
+                                if (issueid == 5) { // IT/Software
+                                    categoriesDisplayed++;
+                                    $('#Softwarediv').show();
+                                    console.log("hi");
+                                    var newCard = $('#Softwarediv').clone();
+                                    newCard.removeAttr('id');
+                                    newCard.find('.card-header').text('IT/Software Issue');
+
+                                    // Populate the cloned card with issue data
+                                    newCard.find('#it_date').text(day);
+                                    newCard.find('#it_time').text(time);
+                                    newCard.find('#it_description').text(issuedata[i].description);
+                                    newCard.find('#it_responsible').text(issuedata[i].responciblepersonName);
+                                    newCard.find('#it_status').text(confirmStatus);
+                                    newCard.find('#it_since').html('<span id="countdown' + count + '" class="timer"></span>');
+
+                                    $('#IT_list').append(newCard);
+                                    startSlideshow('#IT_list');
+
+                                    $('#loding_icon').hide();
+                                }
+                            }
+                        }
+
+                        if (count == 0) {
                             $('#loding_icon').hide();
                         }
-                        if (issueid == 2) { // Material Delay
-                            $('#materialdiv').show();
-                            var newCard = $('#materialdiv').clone();
-                            newCard.removeAttr('id');
-                            newCard.find('.card-header').text('Material Delay');
+                        console.log(categoriesDisplayed);
+                        adjustLayout(categoriesDisplayed); // Call function to adjust layout based on categories
+                        setTimmer(seconds, count);
+                        var countdownTimer = setInterval('timer()', 1000);
 
-                            // Populate the cloned card with issue data
-                            newCard.find('#material_date').text(day); // Change to the appropriate fields
-                            newCard.find('#material_time').text(time);
-                            newCard.find('#material_description').text(issuedata[i].description);
-                            newCard.find('#material_responsible').text(issuedata[i].responciblepersonName);
-                            newCard.find('#material_status').text(confirmStatus);
-                            newCard.find('#material_since').html('<span id="countdown' + count + '" class="timer"></span>');
+            }
 
-                            $('#maririal_list').append(newCard);
-                            startSlideshow('#maririal_list');
+            }, error: function (r, e, w) {
+            }
+           });
+          }
+            })
 
-                            $('#loding_icon').hide();
-                        }
-                        if (issueid == 3) { // Technical Issue
-                            $('#tecnicaldiv').show(); // Ensure the base template is visible
-                            var newCard = $('#tecnicaldiv').clone(); // Clone the existing card
-                            newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
-                            newCard.find('.card-header').text('Technical Issue'); // Set the header
 
-                            // Populate the cloned card with issue data
-                            newCard.find('#technical_date').text(day);
-                            newCard.find('#technical_time').text(time);
-                            newCard.find('#technical_description').text(issuedata[i].description);
-                            newCard.find('#technical_responsible').text(issuedata[i].responciblepersonName);
-                            newCard.find('#technical_status').text(confirmStatus);
-                            newCard.find('#technical_since').html('<span id="countdown' + count + '" class="timer"></span>');
 
-                            // Append the newly created card to the list or parent container
-                            $('#tecnical_list').append(newCard);
-                            startSlideshow('#tecnical_list');
+                    function startSlideshow(listSelector) {
+                        var cards = $(listSelector).find('.card');
+                        var currentIndex = 0;
 
-                            // Remove the loading icon if necessary
-                            $('#loding_icon').hide();
-                        }
-                        if (issueid == 4) { // Quality Issue
-                            $('#qtydiv').show();
-                            var newCard = $('#qtydiv').clone();
-                            newCard.removeAttr('id');
-                            newCard.find('.card-header').text('Quality Issue');
+                        // Check if there are any cards present
+                        if (cards.length > 0) {
+                            // Function to show the next card
+                            function showNextCard() {
+                                // Hide all cards
+                                cards.hide();
 
-                            // Populate the cloned card with issue data
-                            newCard.find('#quality_date').text(day);
-                            newCard.find('#quality_time').text(time);
-                            newCard.find('#quality_description').text(issuedata[i].description);
-                            newCard.find('#quality_responsible').text(issuedata[i].responciblepersonName);
-                            newCard.find('#quality_status').text(confirmStatus);
-                            newCard.find('#quality_since').html('<span id="countdown' + count + '" class="timer"></span>');
+                                // Show the current card
+                                if (currentIndex >= 1) {
+                                    $(cards[currentIndex]).show();
+                                } else {
+                                    $(cards[currentIndex+1]).show();
+                                }
+                                // Increment the index to point to the next card, looping back when necessary
+                                currentIndex = (currentIndex + 1) % cards.length;
 
-                            $('#qty_list').append(newCard);
-                            $('#loding_icon').hide();
-                        }
-                        if (issueid == 5) { // IT/Software
-                            $('#Softwarediv').show();
-                            var newCard = $('#Softwarediv').clone();
-                            newCard.removeAttr('id');
-                            newCard.find('.card-header').text('IT/Software Issue');
+                                // Set a 5-second interval for each card
+                                setTimeout(showNextCard, 5000);
+                            }
 
-                            // Populate the cloned card with issue data
-                            newCard.find('#it_date').text(day);
-                            newCard.find('#it_time').text(time);
-                            newCard.find('#it_description').text(issuedata[i].description);
-                            newCard.find('#it_responsible').text(issuedata[i].responciblepersonName);
-                            newCard.find('#it_status').text(confirmStatus);
-                            newCard.find('#it_since').html('<span id="countdown' + count + '" class="timer"></span>');
-
-                            $('#IT_list').append(newCard);
-                            startSlideshow('#IT_list');
-
-                            $('#loding_icon').hide();
+                            // If there are more than one card, start the slideshow
+                            if (cards.length > 2) {
+                                showNextCard();
+                            } else {
+                                cards.hide(); // Hide all cards
+                                $(cards[1]).show(); // Show the second card
+                            }
                         }
                     }
-                }
-
-                if (count == 0) {
-                    $('#loding_icon').hide();
-                }
-
-                setTimmer(seconds, count);
-                var countdownTimer = setInterval('timer()', 1000);
-
-    }
-
-    }, error: function (r, e, w) {
-    }
-   });
-  }
-    })
 
 
 
-                function startSlideshow(listSelector) {
-                    var cards = $(listSelector).find('.card');
-                    var currentIndex = 0;
 
-                    function showNextCard() {
-                        // Hide all cards
-                        cards.hide();
 
-                        // Show the current card
-                        $(cards[currentIndex]).show();
 
-                        // Increment the index to point to the next card, looping back when necessary
-                        currentIndex = (currentIndex + 1) % cards.length;
 
-                        // Set a 5-second interval for each card
-                        setTimeout(showNextCard, 5000);
+
+                    $(document).ready(function () {
+                        // Function to center cards and apply styles based on count
+                        function styleCards() {
+                            const visibleCards = $('.card').length;
+
+                            // Remove any previous class
+                            $('.card').removeClass('one-card two-cards three-cards four-cards');
+
+                            if (visibleCards === 1) {
+                                $('.card').addClass('one-card');
+                            } else if (visibleCards === 2) {
+                                $('.card:visible').addClass('two-cards');
+                            } else if (visibleCards === 3) {
+                                $('.card:visible').addClass('three-cards');
+                            } else if (visibleCards === 4) {
+                                $('.card:visible').addClass('four-cards');
+                            }
+                        }
+
+                        // Initially style the cards
+                        styleCards();
+
+                        // Example to dynamically hide/show cards
+                        // Call styleCards() after any visibility change to re-center
+                        $('.card').eq(0).hide(); // Hides first card (as an example)
+                        styleCards(); // Reapply styles
+                    });
+        /*
+                    // Function to adjust the layout dynamically based on the number of categories displayed
+                    function adjustLayout(categoryCount) {
+                        var colClass = "";
+
+                        switch (categoryCount) {
+                            case 1:
+                                colClass = "col-full"; // Full screen width for 1 category
+                                break;
+                            case 2:
+                                colClass = "col-half"; // 50% width for each of 2 categories
+                                break;
+                            case 3:
+                                colClass = "col-third"; // 33.3% width for each of 3 categories
+                                break;
+                            case 4:
+                                colClass = "col-quarter"; // 25% width for each of 4 categories
+                                break;
+                        }
+
+                        // Apply the correct class to the columns based on how many categories are displayed
+                        if ($('#break_list').children().length > 0) {
+                            $('#m_break').removeClass().addClass(colClass);
+                        } else {
+                            $('#m_break').addClass('empty'); // Hide the empty column
+                        }
+
+                        if ($('#material_list').children().length > 0) {
+                            $('#m_delay').removeClass().addClass(colClass);
+                        } else {
+                            $('#m_delay').addClass('empty');
+                        }
+
+                        if ($('#technical_list').children().length > 0) {
+                            $('#t_issue').removeClass().addClass(colClass);
+                        } else {
+                            $('#t_issue').addClass('empty');
+                        }
+
+                        if ($('#it_list').children().length > 0) {
+                            $('#i_issue').removeClass().addClass(colClass);
+                        } else {
+                            $('#i_issue').addClass('empty');
+                        }
                     }
+        */
+         function setTimmer(startTime,i)
+          {
+            var upgradeTime =startTime;
+            var seconds = startTime;
 
-                    // Start the slideshow if there are cards present
-                    if (cards.length > 0) {
-                        showNextCard();
-                    }
-                }
+            window.timer = function()
+            {
+               for(var j=0;j<i;j++)
+                {
+                  console.log(seconds[0])
+                var days        = Math.floor(seconds[j]/24/60/60);
+                var hoursLeft   = Math.floor((seconds[j]) - (days*86400));
+                var hours       = Math.floor(hoursLeft/3600);
+                var minutesLeft = Math.floor((hoursLeft) - (hours*3600));
+                var minutes     = Math.floor(minutesLeft/60);
+                var remainingSeconds = seconds[j] % 60;
+                window.pad = function(n)
+               {
+                return (n < 10 ? "0" + n : n);
+               };
+             var divid=j+1
+               document.getElementById('countdown'+divid).innerHTML = pad(days) + ":" + pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
 
+                seconds[j]++;
+               }
+            }
 
+          }
 
- function setTimmer(startTime,i)
-  {
-    var upgradeTime =startTime;
-    var seconds = startTime;
+                </script>
 
-    window.timer = function()
-    {
-       for(var j=0;j<i;j++)
-        {
-          console.log(seconds[0])
-        var days        = Math.floor(seconds[j]/24/60/60);
-        var hoursLeft   = Math.floor((seconds[j]) - (days*86400));
-        var hours       = Math.floor(hoursLeft/3600);
-        var minutesLeft = Math.floor((hoursLeft) - (hours*3600));
-        var minutes     = Math.floor(minutesLeft/60);
-        var remainingSeconds = seconds[j] % 60;
-        window.pad = function(n)
-       {
-        return (n < 10 ? "0" + n : n);
-       };
-     var divid=j+1
-       document.getElementById('countdown'+divid).innerHTML = pad(days) + ":" + pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
+                <script type="text/javascript">
 
-        seconds[j]++;
-       }
-    }
+        function init() {
+        var s = new CanvasState(document.getElementById('canvas1'));
 
-  }
+        setInterval(function () {
+            //console.log(globalvariable);
+            if (globalvariable == 0) { globalvariable = 1; }
+            else { globalvariable = 0; }
+        }, 100);
 
-        </script>
+            var url = '@Url.Action("getBlinkingMachinesList", "Display")'
+        $.ajax({
+            type: "POST",
+            dataType: 'text',
+            url: url,
+            data: { line: '@ViewBag.id' },
+            success: function (line_data) {
+                var obj = JSON.parse(line_data);
+                console.log(obj);
+                set_blinking_machines(obj);
+            },
+            error: function () {
+                console.log("Error occurred");
+            }
+        });
 
-        <script type="text/javascript">
-
-function init() {
-var s = new CanvasState(document.getElementById('canvas1'));
-
-setInterval(function () {
-    //console.log(globalvariable);
-    if (globalvariable == 0) { globalvariable = 1; }
-    else { globalvariable = 0; }
-}, 100);
-
-    var url = '@Url.Action("getBlinkingMachinesList", "Display")'
-$.ajax({
-    type: "POST",
-    dataType: 'text',
-    url: url,
-    data: { line: '@ViewBag.id' },
-    success: function (line_data) {
-        var obj = JSON.parse(line_data);
-        console.log(obj);
-        set_blinking_machines(obj);
-    },
-    error: function () {
-        console.log("Error occurred");
-    }
-});
-
-}
-
-
-function blinkMap() {
-    var url = '@Url.Action("getBlinkingMachinesList", "Display")'
-$.ajax({
-    type: "POST",
-    dataType: 'text',
-    url: url,
-    data: { line: @ViewBag.id },
-    success: function (line_data) {
-        var obj = JSON.parse(line_data);
-        console.log(obj);
-        set_blinking_machines(obj);
-    },
-    error: function () {
-            console.log("Error occurred");
-
-    }
-});
-    /*xsssa*/                    }
-/*
-$(function () {
-$('#vertical-ticker').totemticker({
-    row_height: '100px',
-    next: '#ticker-next',
-    previous: '#ticker-previous',
-    stop: '#stop',
-    start: '#start',
-    mousestop: true,
-});
-});
-*/
-
-
-        </script>
-        <script src="~/Scripts/Display/showmapdisplay.js"></script>
-
-        <script>
-    var id=@ViewBag.id.ToString();
-    var inputPath="../Content/images/"+id+".jpg"
-    var url = '@Url.Action("loadBase64Image", "Admin")';
-$.ajax({
-    type: "POST",
-    dataType: 'text',
-    url: url,
-    data: {inputPath},
-    success: function (mapData) {
-
-    if (mapData.length > 0) {
-        document.getElementById('canvas1').style.background = "url(data:image/jpeg;base64," + mapData + ")";
-    }
-    else {
-        document.getElementById('canvas1').style.background = "";
-    }
-
-        document.getElementById('canvas1').style.backgroundSize = "250px 750px";
-
-    },
-    error: function () {
-        alert("Error");
-    }
-    });
-
-        setTimeout(function(){
-        if(@ViewBag.id==3)
-        {
-           //window.location.href = "http://192.168.1.30:84/Report/GagingD7/"+'@ViewBag.id'
         }
-    },120000);
-        setTimeout(function(){
 
-          location.reload();
 
-    },3600000);
+        function blinkMap() {
+            var url = '@Url.Action("getBlinkingMachinesList", "Display")'
+        $.ajax({
+            type: "POST",
+            dataType: 'text',
+            url: url,
+            data: { line: @ViewBag.id },
+            success: function (line_data) {
+                var obj = JSON.parse(line_data);
+                console.log(obj);
+                set_blinking_machines(obj);
+            },
+            error: function () {
+                    console.log("Error occurred");
 
-        </script>
+            }
+        });
+            /*xsssa*/                    }
+        /*
+        $(function () {
+        $('#vertical-ticker').totemticker({
+            row_height: '100px',
+            next: '#ticker-next',
+            previous: '#ticker-previous',
+            stop: '#stop',
+            start: '#start',
+            mousestop: true,
+        });
+        });
+        */
+
+
+                </script>
+                <script src="~/Scripts/Display/showmapdisplay.js"></script>
+
+                <script>
+            var id=@ViewBag.id.ToString();
+            var inputPath="../Content/images/"+id+".jpg"
+            var url = '@Url.Action("loadBase64Image", "Admin")';
+        $.ajax({
+            type: "POST",
+            dataType: 'text',
+            url: url,
+            data: {inputPath},
+            success: function (mapData) {
+
+            if (mapData.length > 0) {
+                document.getElementById('canvas1').style.background = "url(data:image/jpeg;base64," + mapData + ")";
+            }
+            else {
+                document.getElementById('canvas1').style.background = "";
+            }
+
+                document.getElementById('canvas1').style.backgroundSize = "250px 750px";
+
+            },
+            error: function () {
+                alert("Error");
+            }
+            });
+
+                setTimeout(function(){
+                if(@ViewBag.id==3)
+                {
+                   //window.location.href = "http://192.168.1.30:84/Report/GagingD7/"+'@ViewBag.id'
+                }
+            },120000);
+                setTimeout(function(){
+
+                  location.reload();
+
+            },3600000);
+
+                </script>
+            </div>
+        </div>
+
     </div>
+
+
+<div class="slide" style="display:none;">
+    <h1>new slide</h1>
 </div>
 
+<script>
+    // JavaScript to handle the slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll("#slideshow .slide");
+
+    function showNextSlide() {
+        slides[currentSlide].style.display = 'none';
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.display = 'block';
+    }
+
+    // Change the slide every 3 seconds
+    setInterval(showNextSlide, 15000);
+
+</script>
+
+</div>
