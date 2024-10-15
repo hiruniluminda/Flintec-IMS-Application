@@ -792,24 +792,22 @@
     </div>
 
 
-<div class="slide" style="display:none;">
-    <h1>new slide</h1>
-</div>
+    <div class="slide">
+        <h1>new slide</h1>
+    </div>
 
-<script>
-    // JavaScript to handle the slideshow
-    let currentSlide = 0;
-    const slides = document.querySelectorAll("#slideshow .slide");
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".slide");
 
-    function showNextSlide() {
-        slides[currentSlide].style.display = 'none';
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].style.display = 'block';
-    }
+        function showNextSlide() {
+            slides[currentSlide].style.display = 'none';
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].style.display = 'block';
 
-    // Change the slide every 3 seconds
-    setInterval(showNextSlide, 15000);
+        }
+        setInterval(showNextSlide, 15000);
 
-</script>
+    </script>
 
 </div>
