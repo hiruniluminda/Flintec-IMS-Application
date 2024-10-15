@@ -20,7 +20,7 @@
 
 <div class="page-content--bgf7">
     <section class="au-breadcrumb2">
-        
+
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-4">
@@ -45,15 +45,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-8" >
+                <div class="col-8">
                     <div class="container h-100">
                         <div class="d-flex justify-content h-100" style="float:right">
                             <div class="searchbar">
                                 <img id="listening" src="~/Content/images/Ripple-1.8s-34px.svg"><input class="search_input" type="text" name="" placeholder="Listening....">
                                 <button onclick="startConverting()" class="search_icon"><i class="fa fa-microphone"></i></button>
                             </div>
-                         </div>
-                     </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,9 +63,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="title-4">
-                        Hi @Session["name"]
-                    </h1>
+                    <div style="display: flex">
+                        <h1 class="title-4">
+                            Hi @Session["name"]
+                        </h1>
+                        <div style="margin-left: auto;">
+                            <button class="btn btn-dark" style="margin-right: 20px;" data-toggle="modal" data-target="#popup">
+                                Kaizen
+                            </button>
+                        </div>
+
+                    </div>
+
+
                     <hr class="line-seprate">
                 </div>
             </div>
@@ -73,10 +83,10 @@
     </section>
     <section class="welcome p-t-10" style="padding-top:50px;padding-bottom:50px">
         <div class="container-fluid">
-            <div  class="text-center">
+            <div class="text-center">
                 <img src="~/Content/images/loding.svg" id="loding_icon">
             </div>
-           
+
             <div class="row" id="divIssue" style="margin: auto;">
 
             </div>
@@ -106,17 +116,127 @@
                             <th scope="col">Issue</th>
                             <th scope="col">Responcible Person</th>
                             <th scope="col">Count down</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody id="issue_body">
-
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="popupLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="popupLabel">Kaizen Content</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row mt-4">
+                        <!-- Left Dropdown -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="dropdown1">Month</label>
+                                <select class="form-control" id="dropdown1">
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Right Dropdown -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="year">Year</label>
+                                <input type="text" class="form-control" id="input1" placeholder="Enter data">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Left Column: 7 Textboxes -->
+                        <div class="col-md-6">
+                            <h3>TARGET</h3>
+                            <div class="form-group">
+                                <label for="input1">Input 1</label>
+                                <input type="text" class="form-control" id="input1" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input2">Input 2</label>
+                                <input type="text" class="form-control" id="input2" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input3">Input 3</label>
+                                <input type="text" class="form-control" id="input3" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input4">Input 4</label>
+                                <input type="text" class="form-control" id="input4" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input5">Input 5</label>
+                                <input type="text" class="form-control" id="input5" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input6">Input 6</label>
+                                <input type="text" class="form-control" id="input6" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input7">Input 7</label>
+                                <input type="text" class="form-control" id="input7" placeholder="Enter data">
+                            </div>
+                        </div>
+
+                        <!-- Right Column: 7 Textboxes -->
+                        <div class="col-md-6">
+                            <h3>ACTUAL</h3>
+                            <div class="form-group">
+                                <label for="input8">Input 8</label>
+                                <input type="text" class="form-control" id="input8" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input9">Input 9</label>
+                                <input type="text" class="form-control" id="input9" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input10">Input 10</label>
+                                <input type="text" class="form-control" id="input10" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input11">Input 11</label>
+                                <input type="text" class="form-control" id="input11" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input12">Input 12</label>
+                                <input type="text" class="form-control" id="input12" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input13">Input 13</label>
+                                <input type="text" class="form-control" id="input13" placeholder="Enter data">
+                            </div>
+                            <div class="form-group">
+                                <label for="input14">Input 14</label>
+                                <input type="text" class="form-control" id="input14" placeholder="Enter data">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="~/Content/test/jquery-3.3.1.min.js"></script>
 <script src="~/Content/test/bootstrap.bundle.min.js"></script>
@@ -130,8 +250,8 @@
         // Proxy created on the fly
         var hub = $.connection.issueHub;
         var issueCount = 0;
-    
-       
+
+
        window.getDataissue = function()
         {
             var divissue = $('#divIssue');
@@ -158,7 +278,7 @@
                                 {
                                     issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--red"><span class="desc" style="color:white">Machine Breakdown</span><div class="icon" ><i class="zmdi zmdi-settings zmdi-hc-spin"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id+'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Machine : </strong>' + issuedata[i].machine_machine_id +'</br><strong>Description : </strong>'+issuedata[i].description+'</p> <div class="text-right"> <button  class="btn btn-success"   data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid + '" onclick="myfunction(this)">Solved </button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
                                     if(( issuedata[i].lineName=='MachineShop 1')||(issuedata[i].lineName=='MachineShop 2'))
-                                    {  
+                                    {
                                     issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--red"><span class="desc" style="color:white">Machine Breakdown</span><div class="icon" ><i class="zmdi zmdi-settings zmdi-hc-spin"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id+'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Machine : </strong>' + issuedata[i].machine_machine_id + '</br><strong>Group : </strong> group '+issuedata[i].group+' </p> <div class="text-right"> <button  class="btn btn-success"   data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid + '" onclick="myfunction(this)">Solved </button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
 
                                     }
@@ -192,7 +312,7 @@
                                 divissue.append(issue)
                                 $('#loding_icon').hide();
                                 divissue.show('slow');
-                               
+
                                 if (responce_comment != '') {
                                     document.getElementById("check" + issue_occurrence_id).style.display = "block" }
                             }
@@ -218,7 +338,7 @@
 <script type="text/javascript">
 
 function myfunction(param)
-{   
+{
     $.confirm({
         title:'Solved Issue?',
         content:'Please confirm your action within 8 seconds',
@@ -248,7 +368,7 @@ function myfunction(param)
                 }
         }
     });
-}  
+}
 
     var r = $('.search_input');
 
@@ -269,7 +389,7 @@ function myfunction(param)
      }
     }
   });
- 
+
 	function startConverting ()
     {    $("#listening").show();
         getVoice("Hello "+ '@Session["name"]' +" I'm listening for you!");
@@ -309,19 +429,19 @@ function myfunction(param)
         {
             if(keyWord=="breakdown" || keyWord=="machine breakdown")
             {
-                  $('.search_input').val('') 
+                  $('.search_input').val('')
                 window.location.href = '/CellEngineer/MachinBreakdown?lineid=' +  @ViewBag.lineId;
             }
             else if(keyWord=="technical" || keyWord=="technical issue")
-            {   $('.search_input').val('') 
+            {   $('.search_input').val('')
                 window.location.href = '/CellEngineer/TechnicalIssue?lineid=' +  @ViewBag.lineId;
             }
             else if(keyWord=="material" || keyWord=="material delay")
-            {   $('.search_input').val('') 
+            {   $('.search_input').val('')
                 window.location.href = '/CellEngineer/MaterialDelay?lineid=' +  @ViewBag.lineId;
             }
             else if(keyWord=="it" || keyWord=="it issue")
-            {   $('.search_input').val('') 
+            {   $('.search_input').val('')
                 window.location.href = '/CellEngineer/ITIssue?lineid=' +  @ViewBag.lineId;
             }
             else if(keyWord=="what is your name" || keyWord=="name"|| keyWord=="what's your name")
@@ -337,7 +457,7 @@ function myfunction(param)
                   getVoice("You are "+ '@Session["name"]' +'. And you are a '+ '@Session["Role"]'+ ' of Flintec Transducers');
             }
           else if(keyWord=="show me today's summary" || keyWord=="summary"|| keyWord=="today" ||keyWord=="show me today summary"||keyWord=="show me today issues" )
-            { 
+            {
                 getVoice("wait a second I will find it for you");
                 var url = '@Url.Action("GetIssues", "Voice")';
                 $.ajax({
@@ -354,10 +474,10 @@ function myfunction(param)
            {
                  getVoice("Sorry! I don't know that command.");
            }
-       setTimeout(function(){   
-                   $('.search_input').val('') 
+       setTimeout(function(){
+                   $('.search_input').val('')
                   $("#listening").show()}, 3000);
-               
+
         }
 
 function showIssues(issuedata)
@@ -372,7 +492,7 @@ function showIssues(issuedata)
     var count=0;
                     if (issuedata.length > 0) {
 
-                        for (var i = 0; i < issuedata.length; i++) 
+                        for (var i = 0; i < issuedata.length; i++)
                          {
                            if(issuedata[i].issue_satus=="1")
                             {
@@ -380,7 +500,7 @@ function showIssues(issuedata)
                                 count++;
                               issueBody.append(row)
                             }
-                         
+
                          }
                       }
         console.log("modal popup");
@@ -397,10 +517,10 @@ function showLastMonthIssues(issuedata)
    issuedata = $.parseJSON(issuedata);
    issueBody.empty()
     var count=0;
-    if (issuedata.length > 0) 
+    if (issuedata.length > 0)
     {
 
-        for (var i = 0; i < issuedata.length; i++) 
+        for (var i = 0; i < issuedata.length; i++)
             {
             if(issuedata[i].issue_satus=="1")
             {
@@ -408,7 +528,7 @@ function showLastMonthIssues(issuedata)
                 count++;
                 issueBody.append(row)
             }
-                         
+
             }
     }
      console.log("modal popup");
@@ -423,7 +543,7 @@ $('.searchbar').click(function() {
       $( '.search_input').css("transition", "width 0.4s linear");
       $( '.search_icon').css("background", "white");
       $( '.search_icon').css("color", "#e74c3c");
-    
+
 });
 
 </script>
