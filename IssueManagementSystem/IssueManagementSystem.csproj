@@ -752,6 +752,7 @@
     <Content Include="Views\Display\test.cshtml" />
     <Content Include="Views\Display\machineshop.cshtml" />
     <Content Include="Views\Display\accessoriesHeatTreatment.cshtml" />
+    <Content Include="Views\CellEngineer\Kaizen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
