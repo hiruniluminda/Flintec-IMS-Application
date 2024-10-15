@@ -397,13 +397,6 @@ p {
     width: 50px;
 }
 
-.slide{
-}
-
-.slide h1{
-    margin-top:50%;
-}
-
 .mainClassForSlide{
     display:flex;
 }
