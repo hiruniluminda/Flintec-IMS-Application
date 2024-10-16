@@ -268,6 +268,7 @@
     <Compile Include="Models\material.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MonthlySummaryVD.cs" />
     <Compile Include="Models\notification_handling.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
     </Compile>
