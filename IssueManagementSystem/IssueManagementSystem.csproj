@@ -208,6 +208,15 @@
     <Compile Include="Controllers\VoiceApi.cs" />
     <Compile Include="Controllers\VoiceController.cs" />
     <Compile Include="Hubs\BreakeHub.cs" />
+    <Compile Include="Migrations\202410160647211_InitialCreate.cs" />
+    <Compile Include="Migrations\202410160647211_InitialCreate.Designer.cs">
+      <DependentUpon>202410160647211_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410160803281_update1.cs" />
+    <Compile Include="Migrations\202410160803281_update1.Designer.cs">
+      <DependentUpon>202410160803281_update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BreakeDownListener.cs" />
     <Compile Include="Models\department.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
@@ -772,6 +781,14 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202410160647211_InitialCreate.resx">
+      <DependentUpon>202410160647211_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410160803281_update1.resx">
+      <DependentUpon>202410160803281_update1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

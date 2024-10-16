@@ -1,21 +1,15 @@
 ﻿using IssueManagementSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Linq;
 
-namespace IssueManagementSystem.Controllers
+public class MonthlySummaryVDController : Controller
 {
-    public class MonthlySummaryVDController : Controller
-    {
-        private MonthlySummaryVDContext _context = new MonthlySummaryVDContext();
+    private MonthlySummaryVDContext _context = new MonthlySummaryVDContext();
 
-        // GET: MonthlySummaryVD
-        public ActionResult Index()
-        {
-            var MonthlySummaryVD = _context.MonthlySummaryVD.ToList();
-            return View();
-        }
+    // GET: MonthlySummaryVD
+    public ActionResult MonthlySumVD()
+    {
+        var monthlySummaryVDList = _context.MonthlySummaryVD.ToList();
+        return View(monthlySummaryVDList);  // Pass the list to the view
     }
 }
