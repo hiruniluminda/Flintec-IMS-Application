@@ -1,25 +1,53 @@
 ﻿
 @model IEnumerable<IssueManagementSystem.Models.MonthlySummaryVD>
 
-<h2>Employee List</h2>
+<h2>Table</h2>
 
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>EmployeeId</th>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Salary</th>
+            <th>Id</th>
+            <th>Line Id</th>
+            <th>Date</th>
+            <th>Wk</th>
+            <th>InternalAccT</th>
+            <th>InternalAccA</th>
+            <th>CustomerCompT</th>
+            <th>CustomerCompA</th>
+            <th>sampleAuditFindT</th>
+            <th>sampleAuditFindA</th>
+            <th>DSAT</th>
+            <th>DSAA</th>
+            <th>ProductionProcessTimeT</th>
+            <th>ProductionProcessTimeA</th>
+            <th>ReworkCostT</th>
+            <th>ReworkCostA</th>
+            <th>KaizensT</th>
+            <th>KaizensA</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var employee in Model)
+        @foreach (var MonthlySummaryVD in Model)
         {
             <tr>
-                <td>@employee.EmployeeId</td>
-                <td>@employee.Name</td>
-                <td>@employee.Department</td>
-                <td>@employee.Salary</td>
+                <td>@MonthlySummaryVD.Id</td>
+                <td>@MonthlySummaryVD.LineId</td>
+                <td>@MonthlySummaryVD.Date</td>
+                <td>@MonthlySummaryVD.Wk</td>
+                <td>@MonthlySummaryVD.InternalAccT</td>
+                <td>@MonthlySummaryVD.InternalAccA</td>
+                <td>@MonthlySummaryVD.CustomerCompT</td>
+                <td>@MonthlySummaryVD.CustomerCompA</td>
+                <td>@MonthlySummaryVD.sampleAuditFindT</td>
+                <td>@MonthlySummaryVD.sampleAuditFindA</td>
+                <td>@MonthlySummaryVD.DSAT</td>
+                <td>@MonthlySummaryVD.DSAA</td>
+                <td>@MonthlySummaryVD.ProductionProcessTimeT</td>
+                <td>@MonthlySummaryVD.ProductionProcessTimeA</td>
+                <td>@MonthlySummaryVD.ReworkCostT</td>
+                <td>@MonthlySummaryVD.ReworkCostA</td>
+                <td>@MonthlySummaryVD.KaizensT</td>
+                <td>@MonthlySummaryVD.KaizensA</td>
             </tr>
         }
     </tbody>
