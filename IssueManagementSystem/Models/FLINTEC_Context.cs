@@ -36,4 +36,11 @@ namespace IssueManagementSystem.Models
         public virtual DbSet<FLINTEC_Prod_Order_Component> FLINTEC_Prod_Order_Component { get; set; }
     }
 
+    public class MonthlySummaryVDContext : DbContext
+    {
+        public MonthlySummaryVDContext() : base("DefaultConnection") { }
+
+        public DbSet<MonthlySummaryVD> MonthlySummaryVD { get; set; }
+    }
+
 }

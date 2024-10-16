@@ -200,6 +200,7 @@
     <Compile Include="Controllers\DisplayController.cs" />
     <Compile Include="Controllers\LocationAdapter.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\MonthlySummaryVDController.cs" />
     <Compile Include="Controllers\ResponsiblePersonController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -754,6 +755,7 @@
     <Content Include="Views\Display\machineshop.cshtml" />
     <Content Include="Views\Display\accessoriesHeatTreatment.cshtml" />
     <Content Include="Views\CellEngineer\Kaizen.cshtml" />
+    <Content Include="Views\MonthlySummaryVD\MonthlySumVD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,26 @@
+﻿
+@model IEnumerable<IssueManagementSystem.Models.MonthlySummaryVD>
+
+<h2>Employee List</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>EmployeeId</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.EmployeeId</td>
+                <td>@employee.Name</td>
+                <td>@employee.Department</td>
+                <td>@employee.Salary</td>
+            </tr>
+        }
+    </tbody>
+</table>
