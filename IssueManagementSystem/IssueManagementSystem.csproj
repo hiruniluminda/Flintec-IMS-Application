@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ResponsiblePersonController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SlideshowController.cs" />
     <Compile Include="Controllers\SupervisorController.cs" />
     <Compile Include="Controllers\VoiceApi.cs" />
     <Compile Include="Controllers\VoiceController.cs" />
@@ -211,10 +212,6 @@
     <Compile Include="Migrations\202410160647211_InitialCreate.cs" />
     <Compile Include="Migrations\202410160647211_InitialCreate.Designer.cs">
       <DependentUpon>202410160647211_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202410160803281_update1.cs" />
-    <Compile Include="Migrations\202410160803281_update1.Designer.cs">
-      <DependentUpon>202410160803281_update1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BreakeDownListener.cs" />
@@ -310,6 +307,7 @@
     <Compile Include="Models\User_tbl.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="SendNotificationToLevel2.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -785,9 +783,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202410160647211_InitialCreate.resx">
       <DependentUpon>202410160647211_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202410160803281_update1.resx">
-      <DependentUpon>202410160803281_update1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

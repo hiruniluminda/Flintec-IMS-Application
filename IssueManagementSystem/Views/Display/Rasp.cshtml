@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Raspberry";
+    
 
 }
 @using IssueManagementSystem.Models;
@@ -49,7 +50,7 @@
 }
 
 <div id="slideshow">
-    <!--    <div class="slide" style="background-color: #eeedeb; background-size: cover; height: 100vh ">
+    <div class="slide" style="background-color: #eeedeb; background-size: cover; height: 100vh ">
             <div class="top-row" style="display: flex; justify-content: space-between; align-items: flex-start; position: relative;">
                 <section class="statistic statistic2" style="display: flex; margin-right: 500px; justify-content: space-between; align-items: center;">
                     <div class="statistics-container" style="flex: 1;">
@@ -125,10 +126,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
     @*width:70%; margin-left:-80px;margin-top:-20px*@
 
-    <!--</section>
+    </section>
         <div class="displayheading" style="margin-left: 10px;">
             <div class="row" style="display:flex; float:right;">
                 <div class="col-4" style="margin-left:40px; margin-top:20px;">
@@ -161,15 +162,15 @@
                                             <div class="triangle"></div>
                                             <div class="card-body text-white" style="flex-grow: 1; color: white;" id="breakediv">
 
-                                                <div class="card-head" style="">Machine Breakdown</div>-->
+                                                <div class="card-head" style="">Machine Breakdown</div>
     @*<div class="head-bdr"></div>*@
-    <!--<div class="card-dtls text-white" style="max-width:80rem;">
+    <div class="card-dtls text-white" style="max-width:80rem;">
         <div><strong>Time:</strong> <span id="break_time"></span></div>
         <div><strong>Machine:</strong> <span id="break_machine"></span></div>
-        <div><strong>Description:</strong> <span id="break_description"></span></div>-->
+        <div><strong>Description:</strong> <span id="break_description"></span></div>
     @*<div><strong>Responsible Person:</strong> <span id="break_responsible"></span></div>*@
     @* <div><strong>Status:</strong> <span id="break_status"></span></div>*@
-    <!--<div><strong>Since Occurred:</strong> <span id="break_since"></span></div>
+    <div><strong>Since Occurred:</strong> <span id="break_since"></span></div>
                         </div>
                     </div>
 
@@ -199,17 +200,17 @@
 
 
         </div>*@
-    <!--<div class="triangle1"></div>
+    <div class="triangle1"></div>
     <div class="card-body" style="flex-grow: 1;" id="materialdiv">
         <div class="card-head" style="">Material Delay</div>
 
         <div class=card-dtls text-white" style="max-width: 80rem; color: white">
             <div><strong>Time:</strong> <span id="material_time"></span></div>
             <div><strong>Material:</strong> <span id="material_name"></span></div>
-            <div><strong>Description:</strong> <span id="material_description"></span></div>-->
+            <div><strong>Description:</strong> <span id="material_description"></span></div>
     @*<div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
         <div><strong>Status:</strong> <span id="material_status"></span></div>*@
-    <!--<div><strong>Since Occurred:</strong> <span id="material_since"></span></div>
+    <div><strong>Since Occurred:</strong> <span id="material_since"></span></div>
                         </div>
                     </div>
 
@@ -237,16 +238,16 @@
             <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
 
         </div>*@
-    <!--<div class="triangle2"></div>
+    <div class="triangle2"></div>
     <div class="card-body" style="flex-grow: 1;" id="tecnicaldiv">
         <div class="card-head" style="">Technical Issue</div>
 
         <div class="card-dtls text-white" style="max-width:80rem;color:white">
             <div><strong>Time:</strong> <br /> <span id="technical_time"></span></div>
-            <div><strong>Description:</strong> <br /> <span id="technical_description"></span></div>-->
+            <div><strong>Description:</strong> <br /> <span id="technical_description"></span></div>
     @*<div><strong>Responsible Person:</strong> <br /> <span id="technical_responsible"></span></div>
         <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>*@
-    <!--<div><strong>Since Occurred:</strong> <br /><span id="technical_since"></span></div>
+    <div><strong>Since Occurred:</strong> <br /><span id="technical_since"></span></div>
                         </div>
                     </div>
 
@@ -274,16 +275,16 @@
             <div><strong>Date:</strong> <span id="it_date"></span></div>
 
         </div>*@
-    <!--<div class="triangle3"></div>
+    <div class="triangle3"></div>
     <div class="card-body" style="flex-grow: 1;" id="Softwarediv">
         <div class="card-head" style="">IT/Software Issue</div>
 
         <div class="card-dtls text-white" style="max-width:80rem;color:white;">
             <div><strong>Time:</strong> <span id="it_time"></span></div>
-            <div><strong>Description:</strong> <span id="it_description"></span></div>-->
+            <div><strong>Description:</strong> <span id="it_description"></span></div>
     @*<div><strong>Responsible Person:</strong> <span id="it_responsible"></span></div>
         <div><strong>Status:</strong> <span id="it_status"></span></div>*@
-    <!--<div><strong>Since Occurred:</strong> <span id="it_since"></span></div>
+    <div><strong>Since Occurred:</strong> <span id="it_since"></span></div>
                                                     </div>
                                                 </div>
 
@@ -788,7 +789,7 @@
             </div>
         </div>
 
-    </div>-->
+    </div>
 
 
 
@@ -823,26 +824,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                @*<tr>
                     <th scope="row">Target</th>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>97%</td>
-                    <td>14 days</td>
-                    <td>0.206</td>
-                    <td>8</td>
+                    <td>@monthlySummary?.InternalAccT</td>
+                    <td>@monthlySummary?.CustomerCompT</td>
+                    <td>@monthlySummary?.sampleAuditFindT</td>
+                    <td>@monthlySummary?.DSAT</td>
+                    <td>@monthlySummary?.ProductionProcessTimeT</td>
+                    <td>@monthlySummary?.ReworkCostT</td>
+                    <td>@monthlySummary?.KaizensT</td>
                 </tr>
                 <tr>
                     <th scope="row">Actual</th>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>1</td>
-                    <td>98.73%</td>
-                    <td>12.92</td>
-                    <td>0.127</td>
-                    <td>8</td>
-                </tr>
+                    <td>@monthlySummary?.InternalAccA</td>
+                    <td>@monthlySummary?.CustomerCompA</td>
+                    <td>@monthlySummary?.sampleAuditFindA</td>
+                    <td>@monthlySummary?.DSAA</td>
+                    <td>@monthlySummary?.ProductionProcessTimeA</td>
+                    <td>@monthlySummary?.ReworkCostA</td>
+                    <td>@monthlySummary?.KaizensA</td>
+                </tr>*@
                 <tr>
                     <th scope="row"></th>
                     <td></td>
@@ -854,6 +855,7 @@
                     <td></td>
                 </tr>
             </tbody>
+           
         </table>
             
 

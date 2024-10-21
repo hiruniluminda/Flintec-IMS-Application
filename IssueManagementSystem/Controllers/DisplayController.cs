@@ -1,5 +1,6 @@
 ﻿using IssueManagementSystem.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
@@ -43,29 +44,34 @@ namespace IssueManagementSystem.Controllers
         }
 
         public ActionResult Rasp(int id)
+{
+    using (var db = new issue_management_systemEntities1())
+    {
+        // Retrieve issue counts for a specific line ID
+        var lineCounts = new
         {
-            using (var db = new issue_management_systemEntities1())
-            {
-                // Retrieve issue counts for a specific line ID
-                var lineCounts = new
-                {
-                    BrakedownCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 1 && x.issue_satus == "1"),
-                    ITIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 5 && x.issue_satus == "1"),
-                    TechnicalIssue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 3 && x.issue_satus == "1"),
-                    MaterialDelayCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 2 && x.issue_satus == "1"),
-                    QualityIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 4 && x.issue_satus == "1")
-                };
+            BrakedownCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 1 && x.issue_satus == "1"),
+            ITIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 5 && x.issue_satus == "1"),
+            TechnicalIssue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 3 && x.issue_satus == "1"),
+            MaterialDelayCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 2 && x.issue_satus == "1"),
+            QualityIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 4 && x.issue_satus == "1")
+        };
 
-                ViewBag.BrakedownCount = lineCounts.BrakedownCount;
-                ViewBag.ITIsuue = lineCounts.ITIsuue;
-                ViewBag.TechnicalIssue = lineCounts.TechnicalIssue;
-                ViewBag.MaterialDelayCount = lineCounts.MaterialDelayCount;
-                ViewBag.QualityIsuue = lineCounts.QualityIsuue;
-                ViewBag.id = id; // Pass the line ID to the View
 
-                return View();
-            }
-        }
+        ViewBag.BrakedownCount = lineCounts.BrakedownCount;
+        ViewBag.ITIsuue = lineCounts.ITIsuue;
+        ViewBag.TechnicalIssue = lineCounts.TechnicalIssue;
+        ViewBag.MaterialDelayCount = lineCounts.MaterialDelayCount;
+        ViewBag.QualityIsuue = lineCounts.QualityIsuue;
+
+       
+
+        ViewBag.id = id;
+
+        return View();
+    }
+}
+
 
         public JsonResult FilterSelectBoxes()
         {
@@ -109,6 +115,24 @@ namespace IssueManagementSystem.Controllers
         {
             return View();
         }
+
+       /* public ActionResult Rasp()
+        {
+            // Query to get the target and actual data from the MonthlySummaryVD table
+            using (var db = new FLINTEC_dbContext())
+            {
+                // Assuming you're getting a single row of data for the view (you can adjust as needed)
+                var monthlySummary = db.MonthlySummaryVD.FirstOrDefault(); // Or query specific data
+
+                // Pass data using ViewBag
+                ViewBag.MonthlySummary = monthlySummary;
+            }
+
+            // Pass the other model you're already using (if needed)
+            var otherModel = new List<IssueManagementSystem.Models.issue_occurrence>(); // Example, adjust as per your logic
+            return View(otherModel);
+        }*/
+
 
         [HttpPost]
         public JsonResult updateScreen()

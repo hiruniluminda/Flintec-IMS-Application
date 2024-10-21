@@ -10,6 +10,7 @@ public class MonthlySummaryVDController : Controller
     public ActionResult MonthlySumVD()
     {
         var monthlySummaryVDList = _context.MonthlySummaryVD.ToList();
+        ViewBag.MonthlySummaryVDList = monthlySummaryVDList;
         return View(monthlySummaryVDList);  // Pass the list to the view
     }
 }
