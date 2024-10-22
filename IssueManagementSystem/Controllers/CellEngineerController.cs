@@ -41,6 +41,22 @@ namespace IssueManagementSystem.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult SubmitKaizenData(SummaryReport summaryReport)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new SummaryReportContext())
+                {
+                    db.SummaryReport.Add(summaryReport); // Assuming SummaryReport is the model you created
+                    db.SaveChanges(); // Save changes to the database
+                }
+                return Json(new { success = true, message = "Data saved successfully!" });
+            }
+            return Json(new { success = false, message = "Failed to save data." });
+        }
+
+
         public ActionResult TechnicalIssue(int lineid)//Technical Issue View
         {
 
