@@ -48,8 +48,6 @@ namespace IssueManagementSystem.Controllers
             return View(); // Return the view with the model data
         }
 
-
-
         private void SetViewBagCounts(issue_management_systemEntities1 db)
         {
             // Depending on the department, count issues
