@@ -200,13 +200,28 @@
     <Compile Include="Controllers\DisplayController.cs" />
     <Compile Include="Controllers\LocationAdapter.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\MonthlySummaryVDController.cs" />
     <Compile Include="Controllers\ResponsiblePersonController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SlideshowController.cs" />
     <Compile Include="Controllers\SupervisorController.cs" />
     <Compile Include="Controllers\VoiceApi.cs" />
     <Compile Include="Controllers\VoiceController.cs" />
     <Compile Include="Hubs\BreakeHub.cs" />
+    <Compile Include="Migrations\202410160647211_InitialCreate.cs" />
+    <Compile Include="Migrations\202410160647211_InitialCreate.Designer.cs">
+      <DependentUpon>202410160647211_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410220558328_InitialCreate1.cs" />
+    <Compile Include="Migrations\202410220558328_InitialCreate1.Designer.cs">
+      <DependentUpon>202410220558328_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410220647127_InitialCreate2.cs" />
+    <Compile Include="Migrations\202410220647127_InitialCreate2.Designer.cs">
+      <DependentUpon>202410220647127_InitialCreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BreakeDownListener.cs" />
     <Compile Include="Models\department.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
@@ -268,6 +283,7 @@
     <Compile Include="Models\material.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MonthlySummaryVD.cs" />
     <Compile Include="Models\notification_handling.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
     </Compile>
@@ -286,6 +302,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>scheduling.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SummaryReport.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
     </Compile>
@@ -299,6 +316,7 @@
     <Compile Include="Models\User_tbl.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="SendNotificationToLevel2.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -752,6 +770,8 @@
     <Content Include="Views\Display\test.cshtml" />
     <Content Include="Views\Display\machineshop.cshtml" />
     <Content Include="Views\Display\accessoriesHeatTreatment.cshtml" />
+    <Content Include="Views\CellEngineer\Kaizen.cshtml" />
+    <Content Include="Views\MonthlySummaryVD\MonthlySumVD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -768,6 +788,17 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202410160647211_InitialCreate.resx">
+      <DependentUpon>202410160647211_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410220558328_InitialCreate1.resx">
+      <DependentUpon>202410220558328_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410220647127_InitialCreate2.resx">
+      <DependentUpon>202410220647127_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

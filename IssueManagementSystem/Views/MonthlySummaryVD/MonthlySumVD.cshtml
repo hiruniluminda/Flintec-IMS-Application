@@ -1,0 +1,54 @@
+﻿
+@*@model IEnumerable<IssueManagementSystem.Models.SummaryReport>
+
+<h2>Table</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Line Id</th>
+            <th>Date</th>
+            <th>Wk</th>
+            <th>InternalAccT</th>
+            <th>InternalAccA</th>
+            <th>CustomerCompT</th>
+            <th>CustomerCompA</th>
+            <th>sampleAuditFindT</th>
+            <th>sampleAuditFindA</th>
+            <th>DSAT</th>
+            <th>DSAA</th>
+            <th>ProductionProcessTimeT</th>
+            <th>ProductionProcessTimeA</th>
+            <th>ReworkCostT</th>
+            <th>ReworkCostA</th>
+            <th>KaizensT</th>
+            <th>KaizensA</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var SummaryReport in Model)
+        {
+            <tr>
+                <td>@SummaryReport.Id</td>
+                <td>@SummaryReport.LineId</td>
+                <td>@SummaryReport.Date</td>
+                <td>@SummaryReport.Wk</td>
+                <td>@SummaryReport.InternalAccT</td>
+                <td>@SummaryReport.InternalAccA</td>
+                <td>@SummaryReport.CustomerCompT</td>
+                <td>@SummaryReport.CustomerCompA</td>
+                <td>@SummaryReport.sampleAuditFindT</td>
+                <td>@SummaryReport.sampleAuditFindA</td>
+                <td>@SummaryReport.DSAT</td>
+                <td>@SummaryReport.DSAA</td>
+                <td>@SummaryReport.ProductionProcessTimeT</td>
+                <td>@SummaryReport.ProductionProcessTimeA</td>
+                <td>@SummaryReport.ReworkCostT</td>
+                <td>@SummaryReport.ReworkCostA</td>
+                <td>@SummaryReport.KaizensT</td>
+                <td>@SummaryReport.KaizensA</td>
+            </tr>                    
+        }
+    </tbody>
+</table>*@

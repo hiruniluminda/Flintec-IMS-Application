@@ -16,6 +16,7 @@ namespace IssueManagementSystem.Models
         }
         //Prod_ Order Line
         public virtual DbSet<FLINTEC_Item> FLINTEC_Items { get; set; }
+
     }
 
     public class FLINTEC_Prod_Order_Line_Context : DbContext
@@ -34,6 +35,13 @@ namespace IssueManagementSystem.Models
         {
         }
         public virtual DbSet<FLINTEC_Prod_Order_Component> FLINTEC_Prod_Order_Component { get; set; }
+    }
+
+    public class SummaryReportContext : DbContext
+    {
+        public SummaryReportContext() :  base("name=issue_management_systemEntities2") { }
+
+        public DbSet<SummaryReport> SummaryReport { get; set; }
     }
 
 }
