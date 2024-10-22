@@ -25,7 +25,7 @@ namespace IssueManagementSystem.Models
             throw new UnintentionalCodeFirstException();
         }
 
-        public DbSet<MonthlySummaryVD> MonthlySummaryVDs { get; set; }
+        public DbSet<SummaryReport> MonthlySummary { get; set; }
 
         public virtual DbSet<department> departments { get; set; }
         public virtual DbSet<display> displays { get; set; }

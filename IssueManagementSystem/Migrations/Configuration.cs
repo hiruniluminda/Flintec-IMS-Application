@@ -5,15 +5,15 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<IssueManagementSystem.Models.MonthlySummaryVDContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<IssueManagementSystem.Models.SummaryReportContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "IssueManagementSystem.Models.MonthlySummaryVDContext";
+            ContextKey = "IssueManagementSystem.Models.SummaryReportContext";
         }
 
-        protected override void Seed(IssueManagementSystem.Models.MonthlySummaryVDContext context)
+        protected override void Seed(IssueManagementSystem.Models.SummaryReportContext context)
         {
             //  This method will be called after migrating to the latest version.
 

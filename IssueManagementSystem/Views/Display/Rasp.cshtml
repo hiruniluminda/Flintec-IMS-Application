@@ -824,36 +824,38 @@
                 </tr>
             </thead>
             <tbody>
-                @*<tr>
-                    <th scope="row">Target</th>
-                    <td>@monthlySummary?.InternalAccT</td>
-                    <td>@monthlySummary?.CustomerCompT</td>
-                    <td>@monthlySummary?.sampleAuditFindT</td>
-                    <td>@monthlySummary?.DSAT</td>
-                    <td>@monthlySummary?.ProductionProcessTimeT</td>
-                    <td>@monthlySummary?.ReworkCostT</td>
-                    <td>@monthlySummary?.KaizensT</td>
-                </tr>
-                <tr>
-                    <th scope="row">Actual</th>
-                    <td>@monthlySummary?.InternalAccA</td>
-                    <td>@monthlySummary?.CustomerCompA</td>
-                    <td>@monthlySummary?.sampleAuditFindA</td>
-                    <td>@monthlySummary?.DSAA</td>
-                    <td>@monthlySummary?.ProductionProcessTimeA</td>
-                    <td>@monthlySummary?.ReworkCostA</td>
-                    <td>@monthlySummary?.KaizensA</td>
-                </tr>*@
-                <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @if (ViewBag.SummaryReportsList != null)
+                {
+                    var monthlySummaries = (List<IssueManagementSystem.Models.SummaryReport>)ViewBag.SummaryReportsList;
+                    if (monthlySummaries.Any())
+                    {
+                        foreach (var item in monthlySummaries)
+                        {
+                            <tr>
+                                <td>@item.LineId</td>
+                                <td>@item.Date</td>
+                                <td>@item.InternalAccT</td>
+                                <td>@item.CustomerCompT</td>
+                                <td>@item.sampleAuditFindT</td>
+                                <td>@item.DSAT</td>
+                                <td>@item.ReworkCostA</td>
+                                <td>@item.KaizensA</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8" style="text-align:center;">No monthly summaries available.</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8" style="text-align:center;">No data found.</td>
+                    </tr>
+                }
             </tbody>
            
         </table>

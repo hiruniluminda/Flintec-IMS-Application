@@ -20,6 +20,36 @@ namespace IssueManagementSystem.Controllers
             }
         }
 
+        private SummaryReportContext _context = new SummaryReportContext();
+
+        // GET: Monthly Summary View Data
+        public ActionResult MonthlySum(int lineId) // Accept lineId as a parameter
+        {
+            try
+            {
+                // Fetch the data from the MonthlySummaryVD model
+                var SummaryReportsList = _context.SummaryReport.Where(x => x.LineId == lineId).ToList();
+
+                if (SummaryReportsList == null || !SummaryReportsList.Any())
+                {
+                    ViewBag.Message = "No monthly summary data available.";
+                }
+
+                // Pass the data to the view via ViewBag
+                ViewBag.SummaryReportsList = SummaryReportsList;
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions (like database connection issues)
+                ViewBag.Message = "An error occurred while fetching the data.";
+                ViewBag.Error = ex.Message;
+            }
+
+            return View(); // Return the view with the model data
+        }
+
+
+
         private void SetViewBagCounts(issue_management_systemEntities1 db)
         {
             // Depending on the department, count issues
@@ -67,7 +97,7 @@ namespace IssueManagementSystem.Controllers
        
 
         ViewBag.id = id;
-
+                MonthlySum(id);
         return View();
     }
 }

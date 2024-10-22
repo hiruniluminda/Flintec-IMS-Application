@@ -213,6 +213,14 @@
     <Compile Include="Migrations\202410160647211_InitialCreate.Designer.cs">
       <DependentUpon>202410160647211_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410220558328_InitialCreate1.cs" />
+    <Compile Include="Migrations\202410220558328_InitialCreate1.Designer.cs">
+      <DependentUpon>202410220558328_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410220647127_InitialCreate2.cs" />
+    <Compile Include="Migrations\202410220647127_InitialCreate2.Designer.cs">
+      <DependentUpon>202410220647127_InitialCreate2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BreakeDownListener.cs" />
     <Compile Include="Models\department.cs">
@@ -294,6 +302,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>scheduling.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SummaryReport.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>IssueManagementSystem.tt</DependentUpon>
     </Compile>
@@ -783,6 +792,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202410160647211_InitialCreate.resx">
       <DependentUpon>202410160647211_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410220558328_InitialCreate1.resx">
+      <DependentUpon>202410220558328_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410220647127_InitialCreate2.resx">
+      <DependentUpon>202410220647127_InitialCreate2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

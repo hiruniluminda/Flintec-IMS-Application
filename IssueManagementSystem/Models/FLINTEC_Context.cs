@@ -37,11 +37,11 @@ namespace IssueManagementSystem.Models
         public virtual DbSet<FLINTEC_Prod_Order_Component> FLINTEC_Prod_Order_Component { get; set; }
     }
 
-    public class MonthlySummaryVDContext : DbContext
+    public class SummaryReportContext : DbContext
     {
-        public MonthlySummaryVDContext() : base("name=issue_management_systemEntities2") { }
+        public SummaryReportContext() :  base("name=issue_management_systemEntities2") { }
 
-        public DbSet<MonthlySummaryVD> MonthlySummaryVD { get; set; }
+        public DbSet<SummaryReport> SummaryReport { get; set; }
     }
 
 }

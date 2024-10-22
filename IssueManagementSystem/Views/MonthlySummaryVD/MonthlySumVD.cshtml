@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<IssueManagementSystem.Models.MonthlySummaryVD>
+@*@model IEnumerable<IssueManagementSystem.Models.SummaryReport>
 
 <h2>Table</h2>
 
@@ -27,28 +27,28 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var MonthlySummaryVD in Model)
+        @foreach (var SummaryReport in Model)
         {
             <tr>
-                <td>@MonthlySummaryVD.Id</td>
-                <td>@MonthlySummaryVD.LineId</td>
-                <td>@MonthlySummaryVD.Date</td>
-                <td>@MonthlySummaryVD.Wk</td>
-                <td>@MonthlySummaryVD.InternalAccT</td>
-                <td>@MonthlySummaryVD.InternalAccA</td>
-                <td>@MonthlySummaryVD.CustomerCompT</td>
-                <td>@MonthlySummaryVD.CustomerCompA</td>
-                <td>@MonthlySummaryVD.sampleAuditFindT</td>
-                <td>@MonthlySummaryVD.sampleAuditFindA</td>
-                <td>@MonthlySummaryVD.DSAT</td>
-                <td>@MonthlySummaryVD.DSAA</td>
-                <td>@MonthlySummaryVD.ProductionProcessTimeT</td>
-                <td>@MonthlySummaryVD.ProductionProcessTimeA</td>
-                <td>@MonthlySummaryVD.ReworkCostT</td>
-                <td>@MonthlySummaryVD.ReworkCostA</td>
-                <td>@MonthlySummaryVD.KaizensT</td>
-                <td>@MonthlySummaryVD.KaizensA</td>
-            </tr>
+                <td>@SummaryReport.Id</td>
+                <td>@SummaryReport.LineId</td>
+                <td>@SummaryReport.Date</td>
+                <td>@SummaryReport.Wk</td>
+                <td>@SummaryReport.InternalAccT</td>
+                <td>@SummaryReport.InternalAccA</td>
+                <td>@SummaryReport.CustomerCompT</td>
+                <td>@SummaryReport.CustomerCompA</td>
+                <td>@SummaryReport.sampleAuditFindT</td>
+                <td>@SummaryReport.sampleAuditFindA</td>
+                <td>@SummaryReport.DSAT</td>
+                <td>@SummaryReport.DSAA</td>
+                <td>@SummaryReport.ProductionProcessTimeT</td>
+                <td>@SummaryReport.ProductionProcessTimeA</td>
+                <td>@SummaryReport.ReworkCostT</td>
+                <td>@SummaryReport.ReworkCostA</td>
+                <td>@SummaryReport.KaizensT</td>
+                <td>@SummaryReport.KaizensA</td>
+            </tr>                    
         }
     </tbody>
-</table>
+</table>*@

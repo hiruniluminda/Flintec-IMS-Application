@@ -1,6 +1,6 @@
-﻿using IssueManagementSystem.Models;
-using System.Web.Mvc;
+﻿/*using System.Web.Mvc;
 using System.Linq;
+using IssueManagementSystem.Models;
 
 public class MonthlySummaryVDController : Controller
 {
@@ -11,6 +11,7 @@ public class MonthlySummaryVDController : Controller
     {
         var monthlySummaryVDList = _context.MonthlySummaryVD.ToList();
         ViewBag.MonthlySummaryVDList = monthlySummaryVDList;
-        return View(monthlySummaryVDList);  // Pass the list to the view
+        return View();  // Pass the list to the view
     }
 }
+*/
