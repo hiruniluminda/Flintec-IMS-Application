@@ -225,6 +225,10 @@
     <Compile Include="Migrations\202410230359082_InitialCreate3.Designer.cs">
       <DependentUpon>202410230359082_InitialCreate3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410230530325_InitialCreate4.cs" />
+    <Compile Include="Migrations\202410230530325_InitialCreate4.Designer.cs">
+      <DependentUpon>202410230530325_InitialCreate4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BreakeDownListener.cs" />
     <Compile Include="Models\department.cs">
@@ -400,10 +404,13 @@
     <Content Include="Content\Display\css\bootstrap.min.css" />
     <Content Include="Content\flipclock.css" />
     <Content Include="Content\images\error.png" />
+    <Content Include="Content\images\greenemoji.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\pexels-clarissa-schwarz-8941369.jpg" />
     <Content Include="Content\images\qrtest.png" />
+    <Content Include="Content\images\redemoji.png" />
     <Content Include="Content\images\responsibleptest.png" />
+    <Content Include="Content\images\yellowemoji.png" />
     <Content Include="Models\IssueManagementSystem.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IssueManagementSystem.edmx</DependentUpon>
@@ -805,6 +812,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410230359082_InitialCreate3.resx">
       <DependentUpon>202410230359082_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410230530325_InitialCreate4.resx">
+      <DependentUpon>202410230530325_InitialCreate4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

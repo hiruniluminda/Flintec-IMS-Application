@@ -834,25 +834,102 @@
                         {
                             <tr>
                                 <th scope="row">Target</th>
-                                <td>@latestSummary.LineId</td>
-                                <td>@latestSummary.CustomerCompT</td>
                                 <td>@latestSummary.InternalAccT</td>
+                                <td>@latestSummary.CustomerCompT</td>
                                 <td>@latestSummary.sampleAuditFindT</td>
                                 <td>@latestSummary.DSAT</td>
+                                <td>@latestSummary.ProductionProcessTimeT</td>
                                 <td>@latestSummary.ReworkCostA</td>
                                 <td>@latestSummary.KaizensA</td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Actual</th>
-                                <td>@latestSummary.LineId</td>
-                                <td>@latestSummary.CustomerCompA</td>
                                 <td>@latestSummary.InternalAccA</td>
+                                <td>@latestSummary.CustomerCompA</td>
                                 <td>@latestSummary.sampleAuditFindA</td>
                                 <td>@latestSummary.DSAA</td>
+                                <td>@latestSummary.ProductionProcessTimeA</td>
                                 <td>@latestSummary.ReworkCostA</td>
                                 <td>@latestSummary.KaizensA</td>
                             </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    @if (latestSummary.InternalAccT <= latestSummary.InternalAccA)
+                                    {
+                                        <img src="~/Content/Images/greenemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/redemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
+                                    }
+                                </td>
+                                <td>
+
+                                    @if (latestSummary.CustomerCompT <= latestSummary.CustomerCompA)
+                                    {
+                                        <img src="~/Content/Images/greenemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/redemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
+                                    }
+                                </td>
+                                <td>
+                                    @if (latestSummary.sampleAuditFindT <= latestSummary.sampleAuditFindA)
+                                    {
+                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                </td>
+                                <td>
+                                    @if (latestSummary.DSAT <= latestSummary.DSAA)
+                                    {
+                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                </td>
+                                <td>
+                                    @if (latestSummary.ProductionProcessTimeT <= latestSummary.ProductionProcessTimeA)
+                                    {
+                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                </td>
+                                <td>
+                                    @if (latestSummary.ReworkCostT <= latestSummary.ReworkCostA)
+                                    {
+                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                </td>
+                                <td>
+                                    @if (latestSummary.KaizensT <= latestSummary.KaizensA)
+                                    {
+                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                    }
+                                </td>
+                            </tr>
+
+
                         }
                         else
                         {

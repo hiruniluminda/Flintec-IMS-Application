@@ -19,13 +19,13 @@ namespace IssueManagementSystem.Models
         public int CustomerCompA { get; set; }
         public int sampleAuditFindT { get; set; }
         public int sampleAuditFindA { get; set; }
-        public string DSAT { get; set; }
-        public string DSAA { get; set; }
-        public string ProductionProcessTimeT { get; set; }
-        public string ProductionProcessTimeA { get; set; }
+        public decimal DSAT { get; set; }
+        public decimal DSAA { get; set; }
+        public decimal ProductionProcessTimeT { get; set; }
+        public decimal ProductionProcessTimeA { get; set; }
         public decimal ReworkCostT { get; set; }
         public decimal ReworkCostA { get; set; }
-        public string KaizensT { get; set; }
-        public string KaizensA { get; set; }
+        public decimal KaizensT { get; set; }
+        public decimal KaizensA { get; set; }
     }
 }
