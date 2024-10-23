@@ -829,17 +829,24 @@
                     var monthlySummaries = (List<IssueManagementSystem.Models.SummaryReport>)ViewBag.SummaryReportsList;
                     if (monthlySummaries.Any())
                     {
-                        foreach (var item in monthlySummaries)
+                        var latestSummary = monthlySummaries.OrderByDescending(s => s.Date).FirstOrDefault();
+                        if (latestSummary != null)
                         {
                             <tr>
-                                <td>@item.LineId</td>
-                                <td>@item.Date</td>
-                                <td>@item.InternalAccT</td>
-                                <td>@item.CustomerCompT</td>
-                                <td>@item.sampleAuditFindT</td>
-                                <td>@item.DSAT</td>
-                                <td>@item.ReworkCostA</td>
-                                <td>@item.KaizensA</td>
+                                <td>@latestSummary.LineId</td>
+                                <td>@latestSummary.Date</td>
+                                <td>@latestSummary.InternalAccT</td>
+                                <td>@latestSummary.CustomerCompT</td>
+                                <td>@latestSummary.sampleAuditFindT</td>
+                                <td>@latestSummary.DSAT</td>
+                                <td>@latestSummary.ReworkCostA</td>
+                                <td>@latestSummary.KaizensA</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="8" style="text-align:center;">No latest summary available.</td>
                             </tr>
                         }
                     }
@@ -856,6 +863,7 @@
                         <td colspan="8" style="text-align:center;">No data found.</td>
                     </tr>
                 }
+
             </tbody>
            
         </table>

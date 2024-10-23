@@ -274,6 +274,7 @@
         $("#submitModalData").click(function () {
             var summaryReport = {
                 LineId: $("#selectline").val(),
+                Date: new Date().toISOString(),
                 Month: $("#monthDropdown").val(),
                 Year: $("#yearInput").val(),
                 Wk: $("#blablaInput").val(),
@@ -285,8 +286,8 @@
                 sampleAuditFindA: $("#sampleAudInputA").val(),
                 DSAA: $("#DSAInputA").val(),
                 DSAT: $("#DSAInput").val(),
-                ProductionProcessT: $("#productProcInput").val(),
-                ProductionProcesA: $("#productProcInputA").val(),
+                ProductionProcessTimeT: $("#productProcInput").val(),
+                ProductionProcessTimeA: $("#productProcInputA").val(),
                 ReworkCostT: $("#ReworkCostInput").val(),
                 ReworkCostA: $("#ReworkCostInputA").val(),
                 KaizensT: $("#kaizenInput").val(),
