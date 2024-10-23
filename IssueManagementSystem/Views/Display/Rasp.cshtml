@@ -813,14 +813,14 @@
 
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Welded</th>
-                    <th scope="col">Internal accidents</th>
-                    <th scope="col">Customer complaint</th>
-                    <th scope="col">Sample audit findings</th>
-                    <th scope="col">DSA</th>
-                    <th scope="col">Production Process Time</th>
-                    <th scope="col">Rework cost per unit</th>
-                    <th scope="col">Kaizens</th>
+                    <th class="tblhead" scope="col">Welded</th>
+                    <th class="tblhead" scope="col">Internal accidents</th>
+                    <th class="tblhead" scope="col">Customer complaint</th>
+                    <th class="tblhead" scope="col">Sample audit findings</th>
+                    <th class="tblhead" scope="col">DSA</th>
+                    <th class="tblhead" scope="col">Production Process Time</th>
+                    <th class="tblhead" scope="col">Rework cost per unit</th>
+                    <th class="tblhead" scope="col">Kaizens</th>
                 </tr>
             </thead>
             <tbody>
@@ -833,30 +833,30 @@
                         if (latestSummary != null)
                         {
                             <tr>
-                                <th scope="row">Target</th>
-                                <td>@latestSummary.InternalAccT</td>
-                                <td>@latestSummary.CustomerCompT</td>
-                                <td>@latestSummary.sampleAuditFindT</td>
-                                <td>@latestSummary.DSAT</td>
-                                <td>@latestSummary.ProductionProcessTimeT</td>
-                                <td>@latestSummary.ReworkCostA</td>
-                                <td>@latestSummary.KaizensA</td>
+                                <th class="tblData" scope="row">Target</th>
+                                <td class="tblData">@latestSummary.InternalAccT</td>
+                                <td class="tblData">@latestSummary.CustomerCompT</td>
+                                <td class="tblData">@latestSummary.sampleAuditFindT</td>
+                                <td class="tblData">@latestSummary.DSAT</td>
+                                <td class="tblData">@latestSummary.ProductionProcessTimeT</td>
+                                <td class="tblData">@latestSummary.ReworkCostA</td>
+                                <td class="tblData">@latestSummary.KaizensA</td>
                             </tr>
 
                             <tr>
-                                <th scope="row">Actual</th>
-                                <td>@latestSummary.InternalAccA</td>
-                                <td>@latestSummary.CustomerCompA</td>
-                                <td>@latestSummary.sampleAuditFindA</td>
-                                <td>@latestSummary.DSAA</td>
-                                <td>@latestSummary.ProductionProcessTimeA</td>
-                                <td>@latestSummary.ReworkCostA</td>
-                                <td>@latestSummary.KaizensA</td>
+                                <th class="tblData" scope="row">Actual</th>
+                                <td class="tblData">@latestSummary.InternalAccA</td>
+                                <td class="tblData">@latestSummary.CustomerCompA</td>
+                                <td class="tblData">@latestSummary.sampleAuditFindA</td>
+                                <td class="tblData">@latestSummary.DSAA</td>
+                                <td class="tblData">@latestSummary.ProductionProcessTimeA</td>
+                                <td class="tblData">@latestSummary.ReworkCostA</td>
+                                <td class="tblData">@latestSummary.KaizensA</td>
                             </tr>
 
                             <tr>
-                                <td></td>
-                                <td>
+                                <td class="tblData"></td>
+                                <td class="tblData">
                                     @if (latestSummary.InternalAccT <= latestSummary.InternalAccA)
                                     {
                                         <img src="~/Content/Images/greenemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
@@ -866,7 +866,7 @@
                                         <img src="~/Content/Images/redemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
                                     }
                                 </td>
-                                <td>
+                                <td class="tblData">
 
                                     @if (latestSummary.CustomerCompT <= latestSummary.CustomerCompA)
                                     {
@@ -877,7 +877,7 @@
                                         <img src="~/Content/Images/redemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
                                     }
                                 </td>
-                                <td>
+                                <td class="tblData">
                                     @if (latestSummary.sampleAuditFindT <= latestSummary.sampleAuditFindA)
                                     {
                                         <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
@@ -887,7 +887,7 @@
                                         <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
                                     }
                                 </td>
-                                <td>
+                                <td class="tblData">
                                     @if (latestSummary.DSAT <= latestSummary.DSAA)
                                     {
                                         <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
@@ -897,7 +897,7 @@
                                         <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
                                     }
                                 </td>
-                                <td>
+                                <td class="tblData">
                                     @if (latestSummary.ProductionProcessTimeT <= latestSummary.ProductionProcessTimeA)
                                     {
                                         <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
@@ -907,7 +907,7 @@
                                         <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
                                     }
                                 </td>
-                                <td>
+                                <td class="tblData">
                                     @if (latestSummary.ReworkCostT <= latestSummary.ReworkCostA)
                                     {
                                         <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
@@ -917,7 +917,7 @@
                                         <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
                                     }
                                 </td>
-                                <td>
+                                <td class="tblData">
                                     @if (latestSummary.KaizensT <= latestSummary.KaizensA)
                                     {
                                         <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />

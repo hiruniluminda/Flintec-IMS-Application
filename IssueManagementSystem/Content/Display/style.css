@@ -36,6 +36,31 @@ body {
 }
 
 
+.tblhead {
+    border: 1px solid red;
+    padding: 8px;
+    text-align: center;
+    width: 1000px; /* Equal width for 8 columns (100% / 8 = 12.5%) */
+    background-color: red; /* Light gray background for headers */
+    font-weight: bold;
+}
+
+.tblData {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    width: 1000px; /* Static width to ensure equal width for all columns */
+}
+
+    /* Optionally center images */
+    .tblData img {
+        display: block;
+        margin: 0 auto;
+        width: 30px; /* Set image width */
+        height: 30px; /* Set image height */
+    }
+
+
 
 /* Top Banner */
 #banner .clear {
