@@ -796,168 +796,187 @@
 
 
     <div class="slide" style="background-color: #eeedeb; background-size: cover; height: 100vh ">
-        <h1>new slide</h1>
-
-        <table class="table" style="width:50%;">
-            <thead>
-                <tr>
-                    <!-- Adjust height value as needed -->
-                    <th scope="col" style="border: none;"></th>
-                    <th scope="col" class="table-danger">Safety</th>
-                    <th scope="col" colspan="2" class="bg-danger">Quality</th>
-                    <th scope="col" colspan="2" class="bg-warning">Delivery</th>
-                    <th scope="col" class="bg-success">Cost</th>
-                    <th scope="col" class="bg-primary">Morale</th>
-                </tr>
-            </thead>
-
-            <thead class="thead-dark">
-                <tr>
-                    <th class="tblhead" scope="col">Welded</th>
-                    <th class="tblhead" scope="col">Internal accidents</th>
-                    <th class="tblhead" scope="col">Customer complaint</th>
-                    <th class="tblhead" scope="col">Sample audit findings</th>
-                    <th class="tblhead" scope="col">DSA</th>
-                    <th class="tblhead" scope="col">Production Process Time</th>
-                    <th class="tblhead" scope="col">Rework cost per unit</th>
-                    <th class="tblhead" scope="col">Kaizens</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (ViewBag.SummaryReportsList != null)
+        <div class="monthlyRep col-sm-6">
+            @if (ViewBag.SummaryReportsList != null)
+            {
+                var monthlySummaries = (List<IssueManagementSystem.Models.SummaryReport>)ViewBag.SummaryReportsList;
+                if (monthlySummaries.Any())
                 {
-                    var monthlySummaries = (List<IssueManagementSystem.Models.SummaryReport>)ViewBag.SummaryReportsList;
-                    if (monthlySummaries.Any())
+                    var latestSummary = monthlySummaries.OrderByDescending(s => s.Date).FirstOrDefault();
+                    if (latestSummary != null)
                     {
-                        var latestSummary = monthlySummaries.OrderByDescending(s => s.Date).FirstOrDefault();
-                        if (latestSummary != null)
+
+                        <div style="display: flex; justify-content: space-around;">
+                            <h2>@latestSummary.Month</h2>
+                            <h2>@latestSummary.Year</h2>
+                            <h2>@latestSummary.Wk</h2>
+                        </div>
+
+                    }
+                }
+
+            }
+
+            <table class="table" style="width:50%;">
+                <thead>
+                    <tr>
+                        <!-- Adjust height value as needed -->
+                        <th scope="col" style="border: none;"></th>
+                        <th scope="col" class="table-danger">Safety</th>
+                        <th scope="col" colspan="2" class="bg-danger">Quality</th>
+                        <th scope="col" colspan="2" class="bg-warning">Delivery</th>
+                        <th scope="col" class="bg-success">Cost</th>
+                        <th scope="col" class="bg-primary">Morale</th>
+                    </tr>
+                </thead>
+
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="tblhead" scope="col">Welded</th>
+                        <th class="tblhead" scope="col">Internal accidents</th>
+                        <th class="tblhead" scope="col">Customer complaint</th>
+                        <th class="tblhead" scope="col">Sample audit findings</th>
+                        <th class="tblhead" scope="col">DSA</th>
+                        <th class="tblhead" scope="col">Production Process Time</th>
+                        <th class="tblhead" scope="col">Rework cost per unit</th>
+                        <th class="tblhead" scope="col">Kaizens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.SummaryReportsList != null)
+                    {
+                        var monthlySummaries = (List<IssueManagementSystem.Models.SummaryReport>)ViewBag.SummaryReportsList;
+                        if (monthlySummaries.Any())
                         {
-                            <tr>
-                                <th class="tblData" scope="row">Target</th>
-                                <td class="tblData">@latestSummary.InternalAccT</td>
-                                <td class="tblData">@latestSummary.CustomerCompT</td>
-                                <td class="tblData">@latestSummary.sampleAuditFindT</td>
-                                <td class="tblData">@latestSummary.DSAT</td>
-                                <td class="tblData">@latestSummary.ProductionProcessTimeT</td>
-                                <td class="tblData">@latestSummary.ReworkCostA</td>
-                                <td class="tblData">@latestSummary.KaizensA</td>
-                            </tr>
+                            var latestSummary = monthlySummaries.OrderByDescending(s => s.Date).FirstOrDefault();
+                            if (latestSummary != null)
+                            {
+                                <tr>
+                                    <th class="tblData" scope="row">Target</th>
+                                    <td class="tblData">@latestSummary.InternalAccT</td>
+                                    <td class="tblData">@latestSummary.CustomerCompT</td>
+                                    <td class="tblData">@latestSummary.sampleAuditFindT</td>
+                                    <td class="tblData">@latestSummary.DSAT</td>
+                                    <td class="tblData">@latestSummary.ProductionProcessTimeT</td>
+                                    <td class="tblData">@latestSummary.ReworkCostA</td>
+                                    <td class="tblData">@latestSummary.KaizensA</td>
+                                </tr>
 
-                            <tr>
-                                <th class="tblData" scope="row">Actual</th>
-                                <td class="tblData">@latestSummary.InternalAccA</td>
-                                <td class="tblData">@latestSummary.CustomerCompA</td>
-                                <td class="tblData">@latestSummary.sampleAuditFindA</td>
-                                <td class="tblData">@latestSummary.DSAA</td>
-                                <td class="tblData">@latestSummary.ProductionProcessTimeA</td>
-                                <td class="tblData">@latestSummary.ReworkCostA</td>
-                                <td class="tblData">@latestSummary.KaizensA</td>
-                            </tr>
+                                <tr>
+                                    <th class="tblData" scope="row">Actual</th>
+                                    <td class="tblData">@latestSummary.InternalAccA</td>
+                                    <td class="tblData">@latestSummary.CustomerCompA</td>
+                                    <td class="tblData">@latestSummary.sampleAuditFindA</td>
+                                    <td class="tblData">@latestSummary.DSAA</td>
+                                    <td class="tblData">@latestSummary.ProductionProcessTimeA</td>
+                                    <td class="tblData">@latestSummary.ReworkCostA</td>
+                                    <td class="tblData">@latestSummary.KaizensA</td>
+                                </tr>
 
-                            <tr>
-                                <td class="tblData"></td>
-                                <td class="tblData">
-                                    @if (latestSummary.InternalAccT <= latestSummary.InternalAccA)
-                                    {
-                                        <img src="~/Content/Images/greenemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Content/Images/redemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
-                                    }
-                                </td>
-                                <td class="tblData">
+                                <tr>
+                                    <td class="tblData"></td>
+                                    <td class="tblData">
+                                        @if (latestSummary.InternalAccT <= latestSummary.InternalAccA)
+                                        {
+                                            <img src="~/Content/Images/greenemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Images/redemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
+                                        }
+                                    </td>
+                                    <td class="tblData">
 
-                                    @if (latestSummary.CustomerCompT <= latestSummary.CustomerCompA)
-                                    {
-                                        <img src="~/Content/Images/greenemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Content/Images/redemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
-                                    }
-                                </td>
-                                <td class="tblData">
-                                    @if (latestSummary.sampleAuditFindT <= latestSummary.sampleAuditFindA)
-                                    {
-                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                </td>
-                                <td class="tblData">
-                                    @if (latestSummary.DSAT <= latestSummary.DSAA)
-                                    {
-                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                </td>
-                                <td class="tblData">
-                                    @if (latestSummary.ProductionProcessTimeT <= latestSummary.ProductionProcessTimeA)
-                                    {
-                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                </td>
-                                <td class="tblData">
-                                    @if (latestSummary.ReworkCostT <= latestSummary.ReworkCostA)
-                                    {
-                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                </td>
-                                <td class="tblData">
-                                    @if (latestSummary.KaizensT <= latestSummary.KaizensA)
-                                    {
-                                        <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                    }
-                                </td>
-                            </tr>
+                                        @if (latestSummary.CustomerCompT <= latestSummary.CustomerCompA)
+                                        {
+                                            <img src="~/Content/Images/greenemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Images/redemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
+                                        }
+                                    </td>
+                                    <td class="tblData">
+                                        @if (latestSummary.sampleAuditFindT <= latestSummary.sampleAuditFindA)
+                                        {
+                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                    </td>
+                                    <td class="tblData">
+                                        @if (latestSummary.DSAT <= latestSummary.DSAA)
+                                        {
+                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                    </td>
+                                    <td class="tblData">
+                                        @if (latestSummary.ProductionProcessTimeT <= latestSummary.ProductionProcessTimeA)
+                                        {
+                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                    </td>
+                                    <td class="tblData">
+                                        @if (latestSummary.ReworkCostT <= latestSummary.ReworkCostA)
+                                        {
+                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                    </td>
+                                    <td class="tblData">
+                                        @if (latestSummary.KaizensT <= latestSummary.KaizensA)
+                                        {
+                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                        }
+                                    </td>
+                                </tr>
 
 
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="8" style="text-align:center;">No latest summary available.</td>
+                                </tr>
+                            }
                         }
                         else
                         {
                             <tr>
-                                <td colspan="8" style="text-align:center;">No latest summary available.</td>
+                                <td colspan="8" style="text-align:center;">No monthly summaries available.</td>
                             </tr>
                         }
                     }
                     else
                     {
                         <tr>
-                            <td colspan="8" style="text-align:center;">No monthly summaries available.</td>
+                            <td colspan="8" style="text-align:center;">No data found.</td>
                         </tr>
                     }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="8" style="text-align:center;">No data found.</td>
-                    </tr>
-                }
 
-            </tbody>
-           
-        </table>
-            
+                </tbody>
 
-    </div>
+            </table>
+            </div>
+
+        </div>
 
 
 

@@ -272,10 +272,12 @@
 <script>
     $(document).ready(function () {
         $("#submitModalData").click(function () {
+
+            var selectedMonthText = $("#monthDropdown option:selected").text();
             var summaryReport = {
                 LineId: $("#selectline").val(),
                 Date: new Date().toISOString(),
-                Month: $("#monthDropdown").val(),
+                Month: selectedMonthText,
                 Year: $("#yearInput").val(),
                 Wk: $("#blablaInput").val(),
                 InternalAccT: $("#intAccInput").val(),
