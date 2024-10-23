@@ -221,6 +221,10 @@
     <Compile Include="Migrations\202410220647127_InitialCreate2.Designer.cs">
       <DependentUpon>202410220647127_InitialCreate2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410230359082_InitialCreate3.cs" />
+    <Compile Include="Migrations\202410230359082_InitialCreate3.Designer.cs">
+      <DependentUpon>202410230359082_InitialCreate3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BreakeDownListener.cs" />
     <Compile Include="Models\department.cs">
@@ -798,6 +802,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410220647127_InitialCreate2.resx">
       <DependentUpon>202410220647127_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410230359082_InitialCreate3.resx">
+      <DependentUpon>202410230359082_InitialCreate3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
