@@ -833,12 +833,23 @@
                         if (latestSummary != null)
                         {
                             <tr>
+                                <th scope="row">Target</th>
                                 <td>@latestSummary.LineId</td>
-                                <td>@latestSummary.Date</td>
-                                <td>@latestSummary.InternalAccT</td>
                                 <td>@latestSummary.CustomerCompT</td>
+                                <td>@latestSummary.InternalAccT</td>
                                 <td>@latestSummary.sampleAuditFindT</td>
                                 <td>@latestSummary.DSAT</td>
+                                <td>@latestSummary.ReworkCostA</td>
+                                <td>@latestSummary.KaizensA</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Actual</th>
+                                <td>@latestSummary.LineId</td>
+                                <td>@latestSummary.CustomerCompA</td>
+                                <td>@latestSummary.InternalAccA</td>
+                                <td>@latestSummary.sampleAuditFindA</td>
+                                <td>@latestSummary.DSAA</td>
                                 <td>@latestSummary.ReworkCostA</td>
                                 <td>@latestSummary.KaizensA</td>
                             </tr>
