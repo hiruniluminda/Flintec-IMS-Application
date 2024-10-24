@@ -176,7 +176,7 @@
 
                     <div class="responsper">
                         <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
-                            <strong>Responsible Person:</strong>
+                            <strong>Responsible Person:</strong><span id="break_responsible"></span>
                         </div>
                         <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px; width: 30px;">
                             <img class="respimg" src="~/Content/images/responsibleptest.png" />
@@ -194,7 +194,7 @@
     <div class="card-stack">
         <ul id="m_delay" style="list-style-type:none;">
             <li id="maririal_list">
-                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">-->
+                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">
     @*<div style="background-color: #e6b800; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: black">
             <div><strong>Date:</strong> <span id="material_date"></span></div>
 
@@ -233,7 +233,7 @@
     <div class="card-stack">
         <ul id="t_issue" style="list-style-type:none;">
             <li id="tecnical_list">
-                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="tecnicaldiv">-->
+                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="tecnicaldiv">
     @*<div style="background-color: #00b300; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white">
             <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
 
@@ -270,7 +270,7 @@
     <div class="card-stack">
         <ul id="i_issue" style="list-style-type:none;">
             <li id="IT_list">
-                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="Softwarediv">-->
+                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="Softwarediv">
     @*<div style="background-color: #0033cc; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white ">
             <div><strong>Date:</strong> <span id="it_date"></span></div>
 
@@ -424,7 +424,7 @@
                                     newCard.find('#break_time').text(time);
                                     newCard.find('#break_machine').text(issuedata[i].machine_machine_id);
                                     newCard.find('#break_description').text(issuedata[i].description);
-                                    newCard.find('#break_responsible').text(issuedata[i].responciblepersonName);
+                                    newCard.find('#break_responsible').text(issuedata[i].responsible_person_emp_id);
                                     newCard.find('#break_status').text(confirmStatus);
                                     newCard.find('#break_since').html('<span id="countdown' + count + '" class="timer"></span>');
                                     // Append the newly created card to the list or parent container
@@ -831,16 +831,32 @@
                 </thead>
 
                 <thead class="thead-dark">
-                    <tr>
-                        <th class="tblhead" scope="col">@lineName</th>
-                        <th class="tblhead" scope="col">Internal accidents</th>
-                        <th class="tblhead" scope="col">Customer complaint</th>
-                        <th class="tblhead" scope="col">Sample audit findings</th>
-                        <th class="tblhead" scope="col">DSA</th>
-                        <th class="tblhead" scope="col">Production Process Time</th>
-                        <th class="tblhead" scope="col">Rework cost per unit</th>
-                        <th class="tblhead" scope="col">Kaizens</th>
-                    </tr>
+                    @if (lineName == "Gaging")
+                    {
+                        <tr>
+                            <th class="tblhead" scope="col">@lineName</th>
+                            <th class="tblhead" scope="col">Internal accidents</th>
+                            <th class="tblhead" scope="col">Customer complaint</th>
+                            <th class="tblhead" scope="col">Sample audit findings</th>
+                            <th class="tblhead" scope="col">DSA</th>
+                            <th class="tblhead" scope="col">Production Process Time</th>
+                            <th class="tblhead" scope="col">Gaging Stock</th>
+                            <th class="tblhead" scope="col">Kaizens</th>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <th class="tblhead" scope="col">@lineName</th>
+                            <th class="tblhead" scope="col">Internal accidents</th>
+                            <th class="tblhead" scope="col">Customer complaint</th>
+                            <th class="tblhead" scope="col">Sample audit findings</th>
+                            <th class="tblhead" scope="col">DSA</th>
+                            <th class="tblhead" scope="col">Production Process Time</th>
+                            <th class="tblhead" scope="col">Rework cost per unit</th>
+                            <th class="tblhead" scope="col">Kaizens</th>
+                        </tr>
+                    }
                 </thead>
                 <tbody>
                     @if (ViewBag.SummaryReportsList != null)
@@ -872,83 +888,195 @@
                                     <td class="tblData">@latestSummary.ReworkCostA</td>
                                     <td class="tblData">@latestSummary.KaizensA</td>
                                 </tr>
+                                if (lineName == "Gaging")
+                                {
+                                    <tr>
+                                        <td class="tblData"></td>
+                                        <td class="tblData">
+                                            @if (latestSummary.InternalAccT <= latestSummary.InternalAccA)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
 
-                                <tr>
-                                    <td class="tblData"></td>
-                                    <td class="tblData">
-                                        @if (latestSummary.InternalAccT <= latestSummary.InternalAccA)
-                                        {
-                                            <img src="~/Content/Images/greenemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Content/Images/redemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
-                                        }
-                                    </td>
-                                    <td class="tblData">
+                                            @if (latestSummary.CustomerCompT <= latestSummary.CustomerCompA)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.sampleAuditFindT <= latestSummary.sampleAuditFindA)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.DSAA >= 97)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else if (95 < latestSummary.DSAA && latestSummary.DSAA < 97)
+                                            {
+                                                <img src="~/Content/Images/yellowemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.ProductionProcessTimeA <= 1.3m)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else if (latestSummary.ProductionProcessTimeA > 1.3m && latestSummary.ProductionProcessTimeA < 1.5m)
+                                            {
+                                                <img src="~/Content/Images/yellowemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.ReworkCostA <= 29430)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else if (latestSummary.ReworkCostA > 29430 && latestSummary.ReworkCostA < 35000)
+                                            {
+                                                <img src="~/Content/Images/yellowemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.KaizensA >= 30)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else if (latestSummary.KaizensA >= 21 && latestSummary.KaizensA <= 29)
+                                            {
+                                                <img src="~/Content/Images/yellowemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
 
-                                        @if (latestSummary.CustomerCompT <= latestSummary.CustomerCompA)
-                                        {
-                                            <img src="~/Content/Images/greenemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Content/Images/redemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
-                                        }
-                                    </td>
-                                    <td class="tblData">
-                                        @if (latestSummary.sampleAuditFindT <= latestSummary.sampleAuditFindA)
-                                        {
-                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                    </td>
-                                    <td class="tblData">
-                                        @if (latestSummary.DSAT <= latestSummary.DSAA)
-                                        {
-                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                    </td>
-                                    <td class="tblData">
-                                        @if (latestSummary.ProductionProcessTimeT <= latestSummary.ProductionProcessTimeA)
-                                        {
-                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                    </td>
-                                    <td class="tblData">
-                                        @if (latestSummary.ReworkCostT <= latestSummary.ReworkCostA)
-                                        {
-                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                    </td>
-                                    <td class="tblData">
-                                        @if (latestSummary.KaizensT <= latestSummary.KaizensA)
-                                        {
-                                            <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
-                                        }
-                                    </td>
-                                </tr>
+                                            }
+                                        </td>
+                                    </tr>
 
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td class="tblData"></td>
+                                        <td class="tblData">
+                                            @if (latestSummary.InternalAccT <= latestSummary.InternalAccA)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="InternalAcc" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
 
+                                            @if (latestSummary.CustomerCompT <= latestSummary.CustomerCompA)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="CustomerComp" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.sampleAuditFindT <= latestSummary.sampleAuditFindA)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.DSAA >= 97)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else if (95 < latestSummary.DSAA && latestSummary.DSAA < 97)
+                                            {
+                                                <img src="~/Content/Images/yellowemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.ProductionProcessTimeA <= 14)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else if (latestSummary.ProductionProcessTimeA > 14 && latestSummary.ProductionProcessTimeA < 17)
+                                            {
+                                                <img src="~/Content/Images/yellowemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.ReworkCostA >= 0.361m)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else if (latestSummary.ReworkCostA > 0.299m && latestSummary.ReworkCostA < 0.360m)
+                                            {
+                                                <img src="~/Content/Images/yellowemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                        </td>
+                                        <td class="tblData">
+                                            @if (latestSummary.KaizensA >= 30)
+                                            {
+                                                <img src="~/Content/Images/greenemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else if (latestSummary.KaizensA >= 21 && latestSummary.KaizensA <= 29)
+                                            {
+                                                <img src="~/Content/Images/yellowemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/Images/redemoji.png" alt="AuditFind" style="width: 30px; height: 30px;" />
+
+                                            }
+                                        </td>
+                                    </tr>
+                                }
                             }
                             else
                             {

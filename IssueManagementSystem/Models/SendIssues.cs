@@ -103,7 +103,7 @@ namespace IssueManagementSystem.Models
                                             commentedDate = reader["commented_date"] != DBNull.Value ? reader["commented_date"].ToString() : "",
                                             solved_emp_id = reader["solved_emp_id"] != DBNull.Value ? (int?)reader["solved_emp_id"] : null,
                                             department = reader["department"] != DBNull.Value ? (string)reader["department"] : "",
-                                            //responciblepersonName = reader["enpId"] != DBNull.Value ? (string)reader["enpId"] : "",
+                                           // responciblepersonName = reader["enpId"] != DBNull.Value ? (string)reader["enpId"] : "",
                                             responciblepersonName = userInfo?.Name ?? "",
                                             lineName = lineinfo?.line_name ?? "",
                                             buzzer_off_by = reader["buzzer_off_by"] != DBNull.Value ? (int?)reader["buzzer_off_by"] : null,

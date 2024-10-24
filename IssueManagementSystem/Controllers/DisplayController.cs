@@ -71,6 +71,28 @@ namespace IssueManagementSystem.Controllers
             }
         }
 
+     /*   public ActionResult respPerson()
+        {
+            using (var db = new issue_management_systemEntities1())
+            {
+                var issueOccurrences = from issue in db.issue_occurrence
+                                       join user in db.User_tbl
+                                       on issue.responsible_person_emp_id equals user.EmployeeNumber
+                                       select new
+                                       {
+                                          
+                                           EmployeeName = user.Name // Assuming ResponsiblePersonName holds the employee's name
+                                       };
+
+                // Return the data as JSON for an AJAX call, or change it to View() if returning to a view.
+                return Json(issueOccurrences.ToList(), JsonRequestBehavior.AllowGet);
+            }
+        }*/
+
+
+
+
+
         public ActionResult Rasp(int id)
 {
     using (var db = new issue_management_systemEntities1())
@@ -95,7 +117,7 @@ namespace IssueManagementSystem.Controllers
        
 
         ViewBag.id = id;
-                MonthlySum(id);
+        MonthlySum(id);
         return View();
     }
 }
