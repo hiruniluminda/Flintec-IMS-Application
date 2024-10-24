@@ -8,8 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-using QRCoder;
-using System.Drawing;
+
 
 namespace IssueManagementSystem.Controllers
 {
@@ -77,56 +76,56 @@ namespace IssueManagementSystem.Controllers
             }
         }
 
-     /*   public ActionResult respPerson()
-        {
-            using (var db = new issue_management_systemEntities1())
-            {
-                var issueOccurrences = from issue in db.issue_occurrence
-                                       join user in db.User_tbl
-                                       on issue.responsible_person_emp_id equals user.EmployeeNumber
-                                       select new
-                                       {
-                                          
-                                           EmployeeName = user.Name // Assuming ResponsiblePersonName holds the employee's name
-                                       };
+        /*   public ActionResult respPerson()
+           {
+               using (var db = new issue_management_systemEntities1())
+               {
+                   var issueOccurrences = from issue in db.issue_occurrence
+                                          join user in db.User_tbl
+                                          on issue.responsible_person_emp_id equals user.EmployeeNumber
+                                          select new
+                                          {
 
-                // Return the data as JSON for an AJAX call, or change it to View() if returning to a view.
-                return Json(issueOccurrences.ToList(), JsonRequestBehavior.AllowGet);
-            }
-        }*/
+                                              EmployeeName = user.Name // Assuming ResponsiblePersonName holds the employee's name
+                                          };
+
+                   // Return the data as JSON for an AJAX call, or change it to View() if returning to a view.
+                   return Json(issueOccurrences.ToList(), JsonRequestBehavior.AllowGet);
+               }
+           }*/
 
 
 
 
 
         public ActionResult Rasp(int id)
-{
-    using (var db = new issue_management_systemEntities1())
-    {
-        // Retrieve issue counts for a specific line ID
-        var lineCounts = new
         {
-            BrakedownCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 1 && x.issue_satus == "1"),
-            ITIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 5 && x.issue_satus == "1"),
-            TechnicalIssue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 3 && x.issue_satus == "1"),
-            MaterialDelayCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 2 && x.issue_satus == "1"),
-            QualityIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 4 && x.issue_satus == "1")
-        };
+            using (var db = new issue_management_systemEntities1())
+            {
+                // Retrieve issue counts for a specific line ID
+                var lineCounts = new
+                {
+                    BrakedownCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 1 && x.issue_satus == "1"),
+                    ITIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 5 && x.issue_satus == "1"),
+                    TechnicalIssue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 3 && x.issue_satus == "1"),
+                    MaterialDelayCount = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 2 && x.issue_satus == "1"),
+                    QualityIsuue = db.issue_occurrence.Count(x => x.line_line_id == id && x.issue_issue_ID == 4 && x.issue_satus == "1")
+                };
 
 
-        ViewBag.BrakedownCount = lineCounts.BrakedownCount;
-        ViewBag.ITIsuue = lineCounts.ITIsuue;
-        ViewBag.TechnicalIssue = lineCounts.TechnicalIssue;
-        ViewBag.MaterialDelayCount = lineCounts.MaterialDelayCount;
-        ViewBag.QualityIsuue = lineCounts.QualityIsuue;
+                ViewBag.BrakedownCount = lineCounts.BrakedownCount;
+                ViewBag.ITIsuue = lineCounts.ITIsuue;
+                ViewBag.TechnicalIssue = lineCounts.TechnicalIssue;
+                ViewBag.MaterialDelayCount = lineCounts.MaterialDelayCount;
+                ViewBag.QualityIsuue = lineCounts.QualityIsuue;
 
-       
 
-        ViewBag.id = id;
-        MonthlySum(id);
-        return View();
-    }
-}
+
+                ViewBag.id = id;
+                MonthlySum(id);
+                return View();
+            }
+        }
 
 
         public JsonResult FilterSelectBoxes()
@@ -189,28 +188,6 @@ namespace IssueManagementSystem.Controllers
              return View(otherModel);
          }*/
 
-        public ActionResult GenerateQRCode()
-        {
-            string url = Url.Action("qrIssues", "DisplayController", null, Request.Url.Scheme); // Generate URL
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
-            QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(20);
-
-            using (var stream = new MemoryStream())
-            {
-                qrCodeImage.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                byte[] imageBytes = stream.ToArray();
-                return File(imageBytes, "image/png");
-            }
-        }
-
-        public ActionResult qrIssues()
-        {
-            return View();
-        }
-
-
         [HttpPost]
         public JsonResult updateScreen()
         {
@@ -252,9 +229,6 @@ namespace IssueManagementSystem.Controllers
             }
         }
 
-        
-
-
-
+    }
 }
-}
+
