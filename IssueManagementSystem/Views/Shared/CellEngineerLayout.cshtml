@@ -362,7 +362,7 @@
         function deleteFunction(div)
         {
             var data = { Issueoccour_Id: $(this).data('issue-occorid'), Issue_Id: $(this).data('issueid') };
-            var url = '@Url.Action("hideNotification", "Manager")?notificationId=' + div.id ;
+            var url = '@Url.Action("hideNotification", "Manager")?notificationId=' + div.id;
             $.post(url)
         }
               var Empid=@Session["userID"]

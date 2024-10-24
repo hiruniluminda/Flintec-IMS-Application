@@ -28,7 +28,7 @@
 <div>
     <div style="display: flex; flex-direction: column; align-items: center; padding: 10px; margin-bottom: 10px;">
 
-        
+
         <div class="col-lg-8" style="display: flex;">
             <label for="dropdown1">Line</label>
             <select class="js-example-placeholder-single js-states" id="selectline" name="selectline">
@@ -41,7 +41,7 @@
             </select>
         </div>
 
-        <div class="col-lg-8" style="display: flex;">
+        @*<div class="col-lg-8" style="display: flex;">
             <label for="dropdown1">Issue Type</label>
             <select class="js-example-placeholder-single js-states" id="selectIssue" name="selectIssue">
                 @foreach (var item in ViewBag.issueList)
@@ -51,9 +51,33 @@
 
 
             </select>
-        </div>
+        </div>*@
     </div>
 
+    <div id="issueTable">
+        <!-- The filtered issues table will be loaded here -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#selectline').change(function () {
+            var lineId = $(this).val(); // Get the selected line ID
+
+            $.ajax({
+                url: '@Url.Action("QRView", "QRView")',  // Update with your controller/action
+                type: 'GET',  // Could be 'POST' as well depending on your setup
+                data: { lineId: lineId },
+                success: function (result) {
+                    // Replace the content inside the issueTable div with the filtered result
+                    $('#issueTable').html(result);
+                },
+                error: function () {
+                    alert("An error occurred while fetching the data.");
+                }
+            });
+        });
+    });
+    </script>
 
     <div class="text-center" style="margin-top:20%" id="loding_icon">
         <img src="~/Content/images/loding.svg">

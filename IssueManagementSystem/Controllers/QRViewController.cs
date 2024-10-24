@@ -1,6 +1,7 @@
 ﻿using IssueManagementSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,6 +21,17 @@ namespace IssueManagementSystem.Controllers
             return View();
         }
 
+        public ActionResult FilterIssuesByLine(int lineId)
+        {
+            using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
+            {
+                // Fetch the filtered issues based on lineId from the database or data source
+                var filteredIssues = db.issue_occurrence.Where(x => x.line_line_id == lineId && x.issue_satus == "1").ToList();
+
+                // Return a partial view with the filtered issues table or the data
+                return PartialView("_FilteredIssuesTable", filteredIssues);
+            }
+        }
 
         public ActionResult QRView(int id)
         {
@@ -28,7 +40,7 @@ namespace IssueManagementSystem.Controllers
 
 
                 ViewBag.id = id;
-                ViewBag.issueoccourInfo = db.issue_occurrence.Where(x => x.line_line_id == id  && x.issue_satus == "1" && x.issue_issue_ID == id).Count();
+                ViewBag.issueoccourInfo = db.issue_occurrence.Where(x => x.line_line_id == id  && x.issue_satus == "1").Count();
                 //if (ViewBag.issueoccourInfo == 0 && id==3)
                 //{
                 //    return Redirect("http://192.168.1.30:84/Report/GagingD1/"+id);
@@ -47,18 +59,6 @@ namespace IssueManagementSystem.Controllers
             }
 
 
-        }
-
-        public ActionResult GetFilteredIssues(int lineId, int issueId)
-        {
-            using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
-            {
-                var filteredIssues = db.issue_occurrence
-                    .Where(x => x.line_line_id == lineId && x.issue_issue_ID == issueId && x.issue_satus == "1")
-                    .ToList();
-
-                return Json(filteredIssues, JsonRequestBehavior.AllowGet);
-            }
         }
 
 
