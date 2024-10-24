@@ -207,6 +207,7 @@
     <Compile Include="Controllers\LocationAdapter.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\MonthlySummaryVDController.cs" />
+    <Compile Include="Controllers\QRViewController.cs" />
     <Compile Include="Controllers\ResponsiblePersonController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -417,6 +418,8 @@
     <Content Include="Content\images\redemoji.png" />
     <Content Include="Content\images\responsibleptest.png" />
     <Content Include="Content\images\yellowemoji.png" />
+    <Content Include="Content\QRDisplayStyles\QRDisplayStyles.css" />
+    <Content Include="Content\QRDisplayStyles\QRStyles.css" />
     <Content Include="Models\IssueManagementSystem.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IssueManagementSystem.edmx</DependentUpon>
@@ -789,7 +792,7 @@
     <Content Include="Views\Display\accessoriesHeatTreatment.cshtml" />
     <Content Include="Views\CellEngineer\Kaizen.cshtml" />
     <Content Include="Views\MonthlySummaryVD\MonthlySumVD.cshtml" />
-    <Content Include="Views\Display\QR\qrIssues.cshtml" />
+    <Content Include="Views\QRView\QRView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
