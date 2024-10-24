@@ -137,7 +137,8 @@
                 </div>
                 <div class="header__logo col-7" style="margin-left:0px;">
                     <a href="">
-                        <img style="" src="~/Content/images/qrtest.png" alt="CoolAdmin" />
+                        <img src="@Url.Action("GenerateQRCode", "DisplayController")" alt="QR Code" />
+
                     </a>
                 </div>
 
@@ -448,11 +449,13 @@
                                     newCard.find('#material_description').text(issuedata[i].description);
                                     newCard.find('#material_responsible').text(issuedata[i].responciblepersonName);
                                     newCard.find('#material_status').text(confirmStatus);
-                                    newCard.find('#material_since').html('<span id="countdown' + count + '" class="timer"></span>');
+                                    var countdownId = 'countdown' + count;  // Create a unique ID
+                                    newCard.find('#material_since').html('<span id="' + countdownId + '" class="timer"></span>');
 
                                     $('#maririal_list').append(newCard);
                                     startSlideshow('#maririal_list');
-
+                                    setTimmer(seconds, count);
+   
                                     $('#loding_icon').hide();
                                 }
                                 if (issueid == 3) { // Technical Issue
@@ -468,7 +471,13 @@
                                     newCard.find('#technical_description').text(issuedata[i].description);
                                     newCard.find('#technical_responsible').text(issuedata[i].responciblepersonName);
                                     newCard.find('#technical_status').text(confirmStatus);
-                                    newCard.find('#technical_since').html('<span id="countdown' + count + '" class="timer"></span>');
+                                    var countdownSpan = $('<span></span>'); // Create an empty span
+                                    countdownSpan.attr('id', 'countdown' + count); // Set a unique ID for the timer
+                                    countdownSpan.addClass('timer'); // Add class 'timer' if needed
+                                    doesnt 
+                                    // Append the countdownSpan to the correct element
+                                    newCard.find('#technical_since').append(countdownSpan);
+
 
                                     // Append the newly created card to the list or parent container
                                     $('#tecnical_list').append(newCard);

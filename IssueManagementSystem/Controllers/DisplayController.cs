@@ -1,9 +1,15 @@
 ﻿using IssueManagementSystem.Models;
+using Microsoft.AspNet.SignalR;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using QRCoder;
+using System.Drawing;
 
 namespace IssueManagementSystem.Controllers
 {
@@ -144,22 +150,43 @@ namespace IssueManagementSystem.Controllers
             return View();
         }
 
-       /* public ActionResult Rasp()
+        /* public ActionResult Rasp()
+         {
+             // Query to get the target and actual data from the MonthlySummaryVD table
+             using (var db = new FLINTEC_dbContext())
+             {
+                 // Assuming you're getting a single row of data for the view (you can adjust as needed)
+                 var monthlySummary = db.MonthlySummaryVD.FirstOrDefault(); // Or query specific data
+
+                 // Pass data using ViewBag
+                 ViewBag.MonthlySummary = monthlySummary;
+             }
+
+             // Pass the other model you're already using (if needed)
+             var otherModel = new List<IssueManagementSystem.Models.issue_occurrence>(); // Example, adjust as per your logic
+             return View(otherModel);
+         }*/
+
+        public ActionResult GenerateQRCode()
         {
-            // Query to get the target and actual data from the MonthlySummaryVD table
-            using (var db = new FLINTEC_dbContext())
+            string url = Url.Action("qrIssues", "DisplayController", null, Request.Url.Scheme); // Generate URL
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+
+            using (var stream = new MemoryStream())
             {
-                // Assuming you're getting a single row of data for the view (you can adjust as needed)
-                var monthlySummary = db.MonthlySummaryVD.FirstOrDefault(); // Or query specific data
-
-                // Pass data using ViewBag
-                ViewBag.MonthlySummary = monthlySummary;
+                qrCodeImage.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                byte[] imageBytes = stream.ToArray();
+                return File(imageBytes, "image/png");
             }
+        }
 
-            // Pass the other model you're already using (if needed)
-            var otherModel = new List<IssueManagementSystem.Models.issue_occurrence>(); // Example, adjust as per your logic
-            return View(otherModel);
-        }*/
+        public ActionResult qrIssues()
+        {
+            return View();
+        }
 
 
         [HttpPost]
@@ -202,5 +229,10 @@ namespace IssueManagementSystem.Controllers
                 return Json(new { success = false, message = "An error occurred while fetching machine list." });
             }
         }
-    }
+
+        
+
+
+
+}
 }
