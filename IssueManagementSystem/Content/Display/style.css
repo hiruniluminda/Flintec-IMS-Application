@@ -59,7 +59,121 @@ body {
         width: 30px;*/ /* Set image width */
         /*height: 30px;*/ /* Set image height */
     /*}*/
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+    min-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
 
+    .custom-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .custom-table th, .custom-table td {
+        padding: 12px 15px;
+        border: 1px solid #dddddd;
+    }
+
+    .custom-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+        .custom-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .custom-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+    .custom-table .status-cell {
+        text-align: center;
+    }
+
+    .custom-table .status-label {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        color: #fff;
+    }
+
+        .custom-table .status-label.Pending {
+            background-color: #f39c12; /* Orange */
+        }
+
+        .custom-table .status-label.Done {
+            background-color: #27ae60; /* Green */
+        }
+
+.issue-category {
+    background-color: #eeeeee;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9em;
+    color: #333333;
+}
+
+/* Center the dropdown container */
+.dropdown-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+    /* Label styling */
+    .dropdown-container label {
+        font-size: 16px;
+        font-weight: 600;
+        margin-right: 10px;
+        color: #333;
+    }
+
+    /* Styling for the select dropdown */
+    .dropdown-container select {
+        width: 200px;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        outline: none;
+        background-color: #f9f9f9;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease-in-out;
+    }
+
+        /* Change border color when the dropdown is focused */
+        .dropdown-container select:focus {
+            border-color: #007bff;
+            background-color: #fff;
+        }
+
+        /* Add hover effect to the select dropdown */
+        .dropdown-container select:hover {
+            border-color: #007bff;
+        }
+
+        /* Optional: Add a subtle focus glow effect */
+        .dropdown-container select:focus-visible {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+/* Adjust the style for mobile responsiveness */
+@media (max-width: 768px) {
+    .dropdown-container select {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .dropdown-container label {
+        font-size: 18px;
+    }
+}
 
 
 /* Top Banner */

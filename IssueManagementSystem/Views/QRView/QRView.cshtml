@@ -8,16 +8,17 @@
 <link href="~/Content/Display/QRStyles.css" rel="stylesheet" />
 <script src="~/Scripts/jquery.min.js"></script>
 
-<div style="text-align: center; margin-bottom: 20px;">
+<div class="dropdown-container">
     <!-- Line dropdown -->
     <label for="selectline">Select Line:</label>
-    <select id="selectline" class="form-control" style="width: 200px; display: inline;">
+    <select id="selectline" class="form-control">
         @foreach (var item in ViewBag.lineList)
         {
             <option value="@item.line_id" @(item.line_id == ViewBag.id ? "selected" : "")>@item.line_name</option>
         }
     </select>
 </div>
+
 
 <!-- Placeholder for the issue table -->
 <div id="issueTable">
