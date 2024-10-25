@@ -1,0 +1,27 @@
+﻿
+@model List<IssueManagementSystem.Models.issue_occurrence>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Machine</th>
+            <th>Description</th>
+            <th>Responsible Person</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var issue in Model)
+        {
+            <tr>
+                <td>@issue.issue_date</td>
+                <td>@issue.machine_machine_id</td>
+                <td>@issue.description</td>
+                <td>@issue.responciblepersonName</td>
+                <td>@(issue.issue_satus == "1" ? "Open" : "Closed")</td>
+            </tr>
+        }
+    </tbody>
+</table>

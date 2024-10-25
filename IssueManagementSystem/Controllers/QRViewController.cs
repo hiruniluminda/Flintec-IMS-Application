@@ -11,58 +11,45 @@ namespace IssueManagementSystem.Controllers
 {
     public class QRViewController : Controller
     {
+        private const int DefaultLineId = 1; // Default line ID
 
-        public static int lineId;
-
-        // GET: QRIssueDisplay
-        public ActionResult slect()
-        {
-            
-            return View();
-        }
-
-        public ActionResult FilterIssuesByLine(int lineId)
+        public ActionResult QRView(int? id = null) // Main view action
         {
             using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
             {
-                // Fetch the filtered issues based on lineId from the database or data source
-                var filteredIssues = db.issue_occurrence.Where(x => x.line_line_id == lineId && x.issue_satus == "1").ToList();
-
-                // Return a partial view with the filtered issues table or the data
-                return PartialView("_FilteredIssuesTable", filteredIssues);
-            }
-        }
-
-        public ActionResult QRView(int id)
-        {
-            using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
-            {
-
+                if (id == null) id = DefaultLineId; // Set default line ID
 
                 ViewBag.id = id;
-                ViewBag.issueoccourInfo = db.issue_occurrence.Where(x => x.line_line_id == id  && x.issue_satus == "1").Count();
-                //if (ViewBag.issueoccourInfo == 0 && id==3)
-                //{
-                //    return Redirect("http://192.168.1.30:84/Report/GagingD1/"+id);
-                //}
-                //else 
-                
-
-                List<line> lineList = db.lines.ToList();
+                List<line> lineList = db.lines.ToList(); // Load lines for the dropdown
                 ViewBag.lineList = lineList;
 
-                List<issue> issueList = db.issues.ToList();
-                ViewBag.issueList = issueList;
+                var issueList = db.issue_occurrence
+                    .Where(x => x.line_line_id == id && x.issue_satus == "1")
+                    .ToList(); // Load issues for the default line
+                List<User_tbl> Name = db.User_tbl.ToList();
+                ViewBag.empName = Name;
 
-                return View();
-
+                return View(issueList); // Pass issue list to the view
             }
-
-
         }
 
+        public ActionResult GetIssuesByLine(int lineId) // AJAX action to get issues based on line ID
+        {
+            using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
+            {
+                var issues = db.issue_occurrence
+                    .Where(x => x.line_line_id == lineId && x.issue_satus == "1")
+                    .ToList();
 
-        public ActionResult Stores(string location)
+                return PartialView("_IssueTable", issues); // Return a partial view for the issues table
+            }
+        }
+    
+
+
+
+
+    public ActionResult Stores(string location)
         {
             ViewBag.location = location;
             return View();

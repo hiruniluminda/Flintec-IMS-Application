@@ -793,6 +793,7 @@
     <Content Include="Views\CellEngineer\Kaizen.cshtml" />
     <Content Include="Views\MonthlySummaryVD\MonthlySumVD.cshtml" />
     <Content Include="Views\QRView\QRView.cshtml" />
+    <Content Include="Views\QRView\_IssueTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
