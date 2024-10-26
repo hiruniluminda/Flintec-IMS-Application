@@ -176,8 +176,8 @@
                                                 <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
                                                     <strong>Responsible Person:</strong>
                                                 </div>
-                                                <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px; width: 30px;">
-                                                    <img class="respimg" src="~/Content/images/responsibleptest.png" />
+                                                <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px;">
+                                                    <img class="respimg" style="width:30px" src="~/Content/images/responsibleptest.png" />
                                                     <span id="break_responsible"></span>
                                                 </div>
                                             </div>
@@ -213,9 +213,9 @@
                                             <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
                                                 <strong>Responsible Person:</strong>
                                             </div>
-                                            <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px; width: 30px;">
-                                                <img class="respimg" src="~/Content/images/responsibleptest.png" />
-                                                <span id="break_responsible"></span>
+                                            <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px;">
+                                                <img class="respimg" style="width: 30px;" src="~/Content/images/responsibleptest.png" />
+                                                <span id="material_responsible"></span>
                                             </div>
                                             <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; ">
                                                 <span class="badge" style="background-color: #ff8300; " id="material_status">Status</span>
@@ -246,9 +246,9 @@
                                             <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
                                                 <strong>Responsible Person:</strong>
                                             </div>
-                                            <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px; width: 30px;">
-                                                <img class="respimg" src="~/Content/images/responsibleptest.png" />
-                                                <span id="break_responsible"></span>
+                                            <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px;">
+                                                <img class="respimg" style="width: 30px;" src="~/Content/images/responsibleptest.png" />
+                                                <span id="technical_responsible"></span>
                                             </div>
                                             <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px;">
                                                 <span class="badge" style="background-color: #00b26f;" id="technical_status">Status</span>
@@ -279,9 +279,9 @@
                                             <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
                                                 <strong>Responsible Person:</strong>
                                             </div>
-                                            <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px; width: 30px;">
-                                                <img class="respimg" src="~/Content/images/responsibleptest.png" />
-                                                <span id="break_responsible"></span>
+                                            <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color:white; margin-top:50px;">
+                                                <img class="respimg" style="width: 30px;" src="~/Content/images/responsibleptest.png" />
+                                                <span id="it_responsible"></span>
                                             </div>
                                             <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px;">
                                                 <span class="badge" style="background-color: #00b5e9 " id="it_status">Status</span>
@@ -584,7 +584,7 @@
             {
                for(var j=0;j<i;j++)
                 {
-                  console.log(seconds[0])
+                  console.log(seconds[0]+"hello test")
                 var days        = Math.floor(seconds[j]/24/60/60);
                 var hoursLeft   = Math.floor((seconds[j]) - (days*86400));
                 var hours       = Math.floor(hoursLeft/3600);
@@ -693,7 +693,7 @@
     </div>
 
     <div class="slide card-dtls" style="background-color: #eeedeb;">
-        <div class="monthlyRep m-t-50 m-l-30" style="width:60%;">
+        <div class="monthlyRep m-t-50 m-l-250" style="width:60%;">
            
             <table class="table table-bordered">
                 <thead>
