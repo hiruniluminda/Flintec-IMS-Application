@@ -39,4 +39,12 @@
     color: white;
 }
 
+.sticky-footer {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
+    .sticky-footer.hidden {
+        opacity: 0;
+        transform: translateY(100%);
+        pointer-events: none; /* Disable interaction when hidden */
+    }
