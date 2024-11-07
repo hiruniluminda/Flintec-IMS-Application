@@ -11,13 +11,11 @@ namespace IssueManagementSystem.Controllers
 {
     public class QRViewController : Controller
     {
-        private const int DefaultLineId = 1; // Default line ID
 
-        public ActionResult QRView(int? id = null) // Main view action
+        public ActionResult QRView(int id) // Main view action
         {
             using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
             {
-                if (id == null) id = DefaultLineId; // Set default line ID
 
                 ViewBag.id = id;
                 List<line> lineList = db.lines.ToList(); // Load lines for the dropdown
