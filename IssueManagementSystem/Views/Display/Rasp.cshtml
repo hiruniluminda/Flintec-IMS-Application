@@ -377,6 +377,13 @@
                                 var commentedTime = issuedata[i].commentedDate.split(' ')[1];
                                 var responsible_person_confirm_status = issuedata[i].responsible_person_confirm_status;
                                 var confirmStatus = responsible_person_confirm_status == 1 ? "Pending" : "Commented on " + commentedDate + " " + commentedTime;
+                                // Calculate daysSinceOccurred in C#
+                                // Calculate daysSinceOccurred in C#
+                                // Parse issueDate and calculate days since it occurred
+                                var issueDate = new Date(issuedata[i].issueDate);
+                                var today = new Date();
+                                var daysSinceOccurred = Math.floor((today - issueDate) / (1000 * 60 * 60 * 24));
+                               
                                 if (issueid == 1) { // Machine Breakdown
                                     categoriesDisplayed++;
                                     $('#brakediv').show(); // Ensure the base template is visible
@@ -390,7 +397,11 @@
                                     newCard.find('#break_description').text(issuedata[i].description);
                                     newCard.find('#break_responsible').text(issuedata[i].responciblepersonName);
                                     newCard.find('#break_status').text(confirmStatus);
-                                    newCard.find('#break_since').html('<span id="countdown' + count + '" class="timer"></span>');
+
+                                    // Pass it to the HTML string in JavaScript
+                                    newCard.find('#break_since').html('<td>' + (isNaN(daysSinceOccurred) ? "N/A" : daysSinceOccurred + " days") + '</td>');
+
+
                                     // Append the newly created card to the list or parent container
                                     $('#brake_list').append(newCard);
                                     startSlideshow('#brake_list');
@@ -410,7 +421,8 @@
                                     newCard.find('#material_description').text(issuedata[i].description);
                                     newCard.find('#material_responsible').text(issuedata[i].responciblepersonName);
                                     newCard.find('#material_status').text(confirmStatus);
-                                    newCard.find('#material_since').html('<span id="countdown' + count + '" class="timer"></span>');
+                                    newCard.find('#material_since').html('<td>' + (isNaN(daysSinceOccurred) ? "N/A" : daysSinceOccurred + " days") + '</td>');
+
                                     $('#maririal_list').append(newCard);
                                     startSlideshow('#maririal_list');
                                     $('#loding_icon').hide();
@@ -427,7 +439,8 @@
                                     newCard.find('#technical_description').text(issuedata[i].description);
                                     newCard.find('#technical_responsible').text(issuedata[i].responciblepersonName);
                                     newCard.find('#technical_status').text(confirmStatus);
-                                    newCard.find('#technical_since').html('<span id="countdown' + count + '" class="timer"></span>');
+                                    newCard.find('#technical_since').html('<td>' + (isNaN(daysSinceOccurred) ? "N/A" : daysSinceOccurred + " days") + '</td>');
+
                                     // Append the newly created card to the list or parent container
                                     $('#tecnical_list').append(newCard);
                                     startSlideshow('#tecnical_list');
@@ -446,7 +459,8 @@
                                     newCard.find('#quality_description').text(issuedata[i].description);
                                     newCard.find('#quality_responsible').text(issuedata[i].responciblepersonName);
                                     newCard.find('#quality_status').text(confirmStatus);
-                                    newCard.find('#quality_since').html('<span id="countdown' + count + '" class="timer"></span>');
+                                    newCard.find('#quality_since').html('<td>' + (isNaN(daysSinceOccurred) ? "N/A" : daysSinceOccurred + " days") + '</td>');
+
                                     $('#qty_list').append(newCard);
                                     $('#loding_icon').hide();
                                 }
@@ -463,7 +477,8 @@
                                     newCard.find('#it_description').text(issuedata[i].description);
                                     newCard.find('#it_responsible').text(issuedata[i].responciblepersonName);
                                     newCard.find('#it_status').text(confirmStatus);
-                                    newCard.find('#it_since').html('<span id="countdown' + count + '" class="timer"></span>');
+                                    newCard.find('#it_since').html('<td>' + (isNaN(daysSinceOccurred) ? "N/A" : daysSinceOccurred + " days") + '</td>');
+
                                     $('#IT_list').append(newCard);
                                     startSlideshow('#IT_list');
                                     $('#loding_icon').hide();
