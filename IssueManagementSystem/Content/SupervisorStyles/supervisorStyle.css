@@ -23,6 +23,38 @@
 body{
   background-color:#fff;
 }
+
+#scroll-down-indicator {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 16px;
+    color: #333; /* Adjust color as needed */
+    opacity: 0.8;
+    animation: bounce 1.5s infinite;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+    #scroll-down-indicator .pointer {
+        font-size: 24px;
+        display: block;
+    }
+
+/* Animation for the pointer */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
 .text-holder{
   color:#aaaaaa;
   text-align:center;
