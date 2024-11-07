@@ -77,6 +77,11 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.6.0.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.6.0\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="Quartz, Version=2.2.4.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
     </Reference>
@@ -158,6 +163,13 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="zxing, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net48\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net48\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Diagnostics.DiagnosticSource">
@@ -201,6 +213,7 @@
     <Compile Include="Controllers\LocationAdapter.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\MonthlySummaryVDController.cs" />
+    <Compile Include="Controllers\QRViewController.cs" />
     <Compile Include="Controllers\ResponsiblePersonController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -220,6 +233,14 @@
     <Compile Include="Migrations\202410220647127_InitialCreate2.cs" />
     <Compile Include="Migrations\202410220647127_InitialCreate2.Designer.cs">
       <DependentUpon>202410220647127_InitialCreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410230359082_InitialCreate3.cs" />
+    <Compile Include="Migrations\202410230359082_InitialCreate3.Designer.cs">
+      <DependentUpon>202410230359082_InitialCreate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410230530325_InitialCreate4.cs" />
+    <Compile Include="Migrations\202410230530325_InitialCreate4.Designer.cs">
+      <DependentUpon>202410230530325_InitialCreate4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BreakeDownListener.cs" />
@@ -396,10 +417,16 @@
     <Content Include="Content\Display\css\bootstrap.min.css" />
     <Content Include="Content\flipclock.css" />
     <Content Include="Content\images\error.png" />
+    <Content Include="Content\images\flintecblacklogo.jpeg" />
+    <Content Include="Content\images\greenemoji.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\pexels-clarissa-schwarz-8941369.jpg" />
     <Content Include="Content\images\qrtest.png" />
+    <Content Include="Content\images\redemoji.png" />
     <Content Include="Content\images\responsibleptest.png" />
+    <Content Include="Content\images\yellowemoji.png" />
+    <Content Include="Content\QRDisplayStyles\QRDisplayStyles.css" />
+    <Content Include="Content\QRDisplayStyles\QRStyles.css" />
     <Content Include="Models\IssueManagementSystem.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IssueManagementSystem.edmx</DependentUpon>
@@ -772,6 +799,8 @@
     <Content Include="Views\Display\accessoriesHeatTreatment.cshtml" />
     <Content Include="Views\CellEngineer\Kaizen.cshtml" />
     <Content Include="Views\MonthlySummaryVD\MonthlySumVD.cshtml" />
+    <Content Include="Views\QRView\QRView.cshtml" />
+    <Content Include="Views\QRView\_IssueTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -798,6 +827,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410220647127_InitialCreate2.resx">
       <DependentUpon>202410220647127_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410230359082_InitialCreate3.resx">
+      <DependentUpon>202410230359082_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410230530325_InitialCreate4.resx">
+      <DependentUpon>202410230530325_InitialCreate4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

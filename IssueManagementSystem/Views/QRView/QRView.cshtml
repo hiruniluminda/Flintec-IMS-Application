@@ -1,0 +1,48 @@
+﻿@model List<IssueManagementSystem.Models.issue_occurrence>
+
+@{
+    ViewBag.Title = "QR View";
+}
+
+<!-- Include necessary CSS and JS files -->
+<link href="~/Content/Display/QRStyles.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+
+<div class="dropdown-container">
+    <!-- Line dropdown -->
+    <label for="selectline">Select Line:</label>
+    <select id="selectline" class="form-control">
+        @foreach (var item in ViewBag.lineList)
+        {
+            <option value="@item.line_id" @(item.line_id == ViewBag.id ? "selected" : "")>@item.line_name</option>
+        }
+    </select>
+</div>
+
+
+<!-- Placeholder for the issue table -->
+<div id="issueTable">
+    @Html.Partial("_IssueTable", Model)
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Trigger AJAX when the line dropdown changes
+        $('#selectline').change(function () {
+            var selectedLineId = $(this).val(); // Get the selected line ID
+
+            $.ajax({
+                url: '@Url.Action("GetIssuesByLine", "QRView")', // AJAX action
+                type: 'GET',
+                data: { lineId: selectedLineId }, // Pass the selected line ID
+                success: function (result) {
+                    // Replace the issueTable div content with the new issues table
+                    $('#issueTable').html(result);
+                },
+                error: function () {
+                    alert("An error occurred while fetching the data.");
+                }
+            });
+        });
+    });
+</script>

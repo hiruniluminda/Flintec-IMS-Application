@@ -4846,7 +4846,7 @@ section {
 
 .au-breadcrumb2 {
     padding-top: 20px;
-    padding-bottom: 20px;
+    
 }
 
     .au-breadcrumb2 .au-breadcrumb-span {
@@ -4997,7 +4997,7 @@ section {
 .statistic__item .icon {
     display: inline-block;
     position: absolute;
-    bottom: -50px;
+    bottom: -20px;
     right: -7px;
 }
 

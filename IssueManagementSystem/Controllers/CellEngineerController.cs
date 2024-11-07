@@ -26,7 +26,11 @@ namespace IssueManagementSystem.Controllers
 
         public ActionResult DashBord(int lineid)
         {
+            issue_management_systemEntities1 db = new issue_management_systemEntities1();
+
             ViewBag.lineId = lineid;
+            List<line> lineList = db.lines.ToList();
+            ViewBag.lineList = lineList;
             return View();
         }
         public ActionResult MachinBreakdown(int lineid)//Machine Breakedown view

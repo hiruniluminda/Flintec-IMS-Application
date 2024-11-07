@@ -1,0 +1,90 @@
+﻿@model List<IssueManagementSystem.Models.issue_occurrence>
+<link href="~/Content/QRDisplayStyles/QRStyles.css" rel="stylesheet" />
+
+<table class="table table-bordered custom-table">
+    <thead>
+        <tr>
+            <th>Issue Type</th>
+            <th>Date and Time</th>
+            <th>Machine</th>
+            <th>Description</th>
+            <th>Responsible Person Employee Id</th>
+            <th>Since Occurred</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var issue in Model)
+        {
+            var daysSinceOccurred = issue.issue_date.HasValue
+   ? (DateTime.Today - issue.issue_date.Value).Days
+   : (int?)null;
+
+            if (issue.issue_issue_ID == 1)
+            {
+
+                <tr>
+                    <td class="issue-category">🔧 Machine Breakdown</td>
+                    <td>@issue.issue_date</td>
+                    <td>@issue.machine_machine_id</td>
+                    <td>@issue.description</td>
+                    <td>@issue.responsible_person_emp_id</td>
+                    <td>@(daysSinceOccurred.HasValue ? daysSinceOccurred + " days" : "N/A")</td>
+                    <td class="status-cell">
+                        <span class="status-label @(issue.issue_satus == "1" ? "Pending" : "Done")">
+                            @(issue.issue_satus == "1" ? "Pending" : "Done")
+                        </span>
+                    </td>
+                </tr>
+            }
+            if (issue.issue_issue_ID == 2)
+            {
+                <tr>
+                    <td class="issue-category">📦 Material Delay</td>
+                    <td>@issue.issue_date</td>
+                    <td>@issue.machine_machine_id</td>
+                    <td>@issue.description</td>
+                    <td>@issue.responsible_person_emp_id</td>
+                    <td>@(daysSinceOccurred.HasValue ? daysSinceOccurred + " days" : "N/A")</td>
+                    <td class="status-cell">
+                        <span class="status-label @(issue.issue_satus == "1" ? "Pending" : "Done")">
+                            @(issue.issue_satus == "1" ? "Pending" : "Done")
+                        </span>
+                    </td>
+                </tr>
+            }
+            if (issue.issue_issue_ID == 3)
+            {
+                <tr>
+                    <td class="issue-category">⚙️ Technical Issue</td>
+                    <td>@issue.issue_date</td>
+                    <td>@issue.machine_machine_id</td>
+                    <td>@issue.description</td>
+                    <td>@issue.responsible_person_emp_id</td>
+                    <td>@(daysSinceOccurred.HasValue ? daysSinceOccurred + " days" : "N/A")</td>
+                    <td class="status-cell">
+                        <span class="status-label @(issue.issue_satus == "1" ? "Pending" : "Done")">
+                            @(issue.issue_satus == "1" ? "Pending" : "Done")
+                        </span>
+                    </td>
+                </tr>
+            }
+            if (issue.issue_issue_ID == 5)
+            {
+                <tr>
+                    <td class="issue-category">💻 IT Issue</td>
+                    <td>@issue.issue_date</td>
+                    <td>@issue.machine_machine_id</td>
+                    <td>@issue.description</td>
+                    <td>@issue.responsible_person_emp_id</td>
+                    <td>@(daysSinceOccurred.HasValue ? daysSinceOccurred + " days" : "N/A")</td>
+                    <td class="status-cell">
+                        <span class="status-label @(issue.issue_satus == "1" ? "Pending" : "Done")">
+                            @(issue.issue_satus == "1" ? "Pending" : "Done")
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

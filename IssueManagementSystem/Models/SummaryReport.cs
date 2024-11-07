@@ -9,21 +9,23 @@ namespace IssueManagementSystem.Models
     {
         public int Id { get; set; }
         public int LineId { get; set; }
-        public string Date { get; set; }
-        public decimal Wk { get; set; }
+        public String Date { get; set; }
+        public string Month { get; set; }
+        public int Year { get; set; }
+        public string Wk { get; set; }
         public int InternalAccT { get; set; }
-        public string InternalAccA { get; set; }
-        public string CustomerCompT { get; set; }
-        public decimal CustomerCompA { get; set; }
+        public int InternalAccA { get; set; }
+        public int CustomerCompT { get; set; }
+        public int CustomerCompA { get; set; }
         public int sampleAuditFindT { get; set; }
-        public string sampleAuditFindA { get; set; }
-        public string DSAT { get; set; }
+        public int sampleAuditFindA { get; set; }
+        public decimal DSAT { get; set; }
         public decimal DSAA { get; set; }
-        public int ProductionProcessTimeT { get; set; }
-        public string ProductionProcessTimeA { get; set; }
-        public string ReworkCostT { get; set; }
+        public decimal ProductionProcessTimeT { get; set; }
+        public decimal ProductionProcessTimeA { get; set; }
+        public decimal ReworkCostT { get; set; }
         public decimal ReworkCostA { get; set; }
-        public string KaizensT { get; set; }
+        public decimal KaizensT { get; set; }
         public decimal KaizensA { get; set; }
     }
 }

@@ -6,11 +6,27 @@
         Response.Redirect("~/Login/Index");
     }
     int lineid = ViewBag.lineId;
+    int employeeNumber = int.Parse(Session["userID"].ToString());
+
     using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
     {
         var lineInfo = db.lines.Where(x => x.line_id == lineid).FirstOrDefault();
         ViewBag.LineName = lineInfo.line_name;
     }
+
+    bool isSpecialBtnEmployee = false;
+    using (BigRedEntities bigRed = new BigRedEntities())
+    {
+        var btnUser = bigRed.tbl_PPA_User.FirstOrDefault(u => u.EmployeeNumber == employeeNumber);
+        if (btnUser != null && btnUser.EmployeeNumber == 2001)
+        {
+            isSpecialBtnEmployee = true;
+        }
+    }
+
+    // Pass the flag to the view using ViewBag
+    ViewBag.IsSpecialEmployee = isSpecialBtnEmployee;
+
 }
 @using IssueManagementSystem.Models;
 @model List<IssueManagementSystem.Models.issue_occurrence>
@@ -45,43 +61,41 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-8">
-                    <div class="container h-100">
-                        <div class="d-flex justify-content h-100" style="float:right">
-                            <div class="searchbar">
-                                <img id="listening" src="~/Content/images/Ripple-1.8s-34px.svg"><input class="search_input" type="text" name="" placeholder="Listening....">
-                                <button onclick="startConverting()" class="search_icon"><i class="fa fa-microphone"></i></button>
+                @if (ViewBag.IsSpecialEmployee)
+                {
+                    <div style="margin-left: auto;">
+                        <button class="btn btn-dark" style="margin-right: 20px; border-radius: 14px;" data-toggle="modal" data-target="#popup">
+                            Kaizen
+                        </button>
+                    </div>
+                }
+                </div>
+        </div>
+    </section>
+
+    @*<section class="welcome p-t-10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="display: flex">
+                            <h1 class="title-4">
+                                Hi @Session["name"]
+                            </h1>
+                            <div style="margin-left: auto;">
+                                <button class="btn btn-dark" style="margin-right: 20px;" data-toggle="modal" data-target="#popup">
+                                    Kaizen
+                                </button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="welcome p-t-10">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div style="display: flex">
-                        <h1 class="title-4">
-                            Hi @Session["name"]
-                        </h1>
-                        <div style="margin-left: auto;">
-                            <button class="btn btn-dark" style="margin-right: 20px;" data-toggle="modal" data-target="#popup">
-                                Kaizen
-                            </button>
                         </div>
 
+
+                        <hr class="line-seprate">
                     </div>
-
-
-                    <hr class="line-seprate">
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="welcome p-t-10" style="padding-top:50px;padding-bottom:50px">
+            </div
+        </section>>*@
+    <section class="welcome p-t-10" style="padding-bottom:50px;">
         <div class="container-fluid">
             <div class="text-center">
                 <img src="~/Content/images/loding.svg" id="loding_icon">
@@ -94,6 +108,24 @@
         </div>
     </section>
 
+    <div class="sticky-footer" style="position: fixed; bottom: 0; right: 0; width: 75%; border-top-left-radius: 80px; border-top-right-radius: 40px; background-color: #212529; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5); z-index: 1000; ">
+        <div class="col-3">
+            <h1 class="title-4" style="color: #ccc; margin-left: 20px; font-weight: 600;">
+                Hi @Session["name"]
+            </h1>
+        </div>
+        
+        <div class="col-9">
+            <div class="container h-100">
+                <div class="d-flex justify-content h-100" style="float:right">
+                    <div class="searchbar" style="border: double; border-bottom-color: white">
+                        <img id="listening" src="~/Content/images/Ripple-1.8s-34px.svg"><input class="search_input" type="text" name="" placeholder="Listening....">
+                        <button onclick="startConverting()" class="search_icon"><i class="fa fa-microphone"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -145,11 +177,10 @@
                         </div>
                         <div class="col-lg-8" id="linetype">
                             <select class="js-example-placeholder-single js-states form-control" id="selectline" name="selectline">
-                                <option>1</option>
-                                <option>11</option>
-                                <option>4</option>
-                                <option>2</option>
-
+                                @foreach (var item in ViewBag.lineList)
+                                {
+                                    <option value="@item.line_id">@item.line_name</option>
+                                }
 
 
                             </select>
@@ -162,9 +193,18 @@
                             <div class="form-group">
                                 <label for="dropdown1">Month</label>
                                 <select class="form-control" id="monthDropdown">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
+                                    <option value="1">JANUARY</option>
+                                    <option value="2">FEBRUARY</option>
+                                    <option value="3">MARCH</option>
+                                    <option value="4">APRIL</option>
+                                    <option value="5">MAY</option>
+                                    <option value="6">JUNE</option>
+                                    <option value="7">JULY</option>
+                                    <option value="8">AUGUST</option>
+                                    <option value="9">SEPTEMBER</option>
+                                    <option value="10">OCTOBER</option>
+                                    <option value="11">NOVEMBER</option>
+                                    <option value="12">DECEMBER</option>
                                 </select>
                             </div>
                         </div>
@@ -179,7 +219,7 @@
                     </div>
                     <div class="form-group">
                         <label for="input1">Bla Bla</label>
-                        <input type="number" class="form-control" id="blablaInput" placeholder="Enter data" step="0.01">
+                        <input type="text" class="form-control" id="blablaInput" placeholder="Enter data">
                     </div>
                     <div class="row">
                         <!-- Left Column: 7 Textboxes -->
@@ -192,7 +232,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="input2">Customer Complaint</label>
-                                <input type="text" class="form-control" id="custCompInput" placeholder="Enter data">
+                                <input type="number" class="form-control" id="custCompInput" placeholder="Enter data">
                             </div>
                             <div class="form-group">
                                 <label for="input3">Sample Audit Findings</label>
@@ -204,11 +244,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="input5">Production Process Time</label>
-                                <input type="number" class="form-control" id="productProcInput" placeholder="Enter data">
+                                <input type="text" class="form-control" id="productProcInput" placeholder="Enter data">
                             </div>
                             <div class="form-group">
                                 <label for="input6">Rework Cost Per Unit</label>
-                                <input type="text" class="form-control" id="ReworkCostInput" placeholder="Enter data">
+                                <input type="number" class="form-control" id="ReworkCostInput" placeholder="Enter data" step="0.01"> 
                             </div>
                             <div class="form-group">
                                 <label for="input7">Kaizens</label>
@@ -222,23 +262,23 @@
                             <br />
                             <div class="form-group">
                                 <label for="input8">Internal Accidents</label>
-                                <input type="text" class="form-control" id="intAccInputA" placeholder="Enter data">
+                                <input type="number" class="form-control" id="intAccInputA" placeholder="Enter data">
                             </div>
                             <div class="form-group">
                                 <label for="input9">Customer Complaint</label>
-                                <input type="number" class="form-control" id="custCompInputA" placeholder="Enter data" step="0.01">
+                                <input type="number" class="form-control" id="custCompInputA" placeholder="Enter data">
                             </div>
                             <div class="form-group">
                                 <label for="input10">Sample Audit Findings</label>
-                                <input type="text" class="form-control" id="sampleAudInputA" placeholder="Enter data">
+                                <input type="number" class="form-control" id="sampleAudInputA" placeholder="Enter data">
                             </div>
                             <div class="form-group">
                                 <label for="input11">DSA</label>
-                                <input type="number" class="form-control" id="DSAInputA" placeholder="Enter data" step="0.01">
+                                <input type="number" class="form-control" id="DSAInputA" placeholder="Enter data">
                             </div>
                             <div class="form-group">
                                 <label for="input12">Production Process Time</label>
-                                <input type="text" class="form-control" id="productProcInputA" placeholder="Enter data">
+                                <input type="number" class="form-control" id="productProcInputA" placeholder="Enter data">
                             </div>
                             <div class="form-group">
                                 <label for="input13">Rework Cost Per Unit</label>
@@ -246,7 +286,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="input14">Kaizens</label>
-                                <input type="number" class="form-control" id="kaizenInputA" placeholder="Enter data" step="0.01">
+                                <input type="number" class="form-control" id="kaizenInputA" placeholder="Enter data">
                             </div>
                         </div>
                     </div>
@@ -264,9 +304,13 @@
 <script>
     $(document).ready(function () {
         $("#submitModalData").click(function () {
+
+            var selectedMonthText = $("#monthDropdown option:selected").text();
             var summaryReport = {
                 LineId: $("#selectline").val(),
-                Date: $("#yearInput").val(),
+                Date: new Date().toISOString(),
+                Month: selectedMonthText,
+                Year: $("#yearInput").val(),
                 Wk: $("#blablaInput").val(),
                 InternalAccT: $("#intAccInput").val(),
                 InternalAccA: $("#intAccInputA").val(),
@@ -276,8 +320,8 @@
                 sampleAuditFindA: $("#sampleAudInputA").val(),
                 DSAA: $("#DSAInputA").val(),
                 DSAT: $("#DSAInput").val(),
-                ProductionProcessT: $("#productProcInput").val(),
-                ProductionProcesA: $("#productProcInputA").val(),
+                ProductionProcessTimeT: $("#productProcInput").val(),
+                ProductionProcessTimeA: $("#productProcInputA").val(),
                 ReworkCostT: $("#ReworkCostInput").val(),
                 ReworkCostA: $("#ReworkCostInputA").val(),
                 KaizensT: $("#kaizenInput").val(),
@@ -345,38 +389,38 @@
                                 var group= issuedata[i].group
                                 if (issueid == 1)//breakdown
                                 {
-                                    issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--red"><span class="desc" style="color:white">Machine Breakdown</span><div class="icon" ><i class="zmdi zmdi-settings zmdi-hc-spin"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id+'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Machine : </strong>' + issuedata[i].machine_machine_id +'</br><strong>Description : </strong>'+issuedata[i].description+'</p> <div class="text-right"> <button  class="btn btn-success"   data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid + '" onclick="myfunction(this)">Solved </button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+                                    issue = '<div id="card' + issue_occurrence_id +'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--red" style="border-radius: 20px;"><span class="desc" style="color:white; font-weight: 600;">Machine Breakdown</span><div class="icon" ><i class="zmdi zmdi-settings zmdi-hc-spin"></i></div></div><div class="card-body"></h5><div style="display:none" id="check' + issue_occurrence_id+'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Machine : </strong>' + issuedata[i].machine_machine_id +'</br><strong>Description : </strong>'+issuedata[i].description+'</p> <div class="text-right"> <button  class="btn btn-success"   data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid + '" onclick="myfunction(this)">Solved </button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
                                     if(( issuedata[i].lineName=='MachineShop 1')||(issuedata[i].lineName=='MachineShop 2'))
                                     {
-                                    issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--red"><span class="desc" style="color:white">Machine Breakdown</span><div class="icon" ><i class="zmdi zmdi-settings zmdi-hc-spin"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id+'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Machine : </strong>' + issuedata[i].machine_machine_id + '</br><strong>Group : </strong> group '+issuedata[i].group+' </p> <div class="text-right"> <button  class="btn btn-success"   data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid + '" onclick="myfunction(this)">Solved </button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+                                        issue = '<div id="card' + issue_occurrence_id +'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--red" style="border-radius: 20px;"><span class="desc" style="color:white; font-weight: 600;">Machine Breakdown</span><div class="icon" ><i class="zmdi zmdi-settings zmdi-hc-spin"></i></div></div><div class="card-body"></h5><div style="display:none" id="check' + issue_occurrence_id+'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Machine : </strong>' + issuedata[i].machine_machine_id + '</br><strong>Group : </strong> group '+issuedata[i].group+' </p> <div class="text-right"> <button  class="btn btn-success"   data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid + '" onclick="myfunction(this)">Solved </button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
 
                                     }
                                 }
                                 if (issueid == 2)//Material Delay
                                 {
-                                    issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--orange"><span class="desc" style="color:white">Material Delay</span><div class="icon" ><i class="zmdi animated infinite wobble zmdi-shopping-cart"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Material : </strong>' + issuedata[i].matirial+'</p> <div class="text-right"><button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid +'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+                                    issue = '<div id="card' + issue_occurrence_id +'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--orange" style="border-radius: 20px;"><span class="desc" style="color:white; font-weight: 600;">Material Delay</span><div class="icon" ><i class="zmdi animated infinite wobble zmdi-shopping-cart"></i></div></div><div class="card-body"><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Material : </strong>' + issuedata[i].matirial+'</p> <div class="text-right"><button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid +'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
                                     if(( issuedata[i].lineName=='MachineShop 1')||(issuedata[i].lineName=='MachineShop 2'))
                                     {
-                                        issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--orange"><span class="desc" style="color:white">Material Delay</span><div class="icon" ><i class="zmdi animated infinite wobble zmdi-shopping-cart"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Material : </strong>' + issuedata[i].matirial+'</br><strong>Group : </strong> group '+issuedata[i].group+'</p> <div class="text-right"><button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid +'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+                                        issue = '<div id="card' + issue_occurrence_id +'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--orange" style="border-radius: 20px;"><span class="desc" style="color:white; font-weight: 600;">Material Delay</span><div class="icon" ><i class="zmdi animated infinite wobble zmdi-shopping-cart"></i></div></div><div class="card-body"><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong> ' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</br><strong>Material : </strong>' + issuedata[i].matirial+'</br><strong>Group : </strong> group '+issuedata[i].group+'</p> <div class="text-right"><button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-group="'+group+'" data-issue_id="' + issueid +'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
 
                                      }
                                  }
                                 if (issueid == 3)//Technical Issue
                                 {
-                                    issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--green"><span class="desc" style="color:white">Technical Issue</span><div class="icon" ><i class="fas fa-wrench"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong>' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName +'</br><strong>Description : </strong>'+issuedata[i].description+'</p> <div class="text-right"> <button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-issue_id="' + issueid +'" data-group="'+group+'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+                                    issue = '<div id="card' + issue_occurrence_id +'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--green" style="border-radius: 20px;"><span class="desc" style="color:white; font-weight: 600;">Technical Issue</span><div class="icon" ><i class="fas fa-wrench"></i></div></div><div class="card-body"><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong>' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName +'</br><strong>Description : </strong>'+issuedata[i].description+'</p> <div class="text-right"> <button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-issue_id="' + issueid +'" data-group="'+group+'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
                                     if(( issuedata[i].lineName=='MachineShop 1')||(issuedata[i].lineName=='MachineShop 2'))
                                     {
-                                        issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--green"><span class="desc" style="color:white">Technical Issue</span><div class="icon" ><i class="fas fa-wrench"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong>' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName +'</br><strong>Group : </strong> group '+issuedata[i].group+ '</p> <div class="text-right"> <button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-issue_id="' + issueid +'" data-group="'+group+'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+                                        issue = '<div id="card' + issue_occurrence_id +'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--green" style="border-radius: 20px;"><span class="desc" style="color:white; font-weight: 600;">Technical Issue</span><div class="icon" ><i class="fas fa-wrench"></i></div></div><div class="card-body"><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong>' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName +'</br><strong>Group : </strong> group '+issuedata[i].group+ '</p> <div class="text-right"> <button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-issue_id="' + issueid +'" data-group="'+group+'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
 
                                     }
                                 }
                                 if (issueid == 4)//Quility
                                 {
-                                    issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--blue"><span class="desc" style="color:white">Qulity Issue</span><div class="icon" ><i class="zmdi zmdi-brightness-auto"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>IssueDate : </strong>' + day + '</br><strong>Time : </strong>' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName +'</br><strong>Group : </strong> group '+issuedata[i].group+'</br><strong>Description : </strong>'+issuedata[i].description+ '</p><div class="text-right"> <button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-issue_id="' + issueid +'" data-group="'+group+'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+                                    issue = '<div id="card' + issue_occurrence_id +'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--blue" style="border-radius: 20px;"><span class="desc" style="color:white; font-weight: 600;">Qulity Issue</span><div class="icon" ><i class="zmdi zmdi-brightness-auto"></i></div></div><div class="card-body"><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>IssueDate : </strong>' + day + '</br><strong>Time : </strong>' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName +'</br><strong>Group : </strong> group '+issuedata[i].group+'</br><strong>Description : </strong>'+issuedata[i].description+ '</p><div class="text-right"> <button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-issue_id="' + issueid +'" data-group="'+group+'" onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
                                 }
                                 if (issueid == 5)//IT/Software
                                 {
-                                    issue = '<div id="card'+issue_occurrence_id+'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--blue"><span class="desc" style="color:white">IT/Software Issue</span><div class="icon" ><i class="zmdi zmdi-windows"></i></div></div><div class="card-body"><h5 class="card-title" ></h5><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong>' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</p> <div class="text-right"> <button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-issue_id="' + issueid +'"data-group="'+group+'"onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+                                    issue = '<div id="card' + issue_occurrence_id +'" class="col-md-6 col-lg-4" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--blue" style="border-radius: 20px;"><span class="desc" style="color:white; font-weight: 600;">IT/Software Issue</span><div class="icon" ><i class="zmdi zmdi-windows"></i></div></div><div class="card-body"><div style="display:none" id="check' + issue_occurrence_id +'"><i  class="fas fa-check" style="font-size:30px; color:green;float:right;"></i></div><p class="card-text"><strong>Issue Date : </strong>' + day + '</br><strong>Time : </strong>' + date[1] + " " + date[2] + '</br><strong>Responsible Person :</strong> ' + issuedata[i].responciblepersonName + '</p> <div class="text-right"> <button  class="btn btn-success"  data-id="' + issue_occurrence_id + '" data-issue_id="' + issueid +'"data-group="'+group+'"onclick="myfunction(this)">Solved</button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
                                 }
                                 divissue.append(issue)
                                 $('#loding_icon').hide();
@@ -400,9 +444,31 @@
         // Start the connection
         $.connection.hub.start();
         getDataissue();
+
     })
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const footer = document.querySelector(".sticky-footer");
+        let lastScrollTop = 0;
+
+        window.addEventListener("scroll", function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // User scrolled down
+                footer.classList.add("hidden");
+            } else {
+                // User scrolled up
+                footer.classList.remove("hidden");
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Avoid negative scrolling
+        });
+    });
+
+</script>
 
 <script type="text/javascript">
 
