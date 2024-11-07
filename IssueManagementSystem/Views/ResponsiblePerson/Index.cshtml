@@ -11,7 +11,7 @@ if (Session["userID"] == null)
 @using IssueManagementSystem.Models;
 
 <div class="page-content--bgf7" >
-    <div >
+    <div>
         <!-- BREADCRUMB-->
         <section class="au-breadcrumb2">
             <div class="container">
@@ -35,20 +35,21 @@ if (Session["userID"] == null)
                 </div>
             </div>
         </section>
-        <section class="welcome p-t-10">
+        <section class="welcome p-t-10" style="margin-top: 10px;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="title-4">
                             Hi
-                            <span>@Session["name"], You have <span id="issueCnt"></span> new job<span id="span_x"></span></span>
+                            <span>@Session["name"], You have <span id="issueCnt" style="font-weight: 700;"></span> new job<span id="span_x"></span></span>
                         </h1>
-                        <hr class="line-seprate">
+                        <hr />
                     </div>
                 </div>
             </div>
         </section>
-        <section class="welcome p-t-10" style="padding-top:50px;padding-bottom:50px">
+       
+        <section class="welcome p-t-10" style="padding-top:30px;padding-bottom:50px">
             <div class="container-fluid">
 
 
@@ -68,19 +69,19 @@ if (Session["userID"] == null)
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body" >
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col" id="issueData">
                             </div>
                         </div>
                         <div class="row" id="text">
                             <div class="col">
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <h4 class="text-center" style="color:#ff9800;margin-top:20px" id="hedding">If you complete the job send feedback to us</h4>
 
                                     <label style="margin-top:15px;color:#4CAF50; " for="comment"><strong>Your Comment:</strong></label>
-                                    
-                                    <p style="color:red;display:none" id="waring"><small>*Plese put your comment here</small> </p>
+
+                                    <p style="color:red;display:none" id="waring"><small>*Please put your comment here</small> </p>
                                     <textarea class="form-control" rows="5" id="comment"></textarea>
                                 </div>
                             </div>
@@ -93,25 +94,27 @@ if (Session["userID"] == null)
             </div>
         </div>
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
-    <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/signalr/Hubs"></script>
+        <script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+        <script src="~/Scripts/angular.min.js"></script>
+        <script src="~/signalr/Hubs"></script>
 
- 
 
-    <script>
+        
+
+        <script>
+
     $(document).ready(function () {
-  
+
         // Proxy created on the fly
         var hub = $.connection.issueHub;
-       
+
         var issueCount = 0;
 
         (issueCount != 1) ? ($('#span_x').text("s!")) : ($('#span_x').text("!"));
 
-     
-     
+
+
       window.getDataissue = function()
         {
             var divissue = $('#divIssue');
@@ -121,16 +124,16 @@ if (Session["userID"] == null)
                     type: 'GET',
                     datatype: 'json',
                     success: function (issuedata) {
-                 
+
                     issuedata = $.parseJSON(issuedata);
                         if (issuedata.length > 0) {
-                           
+
                         divissue.empty();
                        $('#issueCnt').text("0");
                         for (var i = 0; i < issuedata.length; i++) {
-                          
+
                             if ((issuedata[i].department =='@Session["department"]') && (issuedata[i].issue_satus=="1" || issuedata[i].responsible_person_confirm_status==1)&&('@Session["location"]'==issuedata[i].location)) {
-                                
+
                                 var line_id = issuedata[i].line_line_id;
                                 var issueid = issuedata[i].issue_issue_ID;
                                 var bell_ststus =issuedata[i].buzzer_off_by;
@@ -148,7 +151,7 @@ if (Session["userID"] == null)
                                 }
                                 var index = i;
 
-                            
+
                                 get_line(line_id, issueid, divissue, issuedata[i], issueStstus, comment, index, issuedata[i].matirial,bell_ststus)
 
                             }
@@ -163,10 +166,10 @@ if (Session["userID"] == null)
 
    // Declare a function on the hub hub so the server can invoke it
         hub.client.displayStatus = function () {
-           
+
            getDataissue();
         };
-    
+
         // Start the connection
         $.connection.hub.start();
         getDataissue();
@@ -194,7 +197,7 @@ if (Session["userID"] == null)
                     } else {
                         alert("Something went wrong");
                     }
-                    
+
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -210,7 +213,7 @@ if (Session["userID"] == null)
             var day = moment(date[0], 'M/D/Y/').format('MMMM D Y');
             var msg = 'In <strong> ' + lineName + '</strong> Line new IT / Software Issue has been occured at <strong> ' + day + '</strong > on ' + date[1] + '.</br> Responsible Person - <strong>'+issuedata.responciblepersonName+'</strong>';
 
-            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--blue"><span class="desc" style="color:white">IT/Software Issue</span><div class="icon" ><i class="zmdi zmdi-windows"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index+'"></h5><p class="card-text">' + msg + '</p> <div class="text-right"> <button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '" data-ststus="' + issueStstus + '" data-comment="' + comment +'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--blue" style="border-radius: 20px;"><span class="desc" style="color:white">IT/Software Issue</span><div class="icon" ><i class="zmdi zmdi-windows"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index+'"></h5><p class="card-text">' + msg + '</p> <div class="text-right"> <button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '" data-ststus="' + issueStstus + '" data-comment="' + comment +'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
             issueCount++
 
                 divissue.append(issue)
@@ -225,7 +228,7 @@ if (Session["userID"] == null)
             var date = issuedata.issueDate.split(' ');
             var day = moment(date[0], 'M/D/Y/').format('MMMM D Y');
             var msg = 'In <strong> ' + lineName + ' Line </strong> new Machine Brakedown has been occured on <strong> ' + issuedata.machine_machine_id + '</strong > at <strong >' + day + '</strong > on ' + date[1] + '.</br> Responsible Person - <strong>'+issuedata.responciblepersonName+'</strong>'
-            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--red"><span class="desc" style="color:white">Machine Brakedown</span><div class="icon" ><i class="zmdi zmdi-settings zmdi-hc-spin"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index +'"></h5><p class="card-text">' + msg + '</p><div class="text-right" style="margin-top:10%"><button id="' + issuedata.issue_occurrence_id +'bell" data-issue_id="' + issuedata.issue_occurrence_id +'"data-location="'+issuedata.location+'" onclick="buzzeroffmain(this)" style="margin-right:53%" ><i style="font-size: 25px;color:red" class="zmdi zmdi-notifications-active animated infinite wobble zmdi-hc-fw mdc-text-blue"></i> </button> <button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '" data-ststus="' + issueStstus + '" data-comment="' + comment +'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--red" style="border-radius: 20px;"><span class="desc" style="color:white; font-weight: 600;">Machine Brakedown</span><div class="icon" ><i class="zmdi zmdi-settings zmdi-hc-spin"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index +'"></h5><p class="card-text">' + msg + '</p><div class="text-right" style="margin-top:10%"><button id="' + issuedata.issue_occurrence_id +'bell" data-issue_id="' + issuedata.issue_occurrence_id +'"data-location="'+issuedata.location+'" onclick="buzzeroffmain(this)" style="margin-right:53%" ><i style="font-size: 25px;color:red" class="zmdi zmdi-notifications-active animated infinite wobble zmdi-hc-fw mdc-text-blue"></i> </button> <button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '" data-ststus="' + issueStstus + '" data-comment="' + comment +'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
             issueCount++
 
                 divissue.append(issue)
@@ -241,7 +244,7 @@ if (Session["userID"] == null)
             var date = issuedata.issueDate.split(' ');
             var day = moment(date[0], 'M/D/Y/').format('MMMM D Y');
             var msg = 'In <strong>' + lineName + '</strong> Line new Technical Issue has been occured. At <strong> ' + day + '</strong> on ' + date[1] +'.</br> Responsible Person - <strong>'+issuedata.responciblepersonName+'</strong>'
-            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--green"><span class="desc" style="color:white">Technical Issue</span><div class="icon" ><i class="fas fa-wrench"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index +'"></h5><p class="card-text">' + msg + '</p> <div class="text-right"> <button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '"  data-ststus="' + issueStstus + '" data-comment="' + comment +'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--green" style="border-radius: 20px;"><span class="desc" style="color:white">Technical Issue</span><div class="icon" ><i class="fas fa-wrench"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index +'"></h5><p class="card-text">' + msg + '</p> <div class="text-right"> <button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '"  data-ststus="' + issueStstus + '" data-comment="' + comment +'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
             issueCount++
 
                 divissue.append(issue)
@@ -256,7 +259,7 @@ if (Session["userID"] == null)
             var date = issuedata.issueDate.split(' ');
             var day = moment(date[0], 'M/D/Y/').format('MMMM D Y');
             var msg = 'In <strong> ' + lineName + ' Line</strong> new Material Delay has been occured . At <strong> ' + day + '</strong> on ' + date[1] + '.</br> Responsible Person - <strong>'+issuedata.responciblepersonName+'</strong> .</br> <strong>Material : </strong>' + matirial +'.'
-            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--orange"><span class="desc" style="color:white">Material Delay</span><div class="icon" ><i class="zmdi infinite wobble zmdi-shopping-cart"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index +'"></h5><p class="card-text">' + msg + '</p> <div class="text-right" style="margin-top:10%"><button id="' + issuedata.issue_occurrence_id +'bell" data-issue_id="' + issuedata.issue_occurrence_id +'"data-location="'+issuedata.location+'" onclick="buzzeroff(this)" style="margin-right:53%" ><i style="font-size: 25px;color:red" class="zmdi zmdi-notifications-active animated infinite wobble zmdi-hc-fw mdc-text-blue"></i> </button><button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '"  data-ststus="' + issueStstus + '" data-comment="' + comment +'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--orange" style="border-radius: 20px;"><span class="desc" style="color:white">Material Delay</span><div class="icon" ><i class="zmdi infinite wobble zmdi-shopping-cart"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index +'"></h5><p class="card-text">' + msg + '</p> <div class="text-right" style="margin-top:10%"><button id="' + issuedata.issue_occurrence_id +'bell" data-issue_id="' + issuedata.issue_occurrence_id +'"data-location="'+issuedata.location+'" onclick="buzzeroff(this)" style="margin-right:53%" ><i style="font-size: 25px;color:red" class="zmdi zmdi-notifications-active animated infinite wobble zmdi-hc-fw mdc-text-blue"></i> </button><button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '"  data-ststus="' + issueStstus + '" data-comment="' + comment +'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
             issueCount++
 
                 divissue.append(issue)
@@ -272,7 +275,7 @@ if (Session["userID"] == null)
             var date = issuedata.issueDate.split(' ');
             var day = moment(date[0], 'M/D/Y/').format('MMMM D Y');
             var msg = 'In <strong>' + lineName + '</strong> Line Quality Issue has been occured at <strong> ' + day + ' </strong> on ' + date[1] + '.</br> Responsible Person - <strong>'+issuedata.responciblepersonName+'</strong>'
-            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card"> <div class="statistic__item statistic__item--blue"><span class="desc" style="color:white">Qulity Issue</span><div class="icon" ><i class="zmdi zmdi-brightness-auto"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index +'"></h5><p class="card-text"> ' + msg + '</p><div class="text-right"> <button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '"  data-ststus="' + issueStstus + '" data-comment="' +comment+'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
+            var issue = '<div class="col-md-6 col-lg-3" style=" margin-top: 10px;"><div class="card" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 20px; border-top-left-radius: 20px;"> <div class="statistic__item statistic__item--blue" style="border-radius: 20px;"><span class="desc" style="color:white">Qulity Issue</span><div class="icon" ><i class="zmdi zmdi-brightness-auto"></i></div></div><div class="card-body"><h5 class="card-title" id="' + index +'"></h5><p class="card-text"> ' + msg + '</p><div class="text-right"> <button style="color:#1183ff" class="card-link" data-toggle="modal" data-target="#moreIssueInfo" data-msg="' + msg + '" data-issueinfo="' + issuedata.issue_occurrence_id + '" data-dis="' + issuedata.description + '"  data-ststus="' + issueStstus + '" data-comment="' +comment+'" onclick="myfunction(this)">Show More >></button></div></div><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div><div>'
             issueCount++
 
                 divissue.append(issue)
@@ -300,30 +303,30 @@ if (Session["userID"] == null)
             if (ststus == 1) { text.prop('disabled', true); $("#savecomment").prop('disabled', true); text.val($(param).data('comment')); $("#hedding").hide() }
             else if (ststus == 0) { text.prop('disabled', false); $("#savecomment").prop('disabled', false);}
             else if (ststus == 2) { text.prop('disabled', false); $("#savecomment").prop('disabled', false);}
-            var issueInfo = '<p hidden id="id">'+id+'</p><p style="color:#4CAF50"><strong>Message : </strong></p><p>' + msg + '</p></br><p style="color:#4CAF50"><strong>supervisor Note : </strong></p><p class="mb-0">' + dis+' </p>'
-            $('#issueData').append(issueInfo) 
+            var issueInfo = '<p hidden id="id">'+id+'</p><p style="color:#4CAF50"><strong>Message : </strong></p><p>' + msg + '</p></br><p style="color:#4CAF50"><strong>Supervisor Note : </strong></p><p class="mb-0">' + dis+' </p>'
+            $('#issueData').append(issueInfo)
             $("#savecomment").show();
         }
-     
+
 
         $("#savecomment").click(function () {
-            
+
             if ($('#comment').val() == '') {
                 $('#comment').css('border-color', 'red');
-               
+
                 $("#waring").show();
             }
             else {
                 var data = {};
                 data.id = $("#id").text().trim();
-               
+
                 var url = '@Url.Action("savecomment", "ResponsiblePerson")';
                 var id = data.id;
                 $.ajax({
                     type: "POST",
                     url: url,
                     data: { id: id, comment: $('#comment').val(),emp_id:@Session["userID"]}
-                   
+
                 }).done(function (response) {
                     var body = $("#issueData")
                     $("#text").hide();
@@ -360,7 +363,7 @@ if (Session["userID"] == null)
         });
 
         function buzzeroff(param)
-        { 
+        {
         var id = $(param).data('issue_id');
         var location  =$(param).data('location');
         obj = new Object();
@@ -389,7 +392,7 @@ if (Session["userID"] == null)
         {
          var id = $(param).data('issue_id');
          var location = $(param).data('location');
-          
+
         obj = new Object();
         obj.issueid  = id ;
         obj.location=location;
@@ -413,5 +416,8 @@ if (Session["userID"] == null)
         });
         }
         </script>
+        
     </div>
 </div>
+
+
