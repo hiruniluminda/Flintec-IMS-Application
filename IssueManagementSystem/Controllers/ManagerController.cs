@@ -42,9 +42,9 @@ namespace IssueManagementSystem.Controllers
         {
             string query = @"SELECT DISTINCT deps.department_id, deps.department_name,
                                     lines.line_id, lines.line_name, l_map.issues AS issues
-                             FROM issue_management_system.dbo.departments deps
-                             JOIN issue_management_system.dbo.lines lines ON lines.department_id = deps.department_id
-                             JOIN issue_management_system.dbo.line_map l_map ON l_map.line_id = lines.line_id";
+                             FROM issue_management_system_new.dbo.departments deps
+                             JOIN issue_management_system_new.dbo.lines lines ON lines.department_id = deps.department_id
+                             JOIN issue_management_system_new.dbo.line_map l_map ON l_map.line_id = lines.line_id";
             using (var db = new issue_management_systemEntities1())
             {
                 var result = db.Database.SqlQuery<TempClasses.tempClass10>(query).ToList();
@@ -120,7 +120,7 @@ namespace IssueManagementSystem.Controllers
         {
             string query = @"SELECT TOP 10 ic.material_id AS Search_Description,
                                     COUNT(ic.material_id) AS count 
-                             FROM issue_management_system.dbo.issue_occurrence ic 
+                             FROM issue_management_system_new.dbo.issue_occurrence ic 
                              WHERE ic.issue_issue_ID = 2
                              AND ic.location IN (@location)
                              AND ic.issue_date BETWEEN @startDate AND @endDate 
@@ -159,15 +159,15 @@ namespace IssueManagementSystem.Controllers
                 using (var db = new issue_management_systemEntities1())
                 {
                     string query = @"SELECT TOP 10
-                                        issue_management_system.dbo.issue_occurrence.issue_date,
-                                        issue_management_system.dbo.issues.issue,
-                                        issue_management_system.dbo.issue_occurrence.machine_machine_id,
-                                        issue_management_system.dbo.issue_occurrence.material_id,
+                                        issue_management_system_new.dbo.issue_occurrence.issue_date,
+                                        issue_management_system_new.dbo.issues.issue,
+                                        issue_management_system_new.dbo.issue_occurrence.machine_machine_id,
+                                        issue_management_system_new.dbo.issue_occurrence.material_id,
                                         BigRed.dbo.tbl_PPA_User.Name,
                                         DATEDIFF(minute, issue_occurrence.issue_date, issue_occurrence.solved_date) AS DateDiff
-                                 FROM issue_management_system.dbo.issue_occurrence
-                                 JOIN BigRed.dbo.tbl_PPA_User ON BigRed.dbo.tbl_PPA_User.UserName = issue_management_system.dbo.issue_occurrence.responsible_person_emp_id
-                                 JOIN issue_management_system.dbo.issues ON issue_management_system.dbo.issue_occurrence.issue_issue_ID = issue_management_system.dbo.issues.issue_id
+                                 FROM issue_management_system_new.dbo.issue_occurrence
+                                 JOIN BigRed.dbo.tbl_PPA_User ON BigRed.dbo.tbl_PPA_User.UserName = issue_management_system_new.dbo.issue_occurrence.responsible_person_emp_id
+                                 JOIN issue_management_system_new.dbo.issues ON issue_management_system_new.dbo.issue_occurrence.issue_issue_ID = issue_management_system_new.dbo.issues.issue_id
                                  WHERE issue_occurrence.location IN (@location)
                                  AND issue_occurrence.issue_date BETWEEN @startDate AND @endDate
                                  ORDER BY DateDiff DESC";

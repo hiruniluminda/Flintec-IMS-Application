@@ -132,9 +132,9 @@ namespace IssueManagementSystem.Controllers
         {
             string query = @"SELECT DISTINCT deps.department_id, deps.department_name,
                                     lines.line_id, lines.line_name, l_map.issues AS issues
-                             FROM issue_management_system.dbo.departments deps
-                             JOIN issue_management_system.dbo.lines lines ON lines.department_id = deps.department_id
-                             JOIN issue_management_system.dbo.line_map l_map ON l_map.line_id = lines.line_id";
+                             FROM issue_management_system_new.dbo.departments deps
+                             JOIN issue_management_system_new.dbo.lines lines ON lines.department_id = deps.department_id
+                             JOIN issue_management_system_new.dbo.line_map l_map ON l_map.line_id = lines.line_id";
             using (var db = new issue_management_systemEntities1())
             {
                 var result = db.Database.SqlQuery<TempClasses.tempClass10>(query).ToList();
