@@ -242,6 +242,10 @@
     <Compile Include="Migrations\202410230530325_InitialCreate4.Designer.cs">
       <DependentUpon>202410230530325_InitialCreate4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411260427536_ims2.cs" />
+    <Compile Include="Migrations\202411260427536_ims2.Designer.cs">
+      <DependentUpon>202411260427536_ims2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BreakeDownListener.cs" />
     <Compile Include="Models\department.cs">
@@ -416,14 +420,54 @@
     <Content Include="Content\Display\css\bootstrap.css" />
     <Content Include="Content\Display\css\bootstrap.min.css" />
     <Content Include="Content\flipclock.css" />
+    <Content Include="Content\images\1.png" />
+    <Content Include="Content\images\backgroundblack.jpg" />
+    <Content Include="Content\images\dm4uz3-foekoe.gif" />
+    <Content Include="Content\images\emo-robot-happy-discord.gif" />
+    <Content Include="Content\images\emo-robot-is-coming-discord.gif" />
+    <Content Include="Content\images\emo-robot-is-sleeping-discord.gif" />
     <Content Include="Content\images\error.png" />
-    <Content Include="Content\images\flintecblacklogo.jpeg" />
+    <Content Include="Content\images\fixing-machinemen.gif" />
     <Content Include="Content\images\greenemoji.png" />
+    <Content Include="Content\images\happy-emo.gif" />
+    <Content Include="Content\images\hhla-container.gif" />
+    <Content Include="Content\images\hhlacontainer.gif" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\mechanic-screw.gif" />
+    <Content Include="Content\images\moving-work-truck.gif" />
+    <Content Include="Content\images\o2-o2robot.gif" />
+    <Content Include="Content\images\o2o2robot.gif" />
+    <Content Include="Content\images\o2robot.gif" />
+    <Content Include="Content\images\on-process-dig.gif" />
     <Content Include="Content\images\pexels-clarissa-schwarz-8941369.jpg" />
+    <Content Include="Content\images\QRCodes\1.png" />
+    <Content Include="Content\images\QRCodes\10.png" />
+    <Content Include="Content\images\QRCodes\11.png" />
+    <Content Include="Content\images\QRCodes\12.png" />
+    <Content Include="Content\images\QRCodes\13.png" />
+    <Content Include="Content\images\QRCodes\14.png" />
+    <Content Include="Content\images\QRCodes\15.png" />
+    <Content Include="Content\images\QRCodes\16.png" />
+    <Content Include="Content\images\QRCodes\17.png" />
+    <Content Include="Content\images\QRCodes\18.png" />
+    <Content Include="Content\images\QRCodes\2.png" />
+    <Content Include="Content\images\QRCodes\3.png" />
+    <Content Include="Content\images\QRCodes\4.png" />
+    <Content Include="Content\images\QRCodes\5.png" />
+    <Content Include="Content\images\QRCodes\6.png" />
+    <Content Include="Content\images\QRCodes\7.png" />
+    <Content Include="Content\images\QRCodes\8.png" />
+    <Content Include="Content\images\QRCodes\9.png" />
     <Content Include="Content\images\qrtest.png" />
     <Content Include="Content\images\redemoji.png" />
     <Content Include="Content\images\responsibleptest.png" />
+    <Content Include="Content\images\robot-no.gif" />
+    <Content Include="Content\images\scared-emo.gif" />
+    <Content Include="Content\images\sleep-emo.gif" />
+    <Content Include="Content\images\sticker-robot.gif" />
+    <Content Include="Content\images\time-waiting.gif" />
+    <Content Include="Content\images\truck-hamburg.gif" />
+    <Content Include="Content\images\viewgreybg.jpg" />
     <Content Include="Content\images\yellowemoji.png" />
     <Content Include="Content\QRDisplayStyles\QRDisplayStyles.css" />
     <Content Include="Content\QRDisplayStyles\QRStyles.css" />
@@ -680,6 +724,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\images\blackbg.avif" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -833,6 +878,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410230530325_InitialCreate4.resx">
       <DependentUpon>202410230530325_InitialCreate4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411260427536_ims2.resx">
+      <DependentUpon>202411260427536_ims2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

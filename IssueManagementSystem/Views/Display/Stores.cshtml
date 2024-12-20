@@ -15,11 +15,9 @@
 <link href="~/Content/Display/displaystyles.css" rel="stylesheet" />
 
 
-
-
 <div style="display:flex">
     <div class="container-fluid margin">
-        <div class="displayhedding" style="margin-top:-20pt">
+        <div class="displayhedding">
 
             <div class="row">
                 <div class="col-sm-3">
@@ -32,7 +30,9 @@
                 <div class="col-lg-6 text-md-center">
                     <h3>Stores</h3>
                 </div>
-
+                <div class="col-lg-3 text-md-center">
+                    <img class="w-25" src="~/Content/images/QRCodes/1.png" alt="CoolAdmin" />
+                </div>
             </div>
         </div>
         <div class="text-center" style="margin-top:20%" id="loding_icon">
@@ -40,7 +40,49 @@
         </div>
         <div class="row">
 
-            <div class="col-md-12" style="margin-top:10pt">
+
+            <div class="card-stack" style="margin-left:40%;">
+    <ul id="m_delay" style="list-style-type:none;">
+        <li id="maririal_list">
+            <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 40px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">
+
+                @*<div style="background-color: #e6b800; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: black">
+                        <div><strong>Date:</strong> <span id="material_date"></span></div>
+                    </div>*@
+                <div class="triangle1"></div>
+                <div class="card-body" style="flex-grow: 1;" id="materialdiv">
+                    <div class="card-head" style="">Material Delay</div>
+
+                    <div class=card-dtls text-white" style="max-width: 80rem; color: white">
+                        <div><strong>Time:</strong> <span id="material_time"></span></div>
+                        <div><strong>Material:</strong> <span id="material_name"></span></div>
+                        <div><strong>Description:</strong> <span id="material_description"></span></div>
+                        @*<div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
+                            <div><strong>Status:</strong> <span id="material_status"></span></div>*@
+                        <div><strong>Line Name:</strong> <span id="lineName"></span></div>
+                    </div>
+                </div>
+                <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                    <strong>Responsible Person:</strong>
+                </div>
+                <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px;">
+                    <img class="respimg" style="width: 30px;" src="~/Content/images/responsibleptest.png" />
+                    <span id="material_responsible"></span>
+                </div>
+                <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; ">
+                    <span class="badge" style="background-color: #ff8300; " id="material_status">Status</span>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+            @*<div class="col-md-12" style="margin-top:10pt">
                 <div id="wrapper">
                     <ul id="vertical-ticker">
                         <li id="brake_list">
@@ -67,13 +109,15 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>*@
 
             <script>
     $('#brakediv').hide();
     $('#maririaldiv').hide();
+    $('#materialdiv').hide();
     $('#Softwarediv').hide();
     $('#tecnicaldiv').hide();
+    $('#matirial_body').empty();
     $('#breake_body').empty();
     $('#matirial_body').empty();
     $('#technical_body').empty();
@@ -123,9 +167,9 @@ $.ajax({
         if (issuedata.length > 0)
         {
              var seconds=[]
-             for (var i = 0; i < issuedata.length; i++) {
+            for (var i = 0; i < issuedata.length; i++) {
 
-                if ((issuedata[i].issue_satus=="1" )&&('@ViewBag.location'==issuedata[i].location))
+                if ((issuedata[i].issue_satus=="1" ))
                 {   var confirmStatus
                     var responcibleperson_ststus= issuedata[i].responsible_person_confirm_status
                     var issueid = issuedata[i].issue_issue_ID
@@ -154,20 +198,43 @@ $.ajax({
                  if (issueid == 2)
                     {   seconds.push(gap)
                         count++
-                        $('#brakediv').show()
-                        var divissue = $('#breake_body');
-                        var issue = '<tr><td>'
-                            + day + '</td><td>'
-                            + time + '</td><td>'
-                            + issuedata[i].lineName + '</td><td>'
-                            + issuedata[i].matirial +'<span style="color:#7a3617;font-style: italic"> &nbsp;('+ issuedata[i].job_card+')</span></td><td>'
-                            + issuedata[i].description + '</td><td>'
-                            + issuedata[i].responciblepersonName +'</td><td>'+ confirmStatus+'</td><td><span id="countdown'
-                            + count + '" class="timer"></span></td></tr>'
+                     $('#materialdiv').show()
 
-                        divissue.append(issue)
-                        divissue.show('slow');
-                        $('#loding_icon').hide();
+                     $('#loding_icon').hide();
+
+
+                     //   var divissue = $('#breake_body');
+                     //   var issue = '<tr><td>'
+                     //       + day + '</td><td>'
+                     //       + time + '</td><td>'
+                     //       + issuedata[i].lineName + '</td><td>'
+                     //       + issuedata[i].matirial +'<span style="color:#7a3617;font-style: italic"> &nbsp;('+ issuedata[i].job_card+')</span></td><td>'
+                     //       + issuedata[i].description + '</td><td>'
+                     //       + issuedata[i].responciblepersonName +'</td><td>'+ confirmStatus+'</td><td><span id="countdown'
+                     //       + count + '" class="timer"></span></td></tr>'
+
+                     //   divissue.append(issue)
+                     //   divissue.show('slow');
+                     //$('#loding_icon').hide();
+
+
+
+                     var newCard = $('#materialdiv').clone();
+                     newCard.removeAttr('id');
+                     newCard.find('.card-header').text('Material Delay');
+                     // Populate the cloned card with issue data
+                     newCard.find('#material_date').text(day); // Change to the appropriate fields
+                     newCard.find('#material_time').text(time);
+                     newCard.find('#lineName').text(issuedata[i].lineName);
+                     newCard.find('#material_name').text(issuedata[i].matirial);
+                     newCard.find('#material_description').text(issuedata[i].description);
+                     newCard.find('#material_responsible').text(issuedata[i].responciblepersonName);
+
+                     newCard.find('#material_status').text(confirmStatus);
+                     newCard.find('#material_count').text(count);
+
+                     $('#maririal_list').append(newCard);
+                     startSlideshow('#maririal_list');
                     }
             }
               if(count==0)

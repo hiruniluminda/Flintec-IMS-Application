@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Dynamic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -42,9 +43,9 @@ namespace IssueManagementSystem.Controllers
         {
             string query = @"SELECT DISTINCT deps.department_id, deps.department_name,
                                     lines.line_id, lines.line_name, l_map.issues AS issues
-                             FROM issue_management_system.dbo.departments deps
-                             JOIN issue_management_system.dbo.lines lines ON lines.department_id = deps.department_id
-                             JOIN issue_management_system.dbo.line_map l_map ON l_map.line_id = lines.line_id";
+                             FROM issue_management_system_new.dbo.departments deps
+                             JOIN issue_management_system_new.dbo.lines lines ON lines.department_id = deps.department_id
+                             JOIN issue_management_system_new.dbo.line_map l_map ON l_map.line_id = lines.line_id";
             using (var db = new issue_management_systemEntities1())
             {
                 var result = db.Database.SqlQuery<TempClasses.tempClass10>(query).ToList();
@@ -110,9 +111,10 @@ namespace IssueManagementSystem.Controllers
             using (var db = new issue_management_systemEntities1())
             {
                 return db.Database.SqlQuery<TempClasses.tempClass>(query,
-                    new SqlParameter("@location", plantLocation),
-                    new SqlParameter("@startDate", startDate),
-                    new SqlParameter("@endDate", endDate)).ToList();
+    new SqlParameter("@location", plantLocation),
+    new SqlParameter("@startDate", startDate),
+    new SqlParameter("@endDate", endDate)).ToList() ?? new List<TempClasses.tempClass>();
+
             }
         }
 
@@ -120,7 +122,7 @@ namespace IssueManagementSystem.Controllers
         {
             string query = @"SELECT TOP 10 ic.material_id AS Search_Description,
                                     COUNT(ic.material_id) AS count 
-                             FROM issue_management_system.dbo.issue_occurrence ic 
+                             FROM issue_management_system_new.dbo.issue_occurrence ic 
                              WHERE ic.issue_issue_ID = 2
                              AND ic.location IN (@location)
                              AND ic.issue_date BETWEEN @startDate AND @endDate 
@@ -159,15 +161,15 @@ namespace IssueManagementSystem.Controllers
                 using (var db = new issue_management_systemEntities1())
                 {
                     string query = @"SELECT TOP 10
-                                        issue_management_system.dbo.issue_occurrence.issue_date,
-                                        issue_management_system.dbo.issues.issue,
-                                        issue_management_system.dbo.issue_occurrence.machine_machine_id,
-                                        issue_management_system.dbo.issue_occurrence.material_id,
+                                        issue_management_system_new.dbo.issue_occurrence.issue_date,
+                                        issue_management_system_new.dbo.issues.issue,
+                                        issue_management_system_new.dbo.issue_occurrence.machine_machine_id,
+                                        issue_management_system_new.dbo.issue_occurrence.material_id,
                                         BigRed.dbo.tbl_PPA_User.Name,
                                         DATEDIFF(minute, issue_occurrence.issue_date, issue_occurrence.solved_date) AS DateDiff
-                                 FROM issue_management_system.dbo.issue_occurrence
-                                 JOIN BigRed.dbo.tbl_PPA_User ON BigRed.dbo.tbl_PPA_User.UserName = issue_management_system.dbo.issue_occurrence.responsible_person_emp_id
-                                 JOIN issue_management_system.dbo.issues ON issue_management_system.dbo.issue_occurrence.issue_issue_ID = issue_management_system.dbo.issues.issue_id
+                                 FROM issue_management_system_new.dbo.issue_occurrence
+                                 JOIN BigRed.dbo.tbl_PPA_User ON BigRed.dbo.tbl_PPA_User.UserName = issue_management_system_new.dbo.issue_occurrence.responsible_person_emp_id
+                                 JOIN issue_management_system_new.dbo.issues ON issue_management_system_new.dbo.issue_occurrence.issue_issue_ID = issue_management_system_new.dbo.issues.issue_id
                                  WHERE issue_occurrence.location IN (@location)
                                  AND issue_occurrence.issue_date BETWEEN @startDate AND @endDate
                                  ORDER BY DateDiff DESC";
@@ -216,56 +218,77 @@ namespace IssueManagementSystem.Controllers
             }
         }
 
-
-        [HttpPost]
-        public JsonResult loadIssueList()
+public JsonResult loadIssueList()
+    {
+        try
         {
-            try
+            using (var db = new issue_management_systemEntities1())
             {
-                using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
+                string query1 = "SELECT issue_occurrence_id, issue, line_name, issue_satus, DueDate FROM issue_occurrence WHERE issue_satus = @status;";
+                string query2 = "SELECT issue_occurrence_id, issue, line_name, issue_satus, DueDate FROM issue_occurrence WHERE DueDate < @currentDate AND issue_satus != @excludedStatus;";
+
+                var results = new List<ExpandoObject>();
+
+                using (var connection = db.Database.Connection)
                 {
-                    String query1 = @"..."; // Your original query here
-                    String query2 = @"..."; // Your original query here
+                    connection.Open();
 
-                    var cmd = db.Database.Connection.CreateCommand();
-                    cmd.Connection.Open();
-
-                    DataTable dt1 = new DataTable();
-                    DataTable dt2 = new DataTable();
-
-                    try
+                    using (var cmd = connection.CreateCommand())
                     {
                         cmd.CommandText = query1;
-                        dt1.Load(cmd.ExecuteReader());
+                        cmd.Parameters.Add(new SqlParameter("@status", 1));
 
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                dynamic obj = new ExpandoObject();
+                                obj.IssueId = reader["issue_occurrence_id"];
+                                obj.IssueName = reader["issue"];
+                                obj.LineName = reader["line_name"];
+                                obj.Status = reader["issue_satus"];
+                                obj.DueDate = reader["DueDate"];
+                                results.Add(obj);
+                            }
+                        }
+                    }
+
+                    using (var cmd = connection.CreateCommand())
+                    {
                         cmd.CommandText = query2;
-                        dt2.Load(cmd.ExecuteReader());
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error executing SQL commands: " + ex.Message);
-                        return Json(new { success = false, message = "An error occurred while fetching issue lists." }, JsonRequestBehavior.AllowGet);
-                    }
-                    finally
-                    {
-                        cmd.Connection.Close();
-                    }
+                        cmd.Parameters.Add(new SqlParameter("@currentDate", DateTime.Now));
+                        cmd.Parameters.Add(new SqlParameter("@excludedStatus", 0));
 
-                    List<TempClasses.tempClass5> dt1_data = new List<TempClasses.tempClass5>();
-
-                    // Process dt1 and dt2 rows here, with similar error handling in each part
-
-                    return Json(dt1_data, JsonRequestBehavior.AllowGet);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                dynamic obj = new ExpandoObject();
+                                obj.IssueId = reader["issue_occurrence_id"];
+                                obj.IssueName = reader["issue"];
+                                obj.LineName = reader["line_name"];
+                                obj.Status = reader["issue_satus"];
+                                obj.DueDate = reader["DueDate"];
+                                results.Add(obj);
+                            }
+                        }
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error loading issue list: " + ex.Message);
-                return Json(new { success = false, message = "An error occurred while loading the issue list." }, JsonRequestBehavior.AllowGet);
+
+                return Json(results, JsonRequestBehavior.AllowGet);
             }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error loading issue list: " + ex.Message);
+            return Json(new { success = false, message = "An error occurred while loading the issue list." }, JsonRequestBehavior.AllowGet);
+        }
+    }
 
-        [HttpPost]
+
+
+
+    [HttpPost]
         public JsonResult notificationOnOff(string issue_line_person_id, string issue_occurrence_id, string status)
         {
             try

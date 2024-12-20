@@ -3418,6 +3418,7 @@ section {
     -ms-flex-align: center;
     position: relative;
     z-index: 3;
+    
 }
 
 
@@ -4264,6 +4265,10 @@ section {
     .au-message__item:hover {
         background: #f7f7f7;
     }
+
+#noissueimage{
+    width:500% !important;
+}
 
 .au-message__item-inner {
     display: -webkit-box;

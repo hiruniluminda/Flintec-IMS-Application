@@ -7,7 +7,7 @@
 @using System.Web.UI.WebControls;
 @using System.Web.UI;
 @model List<IssueManagementSystem.Models.issue_occurrence>
-@{ string lineName = null; string map = null; }
+@{ string lineName = null; string map = null; int id = ViewBag.id; }
 <script src="~/Scripts/jquery.min.js"></script>
 
 <link href="~/Content/Display/style.css" rel="stylesheet" />
@@ -40,13 +40,39 @@
 @{
     using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
     {
-        int id = ViewBag.id;
         var lineinfo = db.lines.Where(x => x.line_id == id).FirstOrDefault();
         lineName = lineinfo.line_name;
         var mapinfo = db.line_map.Where(x => x.line_id == id).FirstOrDefault();
         map = mapinfo.map;
     }
+
+    Dictionary<int, string> lineImages = new Dictionary<int, string>
+    {
+        { 1, "~/Content/images/QRCodes/1.png" },
+        { 2, "~/Content/images/QRCodes/2.png" },
+        { 3, "~/Content/images/QRCodes/3.png" },
+        { 4, "~/Content/images/QRCodes/4.png" },
+        { 5, "~/Content/images/QRCodes/5.png" },
+        { 6, "~/Content/images/QRCodes/6.png" },
+        { 7, "~/Content/images/QRCodes/7.png" },
+        { 8, "~/Content/images/QRCodes/8.png" },
+        { 9, "~/Content/images/QRCodes/9.png" },
+        { 10, "~/Content/images/QRCodes/10.png" },
+        { 11, "~/Content/images/QRCodes/11.png" },
+        { 12, "~/Content/images/QRCodes/12.png" },
+        { 13, "~/Content/images/QRCodes/13.png" },
+        { 14, "~/Content/images/QRCodes/14.png" },
+        { 15, "~/Content/images/QRCodes/15.png" },
+        { 16, "~/Content/images/QRCodes/16.png" },
+        { 17, "~/Content/images/QRCodes/17.png" },
+        { 18, "~/Content/images/QRCodes/18.png" },
+    };
+
+    // Determine the image for the current line
+    string lineImage = lineImages.ContainsKey(id) ? lineImages[id] : "~/Content/images/flinteclogo.png";
 }
+
+
 
 <div style="background-color: #eeedeb; background-size: cover; height: 100vh ">
     <div class="top-row" style="display: flex; justify-content: space-between; align-items: flex-start; position: relative;">
@@ -128,6 +154,8 @@
             @*width:70%; margin-left:-80px;margin-top:-20px*@
 
         </section>
+
+        if()
         <div class="displayheading" style="margin-left: 10px;">
             <div class="row" style="display:flex; float:right;">
                 <div class="col-4" style="margin-left:40px; margin-top:20px;">
@@ -135,7 +163,7 @@
                 </div>
                 <div class="header__logo col-7" style="margin-left:0px;">
                     <a href="">
-                        <img style="" src="~/Content/images/qrtest.png" alt="CoolAdmin" />
+                        <img id="lineImage" style="width:50%; margin-left:80px;" src="@Url.Content(lineImage)" alt="Line Image" />
                     </a>
                 </div>
 
@@ -155,7 +183,7 @@
                             <div class="card-stack">
                                 <ul id="m_break" style="list-style-type:none;">
                                     <li id="brake_list">
-                                        <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; " id="brakediv">
+                                        <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; " id="brakediv">
 
                                             <div class="triangle"></div>
                                             <div class="card-body text-white" style="flex-grow: 1; color: white;" id="breakediv">
@@ -172,7 +200,6 @@
                                                 </div>
                                             </div>
 
-
                                             <div class="responsper">
                                                 <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
                                                     <strong>Responsible Person:</strong>
@@ -187,34 +214,38 @@
                                                 <span class="badge" id="break_status">Status</span>
                                             </div>
                                         </div>
-
                                     </li>
                                 </ul>
                             </div>
                             <div class="card-stack">
-                                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; " id="brakediv2">
+                                <ul id="m_break" style="list-style-type:none;">
+                                    <li id="brake_list">
+                                        <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; " id="brakeno">
+                                            <div class="triangle"></div>
+                                            <div class="card-body text-white" style="flex-grow: 1; color: white; margin-top: 50px;" id="breakediv">
 
-                                    <div class="triangle"></div>
-                                    <div class="card-body text-white" style="flex-grow: 1; color: white;" id="breakediv">
+                                                <div class="card-head" style="">Machine Breakdown</div>
 
-                                        <div class="card-head" style="">Machine Breakdown</div>
-                                        @*<div class="head-bdr"></div>*@
-                                        <div class="card-dtls text-white" style="max-width:80rem;">
-                                            <div><p>No breakdowns</p></div>
 
+                                                <div style="text-align:center;">
+                                                    <img style="width: 150px; height: 150px;" src="~/Content/images/mechanic-screw.gif" />
+                                                </div>
+                                                <div style="text-align:center;margin-top:10px;">
+                                                    <h2 style="font-size:30px; color:grey">No Issue</h2>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                </div>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="card-stack">
                                 <ul id="m_delay" style="list-style-type:none;">
                                     <li id="maririal_list">
-                                        <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">
+                                        <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv">
 
                                             @*<div style="background-color: #e6b800; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: black">
-                            <div><strong>Date:</strong> <span id="material_date"></span></div>
-                        </div>*@
+                                                    <div><strong>Date:</strong> <span id="material_date"></span></div>
+                                                </div>*@
                                             <div class="triangle1"></div>
                                             <div class="card-body" style="flex-grow: 1;" id="materialdiv">
                                                 <div class="card-head" style="">Material Delay</div>
@@ -224,7 +255,7 @@
                                                     <div><strong>Material:</strong> <span id="material_name"></span></div>
                                                     <div><strong>Description:</strong> <span id="material_description"></span></div>
                                                     @*<div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
-                                <div><strong>Status:</strong> <span id="material_status"></span></div>*@
+                                                        <div><strong>Status:</strong> <span id="material_status"></span></div>*@
                                                     <div><strong>Since Occurred:</strong> <span id="material_since"></span></div>
                                                 </div>
                                             </div>
@@ -243,28 +274,36 @@
                                 </ul>
                             </div>
                             <div class="card-stack">
-                                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialdiv2">
+                                <ul id="m_delay" style="list-style-type:none;">
+                                    <li id="maririal_list">
+                                        <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="materialno">
 
-                                    <div class="triangle1"></div>
-                                    <div class="card-body" style="flex-grow: 1;" id="materialdiv">
-                                        <div class="card-head" style="">Material Delay</div>
+                                            @*<div style="background-color: #e6b800; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: black">
+                                                    <div><strong>Date:</strong> <span id="material_date"></span></div>
+                                                </div>*@
+                                            <div class="triangle1"></div>
+                                            <di class="card-body" style="flex-grow: 1; margin-top: 50px;" id="materialdiv">
+                                                <div class="card-head" style="">Material Delay</div>
 
-                                        <div class=card-dtls text-white" style="max-width: 80rem; color: white">
-                                            <div><p>No Material delays</p></div>
-                                           
+
+                                                <div style="text-align:center;">
+                                                    <img style="width: 150px; height: 150px;" src="~/Content/images/hhla-container.gif" />
+                                                </div>
+                                                <div style="text-align:center;margin-top:10px;">
+                                                    <h2 style="font-size:30px; color:grey">No Issue</h2>
+                                                </div>
                                         </div>
-                                    </div>
-                                    
-                                </div>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="card-stack">
                                 <ul id="t_issue" style="list-style-type:none;">
                                     <li id="tecnical_list">
-                                        <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="tecnicaldiv">
+                                        <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="tecnicaldiv">
 
                                             @*<div style="background-color: #00b300; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white">
-                            <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
-                        </div>*@
+                                                    <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
+                                                </div>*@
                                             <div class="triangle2"></div>
                                             <div class="card-body" style="flex-grow: 1;" id="tecnicaldiv">
                                                 <div class="card-head" style="">Technical Issue</div>
@@ -272,7 +311,7 @@
                                                     <div><strong>Time:</strong> <br /> <span id="technical_time"></span></div>
                                                     <div><strong>Description:</strong> <br /> <span id="technical_description"></span></div>
                                                     @*<div><strong>Responsible Person:</strong> <br /> <span id="technical_responsible"></span></div>
-                                <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>*@
+                                                        <div><strong>Status:</strong> <br /> <span id="technical_status"></span></div>*@
                                                     <div><strong>Since Occurred:</strong> <br /><span id="technical_since"></span></div>
                                                 </div>
                                             </div>
@@ -286,36 +325,42 @@
                                             <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px;">
                                                 <span class="badge" style="background-color: #00b26f;" id="technical_status">Status</span>
                                             </div>
+
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="card-stack">
-                                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="tecnicaldiv2">
+                                <ul id="t_issue" style="list-style-type:none;">
+                                    <li id="tecnical_list">
+                                        <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="tecnicalno">
 
-                                    @*<div style="background-color: #00b300; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white">
-                    <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
-                </div>*@
-                                    <div class="triangle2"></div>
-                                    <div class="card-body" style="flex-grow: 1;" id="tecnicaldiv">
-                                        <div class="card-head" style="">Technical Issue</div>
-                                        <div class="card-dtls text-white" style="max-width:80rem;color:white">
-                                            <div>
-                                                <p>No Technical Issues</p>
+                                            @*<div style="background-color: #00b300; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white">
+                                                    <div><strong>Date:</strong> <br /> <span id="technical_date"></span></div>
+                                                </div>*@
+                                            <div class="triangle2"></div>
+                                            <div class="card-body" style="flex-grow: 1; margin-top: 50px;" id="tecnicaldiv">
+                                                <div class="card-head" style="">Technical Issue</div>
+
+                                                <div style="text-align:center;">
+                                                    <img style="width: 150px; height: 150px;" src="~/Content/images/o2-o2robot.gif" />
+                                                </div>
+                                                <div style="text-align:center;margin-top:10px;">
+                                                    <h2 style="font-size:30px; color:grey">No Issue</h2>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                </div>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="card-stack">
                                 <ul id="i_issue" style="list-style-type:none;">
                                     <li id="IT_list">
-                                        <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="Softwarediv">
+                                        <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="Softwarediv">
 
                                             @*<div style="background-color: #0033cc; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white ">
-                            <div><strong>Date:</strong> <span id="it_date"></span></div>
-                        </div>*@
+                                                    <div><strong>Date:</strong> <span id="it_date"></span></div>
+                                                </div>*@
                                             <div class="triangle3"></div>
                                             <div class="card-body" style="flex-grow: 1;" id="Softwarediv">
                                                 <div class="card-head" style="">IT/Software Issue</div>
@@ -323,7 +368,7 @@
                                                     <div><strong>Time:</strong> <span id="it_time"></span></div>
                                                     <div><strong>Description:</strong> <span id="it_description"></span></div>
                                                     @*<div><strong>Responsible Person:</strong> <span id="it_responsible"></span></div>
-                                <div><strong>Status:</strong> <span id="it_status"></span></div>*@
+                                                        <div><strong>Status:</strong> <span id="it_status"></span></div>*@
                                                     <div><strong>Since Occurred:</strong> <span id="it_since"></span></div>
                                                 </div>
                                             </div>
@@ -342,21 +387,27 @@
                                 </ul>
                             </div>
                             <div class="card-stack">
-                                <div class="card text-white mb-3" style="background-image: url('https://img.freepik.com/free-vector/black-background-with-curve-shadow-effect-lines_1017-38063.jpg?size=626&ext=jpg&ga=GA1.2.1475138255.1728444286&semt=ais_hybrid-rr-similar'); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="Softwarediv2">
+                                <ul id="i_issue" style="list-style-type:none;">
+                                    <li id="IT_list">
+                                        <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="Softwareno">
 
-                                    @*<div style="background-color: #0033cc; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white ">
-                    <div><strong>Date:</strong> <span id="it_date"></span></div>
-                </div>*@
-                                    <div class="triangle3"></div>
-                                    <div class="card-body" style="flex-grow: 1;" id="Softwarediv">
-                                        <div class="card-head" style="">IT/Software Issue</div>
-                                        <div class="card-dtls text-white" style="max-width:80rem;color:white;">
-                                            <div><p>No IT/Software Issues</p></div>
+                                            @*<div style="background-color: #0033cc; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: white ">
+                                                    <div><strong>Date:</strong> <span id="it_date"></span></div>
+                                                </div>*@
+                                            <div class="triangle3"></div>
+                                            <div class="card-body" style="flex-grow: 1; margin-top: 50px;" id="Softwarediv">
+                                                <div class="card-head" style="">IT/Software Issue</div>
 
+                                                <div style="text-align:center;">
+                                                    <img style="width: 150px; height: 150px;" src="~/Content/images/happy-emo.gif" />
+                                                </div>
+                                                <div style="text-align:center;margin-top:10px;">
+                                                    <h2 style="font-size:30px; color:grey">No Issue</h2>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -364,14 +415,18 @@
             </div>
             <script>
                 $('#brakediv').hide();
-                $('#brakediv2').hide();
+                $('#brakeno').hide();
                 $('#materialdiv').hide();
-                $('#materialdiv2').hide();
+                $('#materialno').hide();
+
                 $('#Softwarediv').hide();
-                $('#Softwarediv2').hide();
+                $('#Softwareno').hide();
+
+
                 $('#qtydiv').hide();
                 $('#tecnicaldiv').hide();
-                $('#tecnicaldiv2').hide();
+                $('#tecnicalno').hide();
+
                 $('#breake_body').empty();
                 $('#matirial_body').empty();
                 $('#technical_body').empty();
@@ -431,6 +486,11 @@
                     if (issuedata.length > 0) {
                         blinkMap();
                         var seconds = [];
+                        var brakeissuecount = 0;
+                        var materialissuecount = 0;
+                        var technicalissuecount = 0;
+                        var softissuecount = 0;
+
                         for (var i = 0; i < issuedata.length; i++) {
                             if ((issuedata[i].line_line_id == @ViewBag.Id) && (issuedata[i].issue_satus == "1")) {
                                 var responcibleperson_ststus = issuedata[i].responsible_person_confirm_status;
@@ -455,11 +515,11 @@
                                 var issueDate = new Date(issuedata[i].issueDate);
                                 var today = new Date();
                                 var daysSinceOccurred = Math.floor((today - issueDate) / (1000 * 60 * 60 * 24));
-                               
+
                                 if (issueid == 1) { // Machine Breakdown
                                     categoriesDisplayed++;
+                                    brakeissuecount++;
                                     $('#brakediv').show(); // Ensure the base template is visible
-                                    $('#brakediv2').hide();
                                     var newCard = $('#brakediv').clone(); // Clone the existing card
                                     newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
                                     newCard.find('.card-header').text('Machine Breakdown'); // Set the header
@@ -473,6 +533,7 @@
 
                                     // Pass it to the HTML string in JavaScript
                                     newCard.find('#break_since').html('<td>' + (isNaN(daysSinceOccurred) ? "N/A" : daysSinceOccurred + " days") + '</td>');
+                                    newCard.find('#qrimg').attr('src', '~/Content/images/1.png');
 
 
                                     // Append the newly created card to the list or parent container
@@ -481,13 +542,12 @@
                                     console.log(count + "h");
                                     // Remove the loading icon
                                     $('#loding_icon').hide();
-                                } else {
-                                    $('#brakediv2').show();
                                 }
+
                                 if (issueid == 2) { // Material Delay
                                     categoriesDisplayed++;
+                                    materialissuecount++;
                                     $('#materialdiv').show();
-                                    $('#materialdiv2').hide();
                                     var newCard = $('#materialdiv').clone();
                                     newCard.removeAttr('id');
                                     newCard.find('.card-header').text('Material Delay');
@@ -502,13 +562,11 @@
                                     $('#maririal_list').append(newCard);
                                     startSlideshow('#maririal_list');
                                     $('#loding_icon').hide();
-                                } else {
-                                    $('#materialdiv2').show();
                                 }
                                 if (issueid == 3) { // Technical Issue
                                     categoriesDisplayed++;
-                                    $('#tecnicaldiv').show();
-                                    $('#tecnicaldiv2').hide();
+                                    technicalissuecount++;
+                                    $('#tecnicaldiv').show(); // Ensure the base template is visible
                                     var newCard = $('#tecnicaldiv').clone(); // Clone the existing card
                                     newCard.removeAttr('id'); // Remove the `id` to avoid duplicates
                                     newCard.find('.card-header').text('Technical Issue'); // Set the header
@@ -525,8 +583,6 @@
                                     startSlideshow('#tecnical_list');
                                     // Remove the loading icon if necessary
                                     $('#loding_icon').hide();
-                                } else {
-                                    $('#tecnicaldiv2').show();
                                 }
                                 if (issueid == 4) { // Quality Issue
                                     categoriesDisplayed++;
@@ -547,8 +603,8 @@
                                 }
                                 if (issueid == 5) { // IT/Software
                                     categoriesDisplayed++;
+                                    softissuecount++;
                                     $('#Softwarediv').show();
-                                    $('#Softwarediv2').hide();
                                     console.log("hi");
                                     var newCard = $('#Softwarediv').clone();
                                     newCard.removeAttr('id');
@@ -564,10 +620,20 @@
                                     $('#IT_list').append(newCard);
                                     startSlideshow('#IT_list');
                                     $('#loding_icon').hide();
-                                } else {
-                                    $('#Softwarediv2').show();
                                 }
                             }
+                        }
+                        if (brakeissuecount == 0) {
+                            $('#brakeno').show(); // Ensure the base template is visible
+                        }
+                        if (materialissuecount == 0) {
+                            $('#materialno').show(); // Ensure the base template is visible
+                        }
+                        if (technicalissuecount == 0) {
+                            $('#tecnicalno').show(); // Ensure the base template is visible
+                        }
+                        if (softissuecount == 0) {
+                            $('#Softwareno').show(); // Ensure the base template is visible
                         }
                         if (count == 0) {
                             $('#loding_icon').hide();
@@ -793,28 +859,29 @@
 
     <div class="slide card-dtls" style="background-color: #eeedeb;">
         <div class="monthlyRep m-t-50 m-l-250" style="width:60%;">
-           
+
             <table class="table table-bordered">
                 <thead>
-                    <tr><td colspan="8" class="bg-dark">
-                        @if (ViewBag.SummaryReportsList != null)
-                        {
-                            var monthlySummaries = (List<IssueManagementSystem.Models.SummaryReport>)ViewBag.SummaryReportsList;
-                            if (monthlySummaries.Any())
+                    <tr>
+                        <td colspan="8" class="bg-dark">
+                            @if (ViewBag.SummaryReportsList != null)
                             {
-                                var latestSummary = monthlySummaries.OrderByDescending(s => s.Date).FirstOrDefault();
-                                if (latestSummary != null)
+                                var monthlySummaries = (List<IssueManagementSystem.Models.SummaryReport>)ViewBag.SummaryReportsList;
+                                if (monthlySummaries.Any())
                                 {
-                                    <div style="background-color: black; color: white;">
-                                        <div style="display: flex; justify-content: space-around;">
-                                            <h2>@latestSummary.Month</h2>
-                                            <h2>@latestSummary.Year</h2>
-                                            <h2>@latestSummary.Wk</h2>
+                                    var latestSummary = monthlySummaries.OrderByDescending(s => s.Date).FirstOrDefault();
+                                    if (latestSummary != null)
+                                    {
+                                        <div style="background-color: black; color: white;">
+                                            <div style="display: flex; justify-content: space-around;">
+                                                <h2>@latestSummary.Month</h2>
+                                                <h2>@latestSummary.Year</h2>
+                                                <h2>@latestSummary.Wk</h2>
+                                            </div>
                                         </div>
-                                    </div>
+                                    }
                                 }
                             }
-                        }
                         </td>
                     </tr>
                 </thead>
@@ -961,8 +1028,15 @@
                     else
                     {
                         <tr>
-                            <td colspan="8" style="text-align:center;">No data found.</td>
+                            <td colspan="8" style="text-align: center;">
+                                <div>
+                                    @*<img style="width: 150px; height: 150px;" src="~/Content/images/sleep-emo.gif" alt="No data image" />*@
+
+                                    <p style="color:black;margin-left:25px;">No data available.</p>
+                                </div>
+                            </td>
                         </tr>
+
                     }
                 </tbody>
             </table>
@@ -971,11 +1045,23 @@
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll(".slide");
+
+        const durations = [15000, 5000];
+
         function showNextSlide() {
             slides[currentSlide].style.display = 'none';
+
             currentSlide = (currentSlide + 1) % slides.length;
+
             slides[currentSlide].style.display = 'block';
+
+            setTimeout(showNextSlide, durations[currentSlide]);
         }
-        setInterval(showNextSlide, 15000);
+
+        slides.forEach((slide, index) => {
+            slide.style.display = index === 0 ? 'block' : 'none';
+        });
+        setTimeout(showNextSlide, durations[currentSlide]);
     </script>
+
 </div>

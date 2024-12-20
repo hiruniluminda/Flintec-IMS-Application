@@ -39,7 +39,8 @@ namespace IssueManagementSystem.Controllers
         public LocationAdapter(int ims_Location) {
             try
             {
-                using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
+                using (
+                    issue_management_systemEntities1 db = new issue_management_systemEntities1())
                 {
                     ln = db.lines.Where(x => x.line_id == ims_Location).SingleOrDefault();
                 }

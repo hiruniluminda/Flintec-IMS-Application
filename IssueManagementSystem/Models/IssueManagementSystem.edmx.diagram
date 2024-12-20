@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b24a6675d33f41f19da338615a091e45" Name="Diagram1">
-        <EntityTypeShape EntityType="issue_management_systemModel.department" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="
+						 
+Model.department" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="issue_management_systemModel.display" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="issue_management_systemModel.employee" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="issue_management_systemModel.issue_line_person" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />

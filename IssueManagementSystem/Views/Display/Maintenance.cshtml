@@ -19,7 +19,7 @@
 
 <div style="display:flex">
     <div class="container-fluid margin">
-        <div class="displayhedding" style="margin-top:-20pt">
+        <div class="displayhedding">
 
             <div class="row">
                 <div class="col-sm-3">
@@ -32,7 +32,9 @@
                 <div class="col-lg-6 text-md-center">
                     <h3>Maintenance</h3>
                 </div>
-
+                <div class="col-lg-3 text-md-center">
+                    <img class="w-25" src="~/Content/images/QRCodes/1.png" alt="CoolAdmin" />
+                </div>
             </div>
         </div>
         <div class="text-center" style="margin-top:20%" id="loding_icon">
@@ -40,12 +42,56 @@
         </div>
         <div class="row">
 
-            <div class="col-md-12" style="margin-top:10pt">
+
+
+
+            <div class="card-stack" style="margin-left:40%;">
+                <ul id="m_break" style="list-style-type:none;">
+                    <li id="brake_list">
+                        <div class="card text-white mb-3" style="background-image: url(/Content/images/backgroundblack.jpg); border-radius: 0px; box-shadow: 8px 4px 20px rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); padding: 20px; display: flex; flex-direction: row; align-items: center; " id="brakediv">
+
+                            @*<div style="background-color: #e6b800; padding: 15px; border-radius: 15px 0 0 15px; text-align: center; margin-right: 20px; color: black">
+                            <div><strong>Date:</strong> <span id="material_date"></span></div>
+                        </div>*@
+                            <div class="triangle"></div>
+                            <div class="card-body" style="flex-grow: 1;" id="brakediv">
+                                <div class="card-head" style="">Machine Breakdown</div>
+
+                                <div class=card-dtls text-white" style="max-width: 80rem; color: white">
+                                    <div><strong>Time:</strong> <span id="brake_time"></span></div>
+                                    <div><strong>Material:</strong> <span id="brake_machine"></span></div>
+                                    <div><strong>Description:</strong> <span id="brake_description"></span></div>
+                                    @*<div><strong>Responsible Person:</strong> <span id="material_responsible"></span></div>
+                                <div><strong>Status:</strong> <span id="material_status"></span></div>*@
+                                    <div><strong>Line Name:</strong> <span id="lineName"></span></div>
+                                </div>
+                            </div>
+                            <div class="respo" style="position: absolute; bottom: 100px; left: 40px; color:white; margin-top:50px;">
+                                <strong>Responsible Person:</strong>
+                            </div>
+                            <div class="respo" style="position: absolute; bottom: 60px; left: 35px; color: white; margin-top: 50px;">
+                                <img class="respimg" style="width: 30px;" src="~/Content/images/responsibleptest.png" />
+                                <span id="brake_responsible"></span>
+                            </div>
+                            <div class="status-badge" style="position: absolute; bottom: 10px; right: 20px; ">
+                                <span class="badge " id="brake_status">Status</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+
+
+            @*<div class="col-md-12" style="margin-top:10pt">
                 <div id="wrapper">
                     <ul id="
-                        
-                        
-                        
+
+
+
                         ">
                         <li id="brake_list">
                             <div class="card text-white bg-danger mb-8" style="max-width:100rem" id="brakediv">
@@ -71,17 +117,17 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>*@
 
             <script>
-    $('#brakediv').hide();
-    $('#maririaldiv').hide();
-    $('#Softwarediv').hide();
-    $('#tecnicaldiv').hide();
-    $('#breake_body').empty();
-    $('#matirial_body').empty();
-    $('#technical_body').empty();
-    $('#it_body').empty();
+                $('#brakediv').hide();
+                $('#maririaldiv').hide();
+                $('#Softwarediv').hide();
+                $('#tecnicaldiv').hide();
+                $('#breake_body').empty();
+                $('#matirial_body').empty();
+                $('#technical_body').empty();
+                $('#it_body').empty();
             </script>
 
             <script src="~/Scripts/3.30bootstrap.min.js"></script>
@@ -129,7 +175,7 @@ $.ajax({
              var seconds=[]
              for (var i = 0; i < issuedata.length; i++) {
 
-                if ((issuedata[i].issue_satus=="1" )&&('@ViewBag.location'==issuedata[i].location))
+                if ((issuedata[i].issue_satus=="1" ))
                 {
                     var responcibleperson_ststus= issuedata[i].responsible_person_confirm_status
                     var issueid = issuedata[i].issue_issue_ID
@@ -159,11 +205,34 @@ $.ajax({
                     {   seconds.push(gap)
                         count++
                         $('#brakediv').show()
-                        var divissue = $('#breake_body');
-                        var issue = '<tr><td>' + day + '</td><td>'+time+'</td><td>'+issuedata[i].lineName+'</td><td>' + issuedata[i].machine_machine_id+'</td><td>' + issuedata[i].description+'</td><td>' + issuedata[i].responciblepersonName+'</td><td>'+ confirmStatus+'</td><td><span id="countdown'+count+'" class="timer"></span></td></tr>'
-                        divissue.append(issue)
-                        divissue.show('slow');
+
                         $('#loding_icon').hide();
+
+                        //var divissue = $('#breake_body');
+                        //var issue = '<tr><td>' + day + '</td><td>'+time+'</td><td>'+issuedata[i].lineName+'</td><td>' + issuedata[i].machine_machine_id+'</td><td>' + issuedata[i].description+'</td><td>' + issuedata[i].responciblepersonName+'</td><td>'+ confirmStatus+'</td><td><span id="countdown'+count+'" class="timer"></span></td></tr>'
+                        //divissue.append(issue)
+                        //divissue.show('slow');
+                        //$('#loding_icon').hide();
+
+
+
+
+                        var newCard = $('#brakediv').clone();
+                        newCard.removeAttr('id');
+                        newCard.find('.card-header').text('Machine Breakdown');
+                        // Populate the cloned card with issue data
+                        newCard.find('#brake_date').text(day); // Change to the appropriate fields
+                        newCard.find('#brake_time').text(time);
+                        newCard.find('#lineName').text(issuedata[i].lineName);
+                        newCard.find('#brake_machine').text(issuedata[i].machine_machine_id);
+                        newCard.find('#brake_description').text(issuedata[i].description);
+                        newCard.find('#brake_responsible').text(issuedata[i].responciblepersonName);
+
+                        newCard.find('#brake_status').text(confirmStatus);
+                        newCard.find('#brake_count').text(count);
+
+                        $('#brake_list').append(newCard);
+                        startSlideshow('#brake_list');
                     }
             }
               if(count==0)
@@ -215,11 +284,11 @@ $.ajax({
 
 
             <script>
-   setTimeout(function(){
+                setTimeout(function () {
 
-     location.reload();
+                    location.reload();
 
-    },3600000);
+                }, 3600000);
             </script>
         </div>
     </div>

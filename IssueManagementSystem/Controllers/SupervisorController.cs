@@ -155,7 +155,7 @@ namespace IssueManagementSystem.Controllers
         {
             var time = DateTime.Now;
             string current_time = time.ToString("yyyy-MM-dd HH:mm");//get today to string variable
-        
+
             using (issue_management_systemEntities1 db = new issue_management_systemEntities1())
             {
                 if (ModelState.IsValid)

@@ -1,90 +1,196 @@
 ﻿@model List<IssueManagementSystem.Models.issue_occurrence>
 <link href="~/Content/QRDisplayStyles/QRStyles.css" rel="stylesheet" />
+<link href="~/Content/Display/css/bootstrap.min.css" rel="stylesheet" />
 
-<table class="table table-bordered custom-table">
-    <thead>
-        <tr>
-            <th>Issue Type</th>
-            <th>Date and Time</th>
-            <th>Machine</th>
-            <th>Description</th>
-            <th>Responsible Person Employee Id</th>
-            <th>Since Occurred</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var issue in Model)
+<div class="container mt-4">
+    <div class="row gy-3">
+        @foreach (var group in Model.GroupBy(issue => issue.issue_issue_ID))
         {
-            var daysSinceOccurred = issue.issue_date.HasValue
-   ? (DateTime.Today - issue.issue_date.Value).Days
-   : (int?)null;
+            string issueCategory;
+            string cardClass;
+            string borderclass = "";
+            string buttoncolor = "";
 
-            if (issue.issue_issue_ID == 1)
+            switch (group.Key)
             {
+                case 1:
+                    issueCategory = "🔧 Machine Breakdown";
+                    cardClass = "bg-machine-breakdown";
+                    borderclass = "border-machine";
+                    buttoncolor = "button-machine";
+                    break;
+                case 2:
+                    issueCategory = "📦 Material Delay";
+                    cardClass = "bg-material-delay";
+                    borderclass = "border-delay";
+                    buttoncolor = "button-delay";
 
-                <tr>
-                    <td class="issue-category">🔧 Machine Breakdown</td>
-                    <td>@issue.issue_date</td>
-                    <td>@issue.machine_machine_id</td>
-                    <td>@issue.description</td>
-                    <td>@issue.responsible_person_emp_id</td>
-                    <td>@(daysSinceOccurred.HasValue ? daysSinceOccurred + " days" : "N/A")</td>
-                    <td class="status-cell">
-                        <span class="status-label @(issue.issue_satus == "1" ? "Pending" : "Done")">
-                            @(issue.issue_satus == "1" ? "Pending" : "Done")
-                        </span>
-                    </td>
-                </tr>
+                    break;
+                case 3:
+                    issueCategory = "⚙️ Technical Issue";
+                    cardClass = "bg-technical-issue";
+                    borderclass = "border-tech";
+                    buttoncolor = "button-tech";
+
+                    break;
+                case 5:
+                    issueCategory = "💻 IT Issue";
+                    cardClass = "bg-it-issue";
+                    borderclass = "border-it";
+                    buttoncolor = "button-it";
+
+                    break;
+                default:
+                    issueCategory = "Unknown Issue";
+                    cardClass = "bg-unknown-issue";
+                    break;
             }
-            if (issue.issue_issue_ID == 2)
+
+            <div class="col-12">
+                <h3 class="p-3 rounded bg-dark text-white @cardClass">@issueCategory</h3>
+            </div>
+
+            foreach (var issue in group)
             {
-                <tr>
-                    <td class="issue-category">📦 Material Delay</td>
-                    <td>@issue.issue_date</td>
-                    <td>@issue.machine_machine_id</td>
-                    <td>@issue.description</td>
-                    <td>@issue.responsible_person_emp_id</td>
-                    <td>@(daysSinceOccurred.HasValue ? daysSinceOccurred + " days" : "N/A")</td>
-                    <td class="status-cell">
-                        <span class="status-label @(issue.issue_satus == "1" ? "Pending" : "Done")">
-                            @(issue.issue_satus == "1" ? "Pending" : "Done")
-                        </span>
-                    </td>
-                </tr>
-            }
-            if (issue.issue_issue_ID == 3)
-            {
-                <tr>
-                    <td class="issue-category">⚙️ Technical Issue</td>
-                    <td>@issue.issue_date</td>
-                    <td>@issue.machine_machine_id</td>
-                    <td>@issue.description</td>
-                    <td>@issue.responsible_person_emp_id</td>
-                    <td>@(daysSinceOccurred.HasValue ? daysSinceOccurred + " days" : "N/A")</td>
-                    <td class="status-cell">
-                        <span class="status-label @(issue.issue_satus == "1" ? "Pending" : "Done")">
-                            @(issue.issue_satus == "1" ? "Pending" : "Done")
-                        </span>
-                    </td>
-                </tr>
-            }
-            if (issue.issue_issue_ID == 5)
-            {
-                <tr>
-                    <td class="issue-category">💻 IT Issue</td>
-                    <td>@issue.issue_date</td>
-                    <td>@issue.machine_machine_id</td>
-                    <td>@issue.description</td>
-                    <td>@issue.responsible_person_emp_id</td>
-                    <td>@(daysSinceOccurred.HasValue ? daysSinceOccurred + " days" : "N/A")</td>
-                    <td class="status-cell">
-                        <span class="status-label @(issue.issue_satus == "1" ? "Pending" : "Done")">
-                            @(issue.issue_satus == "1" ? "Pending" : "Done")
-                        </span>
-                    </td>
-                </tr>
+                var daysSinceOccurred = issue.issue_date.HasValue
+                    ? (DateTime.Today - issue.issue_date.Value).Days
+                    : (int?)null;
+
+                string issueImage = "~/Content/images/mechanic-screw.gif";
+
+                switch (issue.issue_issue_ID)
+                {
+                    case 1:
+                        issueImage = "~/Content/images/on-process-dig.gif";
+                        break;
+                    case 2:
+                        issueImage = "~/Content/images/hhlacontainer.gif";
+                        break;
+                    case 3:
+                        issueImage = "~/Content/images/sticker-robot.gif";
+                        break;
+                    case 5:
+                        issueImage = "~/Content/images/sleep-emo.gif";
+                        break;
+                }
+
+                <div class="col-12">
+                    <div class="row rounded @borderclass mt-4 mb-4 ml-4 mr-4">
+                        <div class="col-md-3 text-center fit-content @cardClass">
+                            <img class="img-fluid w-75 pb-4 pt-4" src="@Url.Content(issueImage)" alt="Issue Image" />
+                        </div>
+                        <div class="colmidbody col-md-7 pt-4">
+                            <p><strong>Description:</strong> @issue.description</p>
+                            <p><strong>Date and Time:</strong> @issue.issue_date</p>
+                            <p><strong>Machine:</strong> @issue.machine_machine_id</p>
+                            <p><strong>Responsible:</strong> @issue.responsible_person_emp_id</p>
+                            <p><strong>Since Occurred:</strong> @(daysSinceOccurred.HasValue ? daysSinceOccurred + " days" : "N/A")</p>
+                          
+                        </div>
+                        <div class="col-md-2 pt-3 text-center">
+                            <span class="status-label @buttoncolor @(issue.issue_satus == "1" ? "Pending" : "Done")">
+                                @(issue.issue_satus == "1" ? "Pending" : "Done")
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
             }
         }
-    </tbody>
-</table>
+    </div>
+</div>
+
+<style>
+
+    .fit-content {
+        background-color: inherit; /* Matches the border class color */
+        background-clip: padding-box; /* Ensure the background fits within the padding box */
+        padding: 0;
+        box-sizing: border-box; /* Includes padding and border in width/height calculation */
+    }
+    .mgnfit{
+        margin-left:-3%;
+        margin-top:-3%;
+        margin-bottom:-3%;
+    }
+
+    .bg-machine-breakdown {
+        background-color: #fa4251; /* Light red */
+    }
+
+
+    .bg-material-delay {
+        background-color: #ff8300; /* Light yellow */
+    }
+
+    .bg-technical-issue {
+        background-color: #00b26f; /* Light blue */
+    }
+
+    .bg-it-issue {
+        background-color: #00b5e9; /* Light green */
+    }
+
+    .bg-unknown-issue {
+        background-color: #e2e3e5; /* Light grey */
+    }
+
+    .border-machine {
+        border: 2px solid #fa4251;
+    }
+    .border-delay {
+        border: 2px solid #ff8300;
+    }
+    .border-tech {
+        border: 2px solid #00b26f;
+    }
+    .border-it {
+        border: 2px solid #00b5e9;
+    }
+
+
+    .rounding {
+        border-top-right-radius: 10%;
+        border-bottom-right-radius: 10%;
+        border-top-left-radius: 2%;
+        border-bottom-left-radius: 2%;
+        padding: 0; /* Removes padding conflicts */
+        margin: 0; /* Removes negative margins */
+    }
+
+    .backcard {
+        background-image: url("../../Content/images/viewgreybg.jpg")
+    }
+
+    .category-label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .colmidbody p {
+        text-align: left;
+        margin-left: 10%;
+        line-height: 0.1;
+    }
+    .colmidbody p{
+        color:black;
+    }
+
+    .status-label {
+        padding: 10px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+        display: inline-block;
+    }
+
+        .status-label.Pending {
+            background-color: #f39c12;
+        }
+
+        .status-label.Done {
+            background-color: #27ae60;
+        }
+</style>

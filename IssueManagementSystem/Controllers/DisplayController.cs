@@ -76,28 +76,7 @@ namespace IssueManagementSystem.Controllers
             }
         }
 
-        /*   public ActionResult respPerson()
-           {
-               using (var db = new issue_management_systemEntities1())
-               {
-                   var issueOccurrences = from issue in db.issue_occurrence
-                                          join user in db.User_tbl
-                                          on issue.responsible_person_emp_id equals user.EmployeeNumber
-                                          select new
-                                          {
-
-                                              EmployeeName = user.Name // Assuming ResponsiblePersonName holds the employee's name
-                                          };
-
-                   // Return the data as JSON for an AJAX call, or change it to View() if returning to a view.
-                   return Json(issueOccurrences.ToList(), JsonRequestBehavior.AllowGet);
-               }
-           }*/
-
-
-
-
-
+ 
         public ActionResult Rasp(int id)
         {
             using (var db = new issue_management_systemEntities1())
@@ -120,7 +99,6 @@ namespace IssueManagementSystem.Controllers
                 ViewBag.QualityIsuue = lineCounts.QualityIsuue;
 
 
-
                 ViewBag.id = id;
                 MonthlySum(id);
                 return View();
@@ -132,9 +110,9 @@ namespace IssueManagementSystem.Controllers
         {
             string query = @"SELECT DISTINCT deps.department_id, deps.department_name,
                                     lines.line_id, lines.line_name, l_map.issues AS issues
-                             FROM issue_management_system.dbo.departments deps
-                             JOIN issue_management_system.dbo.lines lines ON lines.department_id = deps.department_id
-                             JOIN issue_management_system.dbo.line_map l_map ON l_map.line_id = lines.line_id";
+                             FROM issue_management_system_new.dbo.departments deps
+                             JOIN issue_management_system_new.dbo.lines lines ON lines.department_id = deps.department_id
+                             JOIN issue_management_system_new.dbo.line_map l_map ON l_map.line_id = lines.line_id";
             using (var db = new issue_management_systemEntities1())
             {
                 var result = db.Database.SqlQuery<TempClasses.tempClass10>(query).ToList();
@@ -171,22 +149,6 @@ namespace IssueManagementSystem.Controllers
             return View();
         }
 
-        /* public ActionResult Rasp()
-         {
-             // Query to get the target and actual data from the MonthlySummaryVD table
-             using (var db = new FLINTEC_dbContext())
-             {
-                 // Assuming you're getting a single row of data for the view (you can adjust as needed)
-                 var monthlySummary = db.MonthlySummaryVD.FirstOrDefault(); // Or query specific data
-
-                 // Pass data using ViewBag
-                 ViewBag.MonthlySummary = monthlySummary;
-             }
-
-             // Pass the other model you're already using (if needed)
-             var otherModel = new List<IssueManagementSystem.Models.issue_occurrence>(); // Example, adjust as per your logic
-             return View(otherModel);
-         }*/
 
         [HttpPost]
         public JsonResult updateScreen()
